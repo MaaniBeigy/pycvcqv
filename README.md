@@ -35,7 +35,6 @@ coverage-badge -o assets/images/coverage.svg -f
 ```bash
 git add .
 git commit -m ":tada: Initial commit"
-git branch -M main
 git push -u origin main
 ```
 
