@@ -3,6 +3,7 @@
 <div align="center">
 
 [![Build status](https://github.com/MaaniBeigy/pycvcqv/workflows/build/badge.svg?branch=master&event=push)](https://github.com/MaaniBeigy/pycvcqv/actions?query=workflow%3Abuild)
+[![coverage report](assets/images/coverage.svg)](https://github.com/MaaniBeigy/pycvcqv)
 [![Python Version](https://img.shields.io/pypi/pyversions/pycvcqv.svg)](https://pypi.org/project/pycvcqv/)
 [![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/MaaniBeigy/pycvcqv/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
 
@@ -16,36 +17,20 @@ Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with C
 
 </div>
 
-## Very first steps
-
-### Initialize your code
-
-1. Initialize `git` inside your repo:
+### Testing:  
 
 ```bash
-cd pycvcqv && git init
+pytest --cov-report html --cov bitas_utils _bitas_utils_tests/
 ```
 
-2. If you don't have `Poetry` installed run:
+### Coverage Badge:  
 
 ```bash
-make poetry-download
+pip3 install coverage-badge 
+coverage-badge -o assets/images/coverage.svg -f
 ```
 
-3. Initialize poetry and install `pre-commit` hooks:
-
-```bash
-make install
-make pre-commit-install
-```
-
-4. Run the codestyle:
-
-```bash
-make codestyle
-```
-
-5. Upload initial code to GitHub:
+### Upload initial code to GitHub:
 
 ```bash
 git add .
@@ -150,69 +135,15 @@ poetry add pycvcqv
 ```
 
 
-
-### Makefile usage
-
-[`Makefile`](https://github.com/MaaniBeigy/pycvcqv/blob/master/Makefile) contains a lot of functions for faster development.
-
-<details>
-<summary>1. Download and remove Poetry</summary>
-<p>
-
-To download and install Poetry run:
-
-```bash
-make poetry-download
-```
-
-To uninstall
-
-```bash
-make poetry-remove
-```
-
-</p>
-</details>
-
-<details>
-<summary>2. Install all dependencies and pre-commit hooks</summary>
-<p>
-
-Install requirements:
-
-```bash
-make install
-```
-
-Pre-commit hooks coulb be installed after `git init` via
-
-```bash
-make pre-commit-install
-```
-
-</p>
-</details>
-
-<details>
 <summary>3. Codestyle</summary>
 <p>
 
 Automatic formatting uses `pyupgrade`, `isort` and `black`.
 
-```bash
-make codestyle
-
-# or use synonym
-make formatting
-```
-
-Codestyle checks only, without rewriting files:
 
 ```bash
-make check-codestyle
+make test && make check-codestyle && make mypy && make check-safety
 ```
-
-> Note: `check-codestyle` uses `isort`, `black` and `darglint` library
 
 <details>
 <summary>4. Code security</summary>
@@ -361,7 +292,7 @@ This project is licensed under the terms of the `MIT` license. See [LICENSE](htt
 
 ```bibtex
 @misc{pycvcqv,
-  author = {pycvcqv},
+  author = {MaaniBeigy},
   title = {Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI) },
   year = {2021},
   publisher = {GitHub},
