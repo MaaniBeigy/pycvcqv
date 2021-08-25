@@ -36,7 +36,6 @@ coverage-badge -o assets/images/coverage.svg -f
 git add .
 git commit -m ":tada: Initial commit"
 git branch -M main
-git remote add origin https://github.com/MaaniBeigy/pycvcqv.git
 git push -u origin main
 ```
 
@@ -269,8 +268,8 @@ We use [`Release Drafter`](https://github.com/marketplace/actions/release-drafte
 
 ### List of labels and corresponding titles
 
-|               **Label**               |  **Title in Releases**  |
-| :-----------------------------------: | :---------------------: |
+|               **Label**               | **Title in Releases**  |
+| :-----------------------------------: | :--------------------: |
 |       `enhancement`, `feature`        |       🚀 Features       |
 | `bug`, `refactoring`, `bugfix`, `fix` | 🔧 Fixes & Refactoring  |
 |       `build`, `ci`, `testing`        | 📦 Build System & CI/CD |
