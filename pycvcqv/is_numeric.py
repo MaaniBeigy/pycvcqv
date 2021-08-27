@@ -8,7 +8,7 @@ from pandas.api.types import is_numeric_dtype
 
 
 def is_numeric(function):
-    """a decorator function to chech whether the input_vector is numeric"""
+    """a decorator function to check whether the input_vector is numeric"""
     # ---------------------------- wrapper function ---------------------------
     def wrapper(*args, **kw):
         # -------------------- if the **kwargs are not used -------------------
