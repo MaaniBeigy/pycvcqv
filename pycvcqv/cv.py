@@ -3,8 +3,8 @@
 from typing import List, Optional, Tuple, Union
 
 import numpy as np
+import numpy.typing as npt
 import pandas as pd
-from numpy import typing as npt
 
 from .check_input_type import true_input
 from .is_numeric import is_numeric
