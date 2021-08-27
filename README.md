@@ -3,6 +3,8 @@
 <div align="center">
 
 [![Build status](https://github.com/MaaniBeigy/pycvcqv/workflows/build/badge.svg?branch=master&event=push)](https://github.com/MaaniBeigy/pycvcqv/actions?query=workflow%3Abuild)
+  
+[![Build Status](https://github.com/MaaniBeigy/pycvcqv/actions/workflows/base.yml/badge.svg)](https://github.com/MaaniBeigy/pycvcqv/actions/workflows/base.yml) 
 [![coverage report](assets/images/coverage.svg)](https://github.com/MaaniBeigy/pycvcqv)
 [![Python Version](https://img.shields.io/pypi/pyversions/pycvcqv.svg)](https://pypi.org/project/pycvcqv/)
 [![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/MaaniBeigy/pycvcqv/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
