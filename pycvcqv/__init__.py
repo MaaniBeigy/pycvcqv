@@ -4,7 +4,9 @@ with Confidence Intervals (CI)"""
 
 import sys
 
-from .example import hello
+from .check_input_type import true_input
+from .cv import cv
+from .is_numeric import is_numeric
 
 if sys.version_info >= (3, 8):
     from importlib import metadata as importlib_metadata
@@ -21,4 +23,4 @@ def get_version() -> str:
 
 version: str = get_version()
 
-__all__ = ["hello"]
+__all__ = ["cv", "is_numeric", "true_input"]

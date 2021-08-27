@@ -20,7 +20,8 @@ Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with C
 ### Testing:  
 
 ```bash
-pytest --cov-report html --cov bitas_utils _bitas_utils_tests/
+make install
+make test && make coverage && make check-codestyle && make mypy && make check-safety
 ```
 
 ### Coverage Badge:  

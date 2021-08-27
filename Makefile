@@ -41,6 +41,11 @@ formatting: codestyle
 test:
 	poetry run pytest -c pyproject.toml
 
+.PHONY: coverage
+coverage:
+	poetry run pytest --cov-report html --cov pycvcqv tests/
+	poetry run coverage-badge -o assets/images/coverage.svg -f
+
 .PHONY: check-codestyle
 check-codestyle:
 	poetry run isort --diff --check-only --settings-path pyproject.toml ./
