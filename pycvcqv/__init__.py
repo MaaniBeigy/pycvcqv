@@ -3,15 +3,11 @@
 with Confidence Intervals (CI)"""
 
 import sys
+from importlib import metadata as importlib_metadata
 
 from .check_input_type import true_input
 from .cv import cv
 from .is_numeric import is_numeric
-
-if sys.version_info >= (3, 8):
-    from importlib import metadata as importlib_metadata
-else:
-    import importlib_metadata
 
 
 def get_version() -> str:
