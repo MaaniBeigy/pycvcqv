@@ -30,7 +30,7 @@ def cqv(
     interpolation: Optional[str] = "linear",
     multiplier: Optional[int] = 1,
 ) -> float:
-    """Coefficient of variation.
+    """Coefficient of quartile variation.
 
     Args:
         numeric_vector (pandas.core.series.Series, numpy.ndarray, list, or
