@@ -1,5 +1,5 @@
 """Tests for cv function."""
-# ------------------------ Import libraries and functions ---------------------
+# --------------------------- Import libraries and functions --------------------------
 import pandas as pd
 import pytest
 
@@ -7,7 +7,7 @@ from pycvcqv.cv import cv
 
 
 def test_cv_with_kwarg():
-    """test cv function withot correction with numeric_vector kwarg"""
+    """test cv function without correction with numeric_vector kwarg"""
     assert (
         cv(
             numeric_vector=pd.Series(
@@ -41,7 +41,7 @@ def test_cv_with_kwarg():
 
 
 def test_cv_without_kwarg():
-    """test cv function withot correction without numeric_vector kwarg"""
+    """test cv function without correction without numeric_vector kwarg"""
     assert (
         cv(
             [
