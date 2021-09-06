@@ -32,7 +32,7 @@ make test && make coverage && make check-codestyle && make mypy && make check-sa
 ```bash
 . .venv/bin/activate
 pylint pycvcqv -> pylint-log.txt
-lintscore=$(grep 'rated at' pylint-log.txt | cut -d\   -f10 | cut -d \/ -f 1)
+lintscore=$(grep 'rated at' pylint-log.txt | cut -d\   -f7 | cut -d \/ -f 1)
 pip3 install anybadge
 anybadge -o --value=$lintscore --file=assets/images/pylint.svg pylint
 ```
