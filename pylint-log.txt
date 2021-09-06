@@ -1,0 +1,64 @@
+************* Module -
+-:1:0: F0001: No module named - (fatal)
+************* Module pycvcqv
+pycvcqv/__init__.py:14:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module pycvcqv.cqv
+pycvcqv/cqv.py:6:0: E0611: No name 'typing' in module 'numpy' (no-name-in-module)
+pycvcqv/cqv.py:6:0: E0401: Unable to import 'numpy.typing' (import-error)
+pycvcqv/cqv.py:13:0: C0103: Class name "LIST_FLOAT" doesn't conform to PascalCase naming style (invalid-name)
+pycvcqv/cqv.py:14:0: C0103: Class name "LIST_INT" doesn't conform to PascalCase naming style (invalid-name)
+pycvcqv/cqv.py:15:0: C0103: Class name "TUPLE_FLOAT" doesn't conform to PascalCase naming style (invalid-name)
+pycvcqv/cqv.py:16:0: C0103: Class name "TUPLE_INT" doesn't conform to PascalCase naming style (invalid-name)
+pycvcqv/cqv.py:83:4: W0621: Redefining name 'cqv' from outer scope (line 25) (redefined-outer-name)
+pycvcqv/cqv.py:75:4: C0103: Variable name "q1" doesn't conform to snake_case naming style (invalid-name)
+pycvcqv/cqv.py:76:4: C0103: Variable name "q3" doesn't conform to snake_case naming style (invalid-name)
+pycvcqv/cqv.py:78:4: R1720: Unnecessary "else" after "raise" (no-else-raise)
+************* Module pycvcqv.is_numeric
+pycvcqv/is_numeric.py:16:12: R1705: Unnecessary "else" after "return" (no-else-return)
+pycvcqv/is_numeric.py:24:12: R1705: Unnecessary "else" after "return" (no-else-return)
+************* Module pycvcqv.check_input_type
+pycvcqv/check_input_type.py:17:12: R1705: Unnecessary "else" after "return" (no-else-return)
+pycvcqv/check_input_type.py:18:16: R1701: Consider merging these isinstance calls to isinstance(args[0], (list, np.ndarray, pd.Series, tuple)) (consider-merging-isinstance)
+pycvcqv/check_input_type.py:33:12: R1705: Unnecessary "else" after "return" (no-else-return)
+pycvcqv/check_input_type.py:34:16: R1701: Consider merging these isinstance calls to isinstance(kw['numeric_vector'], (list, np.ndarray, pd.Series, tuple)) (consider-merging-isinstance)
+************* Module pycvcqv.cv
+pycvcqv/cv.py:6:0: E0611: No name 'typing' in module 'numpy' (no-name-in-module)
+pycvcqv/cv.py:6:0: E0401: Unable to import 'numpy.typing' (import-error)
+pycvcqv/cv.py:13:0: C0103: Class name "LIST_FLOAT" doesn't conform to PascalCase naming style (invalid-name)
+pycvcqv/cv.py:14:0: C0103: Class name "LIST_INT" doesn't conform to PascalCase naming style (invalid-name)
+pycvcqv/cv.py:15:0: C0103: Class name "TUPLE_FLOAT" doesn't conform to PascalCase naming style (invalid-name)
+pycvcqv/cv.py:16:0: C0103: Class name "TUPLE_INT" doesn't conform to PascalCase naming style (invalid-name)
+pycvcqv/cv.py:75:4: W0621: Redefining name 'cv' from outer scope (line 25) (redefined-outer-name)
+pycvcqv/cv.py:25:0: C0103: Function name "cv" doesn't conform to snake_case naming style (invalid-name)
+pycvcqv/cv.py:25:0: R0913: Too many arguments (6/5) (too-many-arguments)
+pycvcqv/cv.py:75:4: C0103: Variable name "cv" doesn't conform to snake_case naming style (invalid-name)
+pycvcqv/cv.py:84:4: C0103: Variable name "n" doesn't conform to snake_case naming style (invalid-name)
+pycvcqv/cv.py:86:4: R1705: Unnecessary "else" after "return" (no-else-return)
+pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
+==pycvcqv.cqv:2
+==pycvcqv.cv:2
+from typing import List, Optional, Tuple, Union
+
+import numpy as np
+import numpy.typing as npt
+import pandas as pd
+
+from .check_input_type import true_input
+from .is_numeric import is_numeric
+
+# ---------------------------------- types definition ---------------------------------
+LIST_FLOAT = List[float]
+LIST_INT = List[int]
+TUPLE_FLOAT = Tuple[float]
+TUPLE_INT = Tuple[int]
+ARRAY_FLOAT = npt.NDArray[np.float_]
+ARRAY_INT = npt.NDArray[np.int_]
+
+# -------------------------------- function definition --------------------------------
+
+
+@true_input  # decorator to check whether the input_vector has correct type
+@is_numeric  # decorator to check whether the input vector is numeric (duplicate-code)
+
+------------------------------------------------------------------
+Your code has been rated at 4.03/10 (previous run: 4.03/10, +0.00)

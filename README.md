@@ -4,6 +4,7 @@
 
 [![Build status](https://github.com/MaaniBeigy/pycvcqv/workflows/build/badge.svg)](https://github.com/MaaniBeigy/pycvcqv/actions?query=workflow%3Abuild)
 [![coverage report](assets/images/coverage.svg)](https://github.com/MaaniBeigy/pycvcqv)
+[![lint report](assets/images/pylint.svg)](https://github.com/MaaniBeigy/pycvcqv)
 [![Python Version](https://img.shields.io/pypi/pyversions/pycvcqv.svg)](https://pypi.org/project/pycvcqv/)
 [![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/MaaniBeigy/pycvcqv/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
 
@@ -25,6 +26,17 @@ Python port of [cvcqv](https://github.com/MaaniBeigy/cvcqv)
 make install
 make test && make coverage && make check-codestyle && make mypy && make check-safety
 ```
+
+### Pylint Badge:  
+
+```bash
+. .venv/bin/activate
+pylint pycvcqv -> pylint-log.txt
+lintscore=$(grep 'rated at' pylint-log.txt | cut -d\   -f10 | cut -d \/ -f 1)
+pip3 install anybadge
+anybadge -o --value=$lintscore --file=assets/images/pylint.svg pylint
+```
+
 
 ### Upload initial code to GitHub:
 
