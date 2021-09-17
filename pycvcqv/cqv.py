@@ -10,12 +10,12 @@ from .check_input_type import true_input
 from .is_numeric import is_numeric
 
 # ---------------------------------- types definition ---------------------------------
-LIST_FLOAT = List[float]
-LIST_INT = List[int]
-TUPLE_FLOAT = Tuple[float]
-TUPLE_INT = Tuple[int]
-ARRAY_FLOAT = npt.NDArray[np.float_]
-ARRAY_INT = npt.NDArray[np.int_]
+ListFloat = List[float]
+ListInt = List[int]
+TupleFloat = Tuple[float]
+TupleInt = Tuple[int]
+ArrayFloat = npt.NDArray[np.float_]
+ArrayInt = npt.NDArray[np.int_]
 
 # -------------------------------- function definition --------------------------------
 
@@ -24,7 +24,7 @@ ARRAY_INT = npt.NDArray[np.int_]
 @is_numeric  # decorator to check whether the input vector is numeric
 def cqv(
     numeric_vector: Union[
-        pd.Series, ARRAY_FLOAT, ARRAY_INT, LIST_FLOAT, LIST_INT, TUPLE_FLOAT, TUPLE_INT
+        pd.Series, ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
     ],
     ndigits: Optional[int] = 4,
     interpolation: Optional[str] = "linear",
@@ -72,17 +72,15 @@ def cqv(
     # -------------- convert numeric_vector to pandas.core.series.Series --------------
     numeric_vector = pd.Series(numeric_vector)
     # ----------------- calculate the quantiles of the numeric_vector -----------------
-    q1 = numeric_vector.quantile(0.25, interpolation=interpolation)  # q1 = p25
-    q3 = numeric_vector.quantile(0.75, interpolation=interpolation)  # q3 = p75
+    quantile1 = numeric_vector.quantile(0.25, interpolation=interpolation)  # q1 = p25
+    quantile3 = numeric_vector.quantile(0.75, interpolation=interpolation)  # q3 = p75
     # ------------------- raise warning for 0 divisor when q3+q1 = 0 ------------------
-    if q1 + q3 == 0:
+    if quantile1 + quantile3 == 0:
         raise Warning("cqv is NaN because q3 and q1 are 0")
-    else:
-        pass
     # -------------- the basic coefficient of quartile variation function -------------
-    cqv = (q3 - q1) / (q3 + q1)
+    _cqv = (quantile3 - quantile1) / (quantile3 + quantile1)
     # ----------------------- return the corrected or basic cqv -----------------------
     return round(
-        multiplier * cqv,  # -------- multiply the cqv e.g, 100 for percentage --------
+        multiplier * _cqv,  # -------- multiply the cqv e.g, 100 for percentage --------
         ndigits=ndigits,  # ------------------ decimals for the round -----------------
     )

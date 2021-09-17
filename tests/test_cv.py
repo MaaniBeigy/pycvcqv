@@ -3,13 +3,13 @@
 import pandas as pd
 import pytest
 
-from pycvcqv.cv import cv
+from pycvcqv.cv import coefficient_of_variation
 
 
 def test_cv_with_kwarg():
     """test cv function without correction with numeric_vector kwarg"""
     assert (
-        cv(
+        coefficient_of_variation(
             numeric_vector=pd.Series(
                 [
                     0.2,
@@ -43,7 +43,7 @@ def test_cv_with_kwarg():
 def test_cv_without_kwarg():
     """test cv function without correction without numeric_vector kwarg"""
     assert (
-        cv(
+        coefficient_of_variation(
             [
                 0.2,
                 0.5,
@@ -75,7 +75,7 @@ def test_cv_without_kwarg():
 def test_cv_corrected():
     """test cv function with correction"""
     assert (
-        cv(
+        coefficient_of_variation(
             numeric_vector=pd.Series(
                 [
                     0.2,
@@ -110,7 +110,7 @@ def test_cv_corrected():
 def test_cv_nonnumeric_type_numeric_vector_with_kwarg():
     """test cv function with nonnumeric type of numeric_vector with kwarg"""
     with pytest.raises(TypeError) as execinfo:
-        cv(
+        coefficient_of_variation(
             numeric_vector=pd.Series(
                 ["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"]
             ),
@@ -124,7 +124,7 @@ def test_cv_nonnumeric_type_numeric_vector_with_kwarg():
 def test_cv_nonnumeric_type_numeric_vector_without_kwarg():
     """test cv function with nonnumeric type of numeric_vector without kwarg"""
     with pytest.raises(TypeError) as execinfo:
-        cv(
+        coefficient_of_variation(
             ["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"],
             correction=True,
             multiplier=100,
@@ -136,7 +136,7 @@ def test_cv_nonnumeric_type_numeric_vector_without_kwarg():
 def test_cv_wrong_type_numeric_vector_with_kwarg():
     """test cv function with wrong type of numeric_vector with kwarg"""
     with pytest.raises(TypeError) as execinfo:
-        cv(
+        coefficient_of_variation(
             numeric_vector={
                 0.2,
                 0.5,
@@ -173,7 +173,7 @@ pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
 def test_cv_wrong_type_numeric_vector_without_kwarg():
     """test cv function with wrong type of numeric_vector without kwarg"""
     with pytest.raises(TypeError) as execinfo:
-        cv(
+        coefficient_of_variation(
             {
                 0.2,
                 0.5,

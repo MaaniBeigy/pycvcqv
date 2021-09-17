@@ -10,21 +10,21 @@ from .check_input_type import true_input
 from .is_numeric import is_numeric
 
 # ---------------------------------- types definition ---------------------------------
-LIST_FLOAT = List[float]
-LIST_INT = List[int]
-TUPLE_FLOAT = Tuple[float]
-TUPLE_INT = Tuple[int]
-ARRAY_FLOAT = npt.NDArray[np.float_]
-ARRAY_INT = npt.NDArray[np.int_]
+ListFloat = List[float]
+ListInt = List[int]
+TupleFloat = Tuple[float]
+TupleInt = Tuple[int]
+ArrayFloat = npt.NDArray[np.float_]
+ArrayInt = npt.NDArray[np.int_]
 
 # -------------------------------- function definition --------------------------------
 
 
 @true_input  # decorator to check whether the input_vector has correct type
 @is_numeric  # decorator to check whether the input vector is numeric
-def cv(
+def coefficient_of_variation(
     numeric_vector: Union[
-        pd.Series, ARRAY_FLOAT, ARRAY_INT, LIST_FLOAT, LIST_INT, TUPLE_FLOAT, TUPLE_INT
+        pd.Series, ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
     ],
     ddof: Optional[int] = 1,
     skipna: Optional[bool] = True,
@@ -72,7 +72,7 @@ def cv(
     # -------------- convert numeric_vector to pandas.core.series.Series --------------
     numeric_vector = pd.Series(numeric_vector)
     # ------------------ the basic coefficient of variation function ------------------
-    cv = numeric_vector.std(  # -------------- std in pandas.core.generic -------------
+    _cv = numeric_vector.std(  # -------------- std in pandas.core.generic -------------
         skipna=skipna,  # ------------------- Exclude NA/null values ------------------
         ddof=ddof,  # -------------------- Delta Degrees of Freedom -------------------
         # ------------- mean in pandas.core.generic -------------
@@ -81,26 +81,25 @@ def cv(
     )
 
     # ------------------------ the length of the numeric_vector -----------------------
-    n = len(numeric_vector)
+    length = len(numeric_vector)
     # ------------------------ return the corrected or basic cv -----------------------
     if correction:
         return round(  # ---------------------- round the result ----------------------
             # ---------------- multiply the cv e.g, 100 for percentage ----------------
             multiplier
             * (
-                cv
+                _cv
                 * (
                     1
-                    - ((4 * (n - 1)) ** (-1))
-                    + ((cv ** 2) * (n ** (-1)))
-                    + (2 * ((n - 1) ** (2))) ** (-1)
+                    - ((4 * (length - 1)) ** (-1))
+                    + ((_cv ** 2) * (length ** (-1)))
+                    + (2 * ((length - 1) ** (2))) ** (-1)
                 )
             ),
             ndigits=ndigits,  # --------------- decimals for the round ---------------
         )
-    else:
-        return round(  # ---------------------- round the result ----------------------
-            # ---------------- multiply the cv e.g, 100 for percentage ----------------
-            multiplier * (cv),
-            ndigits=ndigits,  # ---------------- decimals for the round ---------------
-        )
+    return round(  # ---------------------- round the result ----------------------
+        # ---------------- multiply the cv e.g, 100 for percentage ----------------
+        multiplier * (_cv),
+        ndigits=ndigits,  # ---------------- decimals for the round ---------------
+    )
