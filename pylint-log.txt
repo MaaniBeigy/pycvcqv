@@ -19,5 +19,5 @@ from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, 
 @true_input  # decorator to check whether the input_vector has correct type
 @is_numeric  # decorator to check whether the input vector is numeric (duplicate-code)
 
------------------------------------
-Your code has been rated at 9.72/10
+------------------------------------------------------------------
+Your code has been rated at 9.72/10 (previous run: 9.72/10, +0.00)

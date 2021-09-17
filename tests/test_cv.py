@@ -7,10 +7,10 @@ from pycvcqv.cv import coefficient_of_variation
 
 
 def test_cv_with_kwarg():
-    """test cv function without correction with numeric_vector kwarg"""
+    """test cv function without correction with data kwarg"""
     assert (
         coefficient_of_variation(
-            numeric_vector=pd.Series(
+            data=pd.Series(
                 [
                     0.2,
                     0.5,
@@ -41,7 +41,7 @@ def test_cv_with_kwarg():
 
 
 def test_cv_without_kwarg():
-    """test cv function without correction without numeric_vector kwarg"""
+    """test cv function without correction without data kwarg"""
     assert (
         coefficient_of_variation(
             [
@@ -76,7 +76,7 @@ def test_cv_corrected():
     """test cv function with correction"""
     assert (
         coefficient_of_variation(
-            numeric_vector=pd.Series(
+            data=pd.Series(
                 [
                     0.2,
                     0.5,
@@ -107,22 +107,20 @@ def test_cv_corrected():
     )
 
 
-def test_cv_nonnumeric_type_numeric_vector_with_kwarg():
-    """test cv function with nonnumeric type of numeric_vector with kwarg"""
+def test_cv_nonnumeric_type_data_with_kwarg():
+    """test cv function with nonnumeric type of data with kwarg"""
     with pytest.raises(TypeError) as execinfo:
         coefficient_of_variation(
-            numeric_vector=pd.Series(
-                ["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"]
-            ),
+            data=pd.Series(["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"]),
             correction=True,
             multiplier=100,
         )
 
-    assert execinfo.value.args[0] == "The vector is not numeric!"
+    assert execinfo.value.args[0] == "The data is not numeric!"
 
 
-def test_cv_nonnumeric_type_numeric_vector_without_kwarg():
-    """test cv function with nonnumeric type of numeric_vector without kwarg"""
+def test_cv_nonnumeric_type_data_without_kwarg():
+    """test cv function with nonnumeric type of data without kwarg"""
     with pytest.raises(TypeError) as execinfo:
         coefficient_of_variation(
             ["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"],
@@ -130,14 +128,14 @@ def test_cv_nonnumeric_type_numeric_vector_without_kwarg():
             multiplier=100,
         )
 
-    assert execinfo.value.args[0] == "The vector is not numeric!"
+    assert execinfo.value.args[0] == "The data is not numeric!"
 
 
-def test_cv_wrong_type_numeric_vector_with_kwarg():
-    """test cv function with wrong type of numeric_vector with kwarg"""
+def test_cv_wrong_type_data_with_kwarg():
+    """test cv function with wrong type of data with kwarg"""
     with pytest.raises(TypeError) as execinfo:
         coefficient_of_variation(
-            numeric_vector={
+            data={
                 0.2,
                 0.5,
                 1.1,
@@ -165,13 +163,13 @@ def test_cv_wrong_type_numeric_vector_with_kwarg():
 
     assert (
         execinfo.value.args[0]
-        == """numeric_vector must be \
+        == """data must be \
 pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
     )
 
 
-def test_cv_wrong_type_numeric_vector_without_kwarg():
-    """test cv function with wrong type of numeric_vector without kwarg"""
+def test_cv_wrong_type_data_without_kwarg():
+    """test cv function with wrong type of data without kwarg"""
     with pytest.raises(TypeError) as execinfo:
         coefficient_of_variation(
             {
@@ -202,6 +200,6 @@ def test_cv_wrong_type_numeric_vector_without_kwarg():
 
     assert (
         execinfo.value.args[0]
-        == """numeric_vector must be \
+        == """data must be \
 pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
     )

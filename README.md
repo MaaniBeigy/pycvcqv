@@ -37,7 +37,6 @@ pip3 install anybadge
 anybadge -o --value=$lintscore --file=assets/images/pylint.svg pylint
 ```
 
-
 ### Upload initial code to GitHub:
 
 ```bash

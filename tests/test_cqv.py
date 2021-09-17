@@ -7,10 +7,10 @@ from pycvcqv.cqv import cqv
 
 
 def test_cqv_with_kwarg():
-    """test cqv function with numeric_vector kwarg"""
+    """test cqv function with data kwarg"""
     assert (
         cqv(
-            numeric_vector=pd.Series(
+            data=pd.Series(
                 [
                     0.2,
                     0.5,
@@ -41,7 +41,7 @@ def test_cqv_with_kwarg():
 
 
 def test_cqv_without_kwarg():
-    """test cv function without numeric_vector kwarg"""
+    """test cv function without data kwarg"""
     assert (
         cqv(
             [
@@ -72,35 +72,33 @@ def test_cqv_without_kwarg():
     )
 
 
-def test_cqv_nonnumeric_type_vector_with_kwarg():
-    """test cqv function with nonnumeric type of numeric_vector with kwarg"""
+def test_cqv_nonnumeric_type_data_with_kwarg():
+    """test cqv function with nonnumeric type of data with kwarg"""
     with pytest.raises(TypeError) as execinfo:
         cqv(
-            numeric_vector=pd.Series(
-                ["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"]
-            ),
+            data=pd.Series(["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"]),
             multiplier=100,
         )
 
-    assert execinfo.value.args[0] == "The vector is not numeric!"
+    assert execinfo.value.args[0] == "The data is not numeric!"
 
 
-def test_cqv_nonnumeric_type_numeric_vector_without_kwarg():
-    """test cqv function with nonnumeric type of numeric_vector without kwarg"""
+def test_cqv_nonnumeric_type_data_without_kwarg():
+    """test cqv function with nonnumeric type of data without kwarg"""
     with pytest.raises(TypeError) as execinfo:
         cqv(
             ["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"],
             multiplier=100,
         )
 
-    assert execinfo.value.args[0] == "The vector is not numeric!"
+    assert execinfo.value.args[0] == "The data is not numeric!"
 
 
-def test_cqv_wrong_type_numeric_vector_with_kwarg():
-    """test cvq function with wrong type of numeric_vector with kwarg"""
+def test_cqv_wrong_type_data_with_kwarg():
+    """test cvq function with wrong type of data with kwarg"""
     with pytest.raises(TypeError) as execinfo:
         cqv(
-            numeric_vector={
+            data={
                 0.2,
                 0.5,
                 1.1,
@@ -127,13 +125,13 @@ def test_cqv_wrong_type_numeric_vector_with_kwarg():
 
     assert (
         execinfo.value.args[0]
-        == """numeric_vector must be \
+        == """data must be \
 pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
     )
 
 
-def test_cqv_wrong_type_numeric_vector_without_kwarg():
-    """test cqv function with wrong type of numeric_vector without kwarg"""
+def test_cqv_wrong_type_data_without_kwarg():
+    """test cqv function with wrong type of data without kwarg"""
     with pytest.raises(TypeError) as execinfo:
         cqv(
             {
@@ -163,7 +161,7 @@ def test_cqv_wrong_type_numeric_vector_without_kwarg():
 
     assert (
         execinfo.value.args[0]
-        == """numeric_vector must be \
+        == """data must be \
 pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
     )
 
