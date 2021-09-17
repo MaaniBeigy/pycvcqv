@@ -1,31 +1,17 @@
 ************* Module -
 -:1:0: F0001: No module named - (fatal)
-************* Module pycvcqv.cqv
-pycvcqv/cqv.py:6:0: E0611: No name 'typing' in module 'numpy' (no-name-in-module)
-pycvcqv/cqv.py:6:0: E0401: Unable to import 'numpy.typing' (import-error)
 ************* Module pycvcqv.cv
-pycvcqv/cv.py:6:0: E0611: No name 'typing' in module 'numpy' (no-name-in-module)
-pycvcqv/cv.py:6:0: E0401: Unable to import 'numpy.typing' (import-error)
-pycvcqv/cv.py:25:0: R0913: Too many arguments (6/5) (too-many-arguments)
+pycvcqv/cv.py:16:0: R0913: Too many arguments (6/5) (too-many-arguments)
 pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
-==pycvcqv.cqv:2
-==pycvcqv.cv:2
-from typing import List, Optional, Tuple, Union
+==pycvcqv.cqv:[2:15]
+==pycvcqv.cv:[2:15]
+from typing import Optional, Union
 
-import numpy as np
-import numpy.typing as npt
 import pandas as pd
 
-from .check_input_type import true_input
-from .is_numeric import is_numeric
-
-# ---------------------------------- types definition ---------------------------------
-ListFloat = List[float]
-ListInt = List[int]
-TupleFloat = Tuple[float]
-TupleInt = Tuple[int]
-ArrayFloat = npt.NDArray[np.float_]
-ArrayInt = npt.NDArray[np.int_]
+from pycvcqv.check_input_type import true_input
+from pycvcqv.is_numeric import is_numeric
+from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
 
 # -------------------------------- function definition --------------------------------
 
@@ -33,5 +19,5 @@ ArrayInt = npt.NDArray[np.int_]
 @true_input  # decorator to check whether the input_vector has correct type
 @is_numeric  # decorator to check whether the input vector is numeric (duplicate-code)
 
-------------------------------------------------------------------
-Your code has been rated at 7.11/10 (previous run: 6.84/10, +0.26)
+-----------------------------------
+Your code has been rated at 9.72/10

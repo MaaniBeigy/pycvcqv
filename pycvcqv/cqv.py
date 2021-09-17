@@ -1,21 +1,12 @@
 """Coefficient of Quartile Variation (cqv)"""
 # --------------------------- Import libraries and functions --------------------------
-from typing import List, Optional, Tuple, Union
+from typing import Optional, Union
 
-import numpy as np
-import numpy.typing as npt
 import pandas as pd
 
-from .check_input_type import true_input
-from .is_numeric import is_numeric
-
-# ---------------------------------- types definition ---------------------------------
-ListFloat = List[float]
-ListInt = List[int]
-TupleFloat = Tuple[float]
-TupleInt = Tuple[int]
-ArrayFloat = npt.NDArray[np.float_]
-ArrayInt = npt.NDArray[np.int_]
+from pycvcqv.check_input_type import true_input
+from pycvcqv.is_numeric import is_numeric
+from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
 
 # -------------------------------- function definition --------------------------------
 
