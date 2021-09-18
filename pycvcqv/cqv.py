@@ -2,32 +2,37 @@
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional, Union
 
+import numpy as np
 import pandas as pd
 
-from pycvcqv.check_input_type import true_input
 from pycvcqv.is_numeric import is_numeric
+from pycvcqv.method_selector import _cqv, processor_dataframe_cqv
 from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
-from pycvcqv.warnings import handle_nan
+
 
 # -------------------------------- function definition --------------------------------
-
-
-@true_input  # decorator to check whether the input_vector has correct type
 @is_numeric  # decorator to check whether the input vector is numeric
-@handle_nan  # decorator to raise warning when cqv returns NaN
 def cqv(
     data: Union[
-        pd.Series, ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
+        pd.Series,
+        ArrayFloat,
+        ArrayInt,
+        ListFloat,
+        ListInt,
+        TupleFloat,
+        TupleInt,
+        pd.DataFrame,
     ],
     ndigits: Optional[int] = 4,
     interpolation: Optional[str] = "linear",
     multiplier: Optional[int] = 1,
-) -> float:
+    num_threads: Optional[int] = 1,
+) -> Union[pd.DataFrame, float]:
     """Coefficient of quartile variation.
 
     Args:
-        data (pandas.core.series.Series, numpy.ndarray, list, or
-            tuple, default numpy.ndarray): Having either float or integer elements.
+        data (pandas.core.series.Series, numpy.ndarray, list, tuple, or pd.DataFrame,
+            default numpy.ndarray): Having either float or integer elements.
         ndigits (int, default 4): Indicates the number of decimal places, from
             built-in function round in module builtins.
         interpolation (str, default 'linear'): It specifies the interpolation method to
@@ -40,11 +45,17 @@ def cqv(
             * midpoint: (`i` + `j`) / 2.
         multiplier (int, default 1): cqv will be multiplied by it, such as 100,
             when you want to report cqv as percentage.
+        num_threads (int, default 1): The number of therads to use. This speeds up
+            calculation for the pd.DataFrame inputs. Defaults to single thread. If -1
+            is specified then multiprocessing.cpu_count() is used instead.
 
 
     Returns:
-        float: the coefficient of quartile variation for a numeric vector, i.e.,
-            (q3-q1))/(q3 + q1).
+        Union[pd.DataFrame, float]: the coefficient(s) of quartile variation.
+
+    Raises:
+        TypeError: If data is not pandas.core.series.Series, numpy.ndarray, list,
+            or tuple!
 
     Examples:
         .. code:: python
@@ -58,32 +69,21 @@ def cqv(
             ... )
             45.625
     """
-    # ------------------------------------ return  ------------------------------------
-    result = float(_cqv(data, ndigits, interpolation, multiplier))
+    # ----------------------------------- DataFrame  ----------------------------------
+    if isinstance(data, pd.DataFrame):
+        result = processor_dataframe_cqv(
+            data=data,
+            num_threads=num_threads,
+            ndigits=ndigits,
+            interpolation=interpolation,
+            multiplier=multiplier,
+        )
+    # --------------------------------- non DataFrame  --------------------------------
+    elif isinstance(data, (list, np.ndarray, pd.Series, tuple)):
+        result = float(_cqv(data, ndigits, interpolation, multiplier))
+    else:
+        raise TypeError(
+            """data must be \
+pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
+        )
     return result
-
-
-@true_input  # decorator to check whether the input_vector has correct type
-@is_numeric  # decorator to check whether the input vector is numeric
-@handle_nan  # decorator to raise warning when cqv returns NaN
-def _cqv(
-    data: Union[
-        pd.Series, ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
-    ],
-    ndigits: Optional[int] = 4,
-    interpolation: Optional[str] = "linear",
-    multiplier: Optional[int] = 1,
-) -> float:
-    """Internal function to calculate cqv"""
-    # ------------------- convert data to pandas.core.series.Series -------------------
-    data = pd.Series(data)
-    # ---------------------- calculate the quantiles of the data ----------------------
-    quantile1 = data.quantile(0.25, interpolation=interpolation)  # q1 = p25
-    quantile3 = data.quantile(0.75, interpolation=interpolation)  # q3 = p75
-    # -------------- the basic coefficient of quartile variation function -------------
-    _cqv = (quantile3 - quantile1) / (quantile3 + quantile1)
-    # ----------------------- return the corrected or basic cqv -----------------------
-    return round(
-        multiplier * _cqv,  # -------- multiply the cqv e.g, 100 for percentage -------
-        ndigits=ndigits,  # ------------------ decimals for the round -----------------
-    )

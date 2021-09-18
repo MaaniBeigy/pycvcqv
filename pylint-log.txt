@@ -1,18 +1,48 @@
 ************* Module -
 -:1:0: F0001: No module named - (fatal)
+************* Module pycvcqv.method_selector
+pycvcqv/method_selector.py:15:0: R0913: Too many arguments (7/5) (too-many-arguments)
+pycvcqv/method_selector.py:173:0: R0913: Too many arguments (6/5) (too-many-arguments)
 ************* Module pycvcqv.cv
-pycvcqv/cv.py:16:0: R0913: Too many arguments (6/5) (too-many-arguments)
-pycvcqv/cv.py:69:0: R0913: Too many arguments (6/5) (too-many-arguments)
+pycvcqv/cv.py:16:0: R0913: Too many arguments (7/5) (too-many-arguments)
 pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
-==pycvcqv.cqv:[2:9]
-==pycvcqv.cv:[2:13]
-from typing import Optional, Union
-
-import pandas as pd
-
-from pycvcqv.check_input_type import true_input
-from pycvcqv.is_numeric import is_numeric
-from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt (duplicate-code)
+==pycvcqv.cqv:[15:25]
+==pycvcqv.cv:[16:26]
+    data: Union[
+        pd.Series,
+        ArrayFloat,
+        ArrayInt,
+        ListFloat,
+        ListInt,
+        TupleFloat,
+        TupleInt,
+        pd.DataFrame,
+    ], (duplicate-code)
+pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
+==pycvcqv.cv:[25:31]
+==pycvcqv.method_selector:[175:181]
+    ],
+    ddof: Optional[int] = 1,
+    skipna: Optional[bool] = True,
+    ndigits: Optional[int] = 4,
+    correction: Optional[bool] = False,
+    multiplier: Optional[int] = 1, (duplicate-code)
+pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
+==pycvcqv.cv:[81:86]
+==pycvcqv.method_selector:[39:44]
+            ddof=ddof,
+            skipna=skipna,
+            ndigits=ndigits,
+            correction=correction,
+            multiplier=multiplier, (duplicate-code)
+pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
+==pycvcqv.cv:[26:31]
+==pycvcqv.method_selector:[17:22]
+    ddof: Optional[int] = 1,
+    skipna: Optional[bool] = True,
+    ndigits: Optional[int] = 4,
+    correction: Optional[bool] = False,
+    multiplier: Optional[int] = 1, (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.67/10 (previous run: 9.56/10, +0.11)
+Your code has been rated at 9.42/10 (previous run: 9.33/10, +0.08)

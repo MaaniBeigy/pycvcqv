@@ -2,32 +2,40 @@
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional, Union
 
+import numpy as np
 import pandas as pd
 
-from pycvcqv.check_input_type import true_input
 from pycvcqv.is_numeric import is_numeric
+from pycvcqv.method_selector import _cv, processor_dataframe_cv
 from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
 
 # -------------------------------- function definition --------------------------------
 
 
-@true_input  # decorator to check whether the input_vector has correct type
 @is_numeric  # decorator to check whether the input vector is numeric
 def coefficient_of_variation(
     data: Union[
-        pd.Series, ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
+        pd.Series,
+        ArrayFloat,
+        ArrayInt,
+        ListFloat,
+        ListInt,
+        TupleFloat,
+        TupleInt,
+        pd.DataFrame,
     ],
     ddof: Optional[int] = 1,
     skipna: Optional[bool] = True,
     ndigits: Optional[int] = 4,
     correction: Optional[bool] = False,
     multiplier: Optional[int] = 1,
-) -> float:
+    num_threads: Optional[int] = 1,
+) -> Union[float, pd.DataFrame]:
     """Coefficient of variation.
 
     Args:
-        data (pandas.core.series.Series, numpy.ndarray, list, or
-            tuple, default numpy.ndarray): Having either float or integer elements.
+        data (pandas.core.series.Series, numpy.ndarray, list, tuple, or pd.DataFrame,
+            default numpy.ndarray): Having either float or integer elements.
         ddof (int, default 1): Delta Degrees of Freedom, The divisor used in
             calculations is ``N - ddof``, where ``N`` represents the number of
             elements of the data. By default `ddof` is 1.
@@ -39,11 +47,18 @@ def coefficient_of_variation(
             correction might be set to True.
         multiplier (int, default 1): cv will be multiplied by it, such as 100,
             when you want to report cv as percentage.
+        num_threads (int, default 1): The number of therads to use. This speeds up
+            calculation for the pd.DataFrame inputs. Defaults to single thread. If -1
+            is specified then multiprocessing.cpu_count() is used instead.
 
 
     Returns:
-        float: the coefficient of variation for a numeric vector, i.e.,
+        Union[float, pd.DataFrame]: the coefficient(s) of variation i.e.,
             sd(x)/mean(x).
+
+    Raises:
+        TypeError: If data is not pandas.core.series.Series, numpy.ndarray, list,
+            or tuple!
 
     Examples:
         .. code:: python
@@ -59,47 +74,23 @@ def coefficient_of_variation(
             ... )
             57.77
     """
-    # ------------------------------------ return  ------------------------------------
-    result = float(_cv(data, ddof, skipna, ndigits, correction, multiplier))
-    return result
-
-
-@true_input  # decorator to check whether the input_vector has correct type
-@is_numeric  # decorator to check whether the input vector is numeric
-def _cv(
-    data: Union[
-        pd.Series, ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
-    ],
-    ddof: Optional[int] = 1,
-    skipna: Optional[bool] = True,
-    ndigits: Optional[int] = 4,
-    correction: Optional[bool] = False,
-    multiplier: Optional[int] = 1,
-) -> float:
-    """Internal function to calculate cv"""
-    # ------------------- convert data to pandas.core.series.Series -------------------
-    data = pd.Series(data)
-    # ------------------ the basic coefficient of variation function ------------------
-    _cv = data.std(skipna=skipna, ddof=ddof) / data.mean(skipna=skipna)
-    length = len(data)
-    # ------------------------ return the corrected or basic cv -----------------------
-    if correction:
-        return round(  # ---------------------- round the result ----------------------
-            # ---------------- multiply the cv e.g, 100 for percentage ----------------
-            multiplier
-            * (
-                _cv
-                * (
-                    1
-                    - ((4 * (length - 1)) ** (-1))
-                    + ((_cv ** 2) * (length ** (-1)))
-                    + (2 * ((length - 1) ** (2))) ** (-1)
-                )
-            ),
-            ndigits=ndigits,  # --------------- decimals for the round ----------------
+    # ----------------------------------- DataFrame  ----------------------------------
+    if isinstance(data, pd.DataFrame):
+        result = processor_dataframe_cv(
+            data=data,
+            num_threads=num_threads,
+            ddof=ddof,
+            skipna=skipna,
+            ndigits=ndigits,
+            correction=correction,
+            multiplier=multiplier,
         )
-    return round(  # ------------------------ round the result ------------------------
-        # ------------------ multiply the cv e.g, 100 for percentage ------------------
-        multiplier * (_cv),
-        ndigits=ndigits,  # ------------------ decimals for the round -----------------
-    )
+    # --------------------------------- non DataFrame  --------------------------------
+    elif isinstance(data, (list, np.ndarray, pd.Series, tuple)):
+        result = float(_cv(data, ddof, skipna, ndigits, correction, multiplier))
+    else:
+        raise TypeError(
+            """data must be \
+pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
+        )
+    return result

@@ -13,12 +13,18 @@ def is_numeric(function):
     def wrapper(*args, **kw):
         # ------------------------ if the **kwargs are not used -----------------------
         if len(kw) == 0 or "data" not in kw:
+            # ------------------------------- DataFrame -------------------------------
+            if isinstance(args[0], pd.DataFrame):
+                return function(*args, **kw)
             # --------------------- if the 1st argument is numeric --------------------
             if is_numeric_dtype(pd.Series(args[0])):
                 # --------------------- return the actual function --------------------
                 return function(*args, **kw)
             raise TypeError("The data is not numeric!")
         # ------------------------- if the **kwargs include data ----------------------
+        # --------------------------------- DataFrame ---------------------------------
+        if isinstance(kw["data"], pd.DataFrame):
+            return function(*args, **kw)
         # ----------------------- if the 1st argument is numeric ----------------------
         if is_numeric_dtype(pd.Series(kw["data"])):
             # ----------------------- return the actual function ----------------------
