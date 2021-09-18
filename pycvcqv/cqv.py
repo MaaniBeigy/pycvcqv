@@ -7,12 +7,14 @@ import pandas as pd
 from pycvcqv.check_input_type import true_input
 from pycvcqv.is_numeric import is_numeric
 from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
+from pycvcqv.warnings import handle_nan
 
 # -------------------------------- function definition --------------------------------
 
 
 @true_input  # decorator to check whether the input_vector has correct type
 @is_numeric  # decorator to check whether the input vector is numeric
+@handle_nan  # decorator to raise warning when cqv returns NaN
 def cqv(
     data: Union[
         pd.Series, ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
@@ -44,9 +46,6 @@ def cqv(
         float: the coefficient of quartile variation for a numeric vector, i.e.,
             (q3-q1))/(q3 + q1).
 
-    Raises:
-        Warning: If q3 and q1 are 0, and the result will be NaN.
-
     Examples:
         .. code:: python
 
@@ -59,18 +58,32 @@ def cqv(
             ... )
             45.625
     """
+    # ------------------------------------ return  ------------------------------------
+    result = float(_cqv(data, ndigits, interpolation, multiplier))
+    return result
+
+
+@true_input  # decorator to check whether the input_vector has correct type
+@is_numeric  # decorator to check whether the input vector is numeric
+@handle_nan  # decorator to raise warning when cqv returns NaN
+def _cqv(
+    data: Union[
+        pd.Series, ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
+    ],
+    ndigits: Optional[int] = 4,
+    interpolation: Optional[str] = "linear",
+    multiplier: Optional[int] = 1,
+) -> float:
+    """Internal function to calculate cqv"""
     # ------------------- convert data to pandas.core.series.Series -------------------
     data = pd.Series(data)
     # ---------------------- calculate the quantiles of the data ----------------------
     quantile1 = data.quantile(0.25, interpolation=interpolation)  # q1 = p25
     quantile3 = data.quantile(0.75, interpolation=interpolation)  # q3 = p75
-    # ------------------- raise warning for 0 divisor when q3+q1 = 0 ------------------
-    if quantile1 + quantile3 == 0:
-        raise Warning("cqv is NaN because q3 and q1 are 0")
     # -------------- the basic coefficient of quartile variation function -------------
     _cqv = (quantile3 - quantile1) / (quantile3 + quantile1)
     # ----------------------- return the corrected or basic cqv -----------------------
     return round(
-        multiplier * _cqv,  # -------- multiply the cqv e.g, 100 for percentage --------
+        multiplier * _cqv,  # -------- multiply the cqv e.g, 100 for percentage -------
         ndigits=ndigits,  # ------------------ decimals for the round -----------------
     )

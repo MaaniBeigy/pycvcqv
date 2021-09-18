@@ -2,22 +2,17 @@
 -:1:0: F0001: No module named - (fatal)
 ************* Module pycvcqv.cv
 pycvcqv/cv.py:16:0: R0913: Too many arguments (6/5) (too-many-arguments)
+pycvcqv/cv.py:69:0: R0913: Too many arguments (6/5) (too-many-arguments)
 pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
-==pycvcqv.cqv:[2:15]
-==pycvcqv.cv:[2:15]
+==pycvcqv.cqv:[2:9]
+==pycvcqv.cv:[2:13]
 from typing import Optional, Union
 
 import pandas as pd
 
 from pycvcqv.check_input_type import true_input
 from pycvcqv.is_numeric import is_numeric
-from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
-
-# -------------------------------- function definition --------------------------------
-
-
-@true_input  # decorator to check whether the input_vector has correct type
-@is_numeric  # decorator to check whether the input vector is numeric (duplicate-code)
+from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.72/10 (previous run: 9.72/10, +0.00)
+Your code has been rated at 9.67/10 (previous run: 9.56/10, +0.11)

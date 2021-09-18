@@ -59,18 +59,28 @@ def coefficient_of_variation(
             ... )
             57.77
     """
+    # ------------------------------------ return  ------------------------------------
+    result = float(_cv(data, ddof, skipna, ndigits, correction, multiplier))
+    return result
+
+
+@true_input  # decorator to check whether the input_vector has correct type
+@is_numeric  # decorator to check whether the input vector is numeric
+def _cv(
+    data: Union[
+        pd.Series, ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
+    ],
+    ddof: Optional[int] = 1,
+    skipna: Optional[bool] = True,
+    ndigits: Optional[int] = 4,
+    correction: Optional[bool] = False,
+    multiplier: Optional[int] = 1,
+) -> float:
+    """Internal function to calculate cv"""
     # ------------------- convert data to pandas.core.series.Series -------------------
     data = pd.Series(data)
     # ------------------ the basic coefficient of variation function ------------------
-    _cv = data.std(  # -------------- std in pandas.core.generic -------------
-        skipna=skipna,  # ------------------- Exclude NA/null values ------------------
-        ddof=ddof,  # -------------------- Delta Degrees of Freedom -------------------
-        # ------------- mean in pandas.core.generic -------------
-    ) / data.mean(
-        skipna=skipna  # ------------------- Exclude NA/null values -------------------
-    )
-
-    # ------------------------------ the length of the data ---------------------------
+    _cv = data.std(skipna=skipna, ddof=ddof) / data.mean(skipna=skipna)
     length = len(data)
     # ------------------------ return the corrected or basic cv -----------------------
     if correction:
