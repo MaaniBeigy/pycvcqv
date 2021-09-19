@@ -35,7 +35,8 @@ def coefficient_of_variation(
 
     Args:
         data (pandas.core.series.Series, numpy.ndarray, list, tuple, or pd.DataFrame,
-            default numpy.ndarray): Having either float or integer elements.
+            default numpy.ndarray): Having either float or integer elements. In
+            dataframes, columns with numeric data will be used.
         ddof (int, default 1): Delta Degrees of Freedom, The divisor used in
             calculations is ``N - ddof``, where ``N`` represents the number of
             elements of the data. By default `ddof` is 1.

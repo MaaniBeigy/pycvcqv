@@ -32,7 +32,8 @@ def cqv(
 
     Args:
         data (pandas.core.series.Series, numpy.ndarray, list, tuple, or pd.DataFrame,
-            default numpy.ndarray): Having either float or integer elements.
+            default numpy.ndarray): Having either float or integer elements. In
+            dataframes, columns with numeric data will be used.
         ndigits (int, default 4): Indicates the number of decimal places, from
             built-in function round in module builtins.
         interpolation (str, default 'linear'): It specifies the interpolation method to
@@ -48,7 +49,6 @@ def cqv(
         num_threads (int, default 1): The number of therads to use. This speeds up
             calculation for the pd.DataFrame inputs. Defaults to single thread. If -1
             is specified then multiprocessing.cpu_count() is used instead.
-
 
     Returns:
         Union[pd.DataFrame, float]: the coefficient(s) of quartile variation.
