@@ -3,11 +3,14 @@
 ************* Module pycvcqv.method_selector
 pycvcqv/method_selector.py:15:0: R0913: Too many arguments (7/5) (too-many-arguments)
 pycvcqv/method_selector.py:173:0: R0913: Too many arguments (6/5) (too-many-arguments)
+************* Module pycvcqv.types
+pycvcqv/types.py:6:0: E0611: No name 'typing' in module 'numpy' (no-name-in-module)
+pycvcqv/types.py:6:0: E0401: Unable to import 'numpy.typing' (import-error)
 ************* Module pycvcqv.cv
 pycvcqv/cv.py:16:0: R0913: Too many arguments (7/5) (too-many-arguments)
 pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
-==pycvcqv.cqv:[15:25]
-==pycvcqv.cv:[16:26]
+==pycvcqv.cqv:15
+==pycvcqv.cv:16
     data: Union[
         pd.Series,
         ArrayFloat,
@@ -19,25 +22,27 @@ pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
         pd.DataFrame,
     ], (duplicate-code)
 pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
-==pycvcqv.cv:[25:31]
-==pycvcqv.method_selector:[175:181]
+==pycvcqv.cv:25
+==pycvcqv.method_selector:175
     ],
     ddof: Optional[int] = 1,
     skipna: Optional[bool] = True,
     ndigits: Optional[int] = 4,
     correction: Optional[bool] = False,
     multiplier: Optional[int] = 1, (duplicate-code)
-pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
-==pycvcqv.cv:[81:86]
-==pycvcqv.method_selector:[39:44]
+pycvcqv/cv.py:1:0: R0801: Similar lines in 4 files
+==pycvcqv.cv:82
+==pycvcqv.method_selector:39
+==pycvcqv.method_selector:61
+==pycvcqv.method_selector:83
             ddof=ddof,
             skipna=skipna,
             ndigits=ndigits,
             correction=correction,
             multiplier=multiplier, (duplicate-code)
 pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
-==pycvcqv.cv:[26:31]
-==pycvcqv.method_selector:[17:22]
+==pycvcqv.cv:26
+==pycvcqv.method_selector:17
     ddof: Optional[int] = 1,
     skipna: Optional[bool] = True,
     ndigits: Optional[int] = 4,
@@ -45,4 +50,5 @@ pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
     multiplier: Optional[int] = 1, (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.42/10 (previous run: 9.42/10, +0.00)
+Your code has been rated at 8.58/10 (previous run: 8.58/10, +0.00)
+
