@@ -5,7 +5,7 @@ import pytest
 from pandas.testing import assert_frame_equal
 
 from pycvcqv.cv import coefficient_of_variation
-from pycvcqv.method_selector import _cv
+from pycvcqv.formulas import _cv
 
 
 def test_cv_with_kwarg():
