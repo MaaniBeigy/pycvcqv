@@ -3,7 +3,7 @@
 from typing import List, Tuple
 
 import numpy as np
-import numpy.typing as npt
+from numpy import typing as npt
 
 # ---------------------------------- types definition ---------------------------------
 ListFloat = List[float]
