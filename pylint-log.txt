@@ -42,5 +42,5 @@ pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
     multiplier: Optional[int] = 1, (duplicate-code)
 
 ------------------------------------------------------------------
-Your code has been rated at 9.44/10 (previous run: 9.19/10, +0.24)
+Your code has been rated at 9.44/10 (previous run: 9.44/10, +0.00)
 
