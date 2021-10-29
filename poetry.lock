@@ -201,7 +201,7 @@ testing = ["covdefaults (>=1.2.0)", "coverage (>=4)", "pytest (>=4)", "pytest-co
 
 [[package]]
 name = "gitdb"
-version = "4.0.8"
+version = "4.0.9"
 description = "Git Object Database"
 category = "dev"
 optional = false
@@ -811,8 +811,8 @@ filelock = [
     {file = "filelock-3.3.1.tar.gz", hash = "sha256:34a9f35f95c441e7b38209775d6e0337f9a3759f3565f6c5798f19618527c76f"},
 ]
 gitdb = [
-    {file = "gitdb-4.0.8-py3-none-any.whl", hash = "sha256:6875cbaed01f1b750394f372607803768fc7dad7c58c7ceb5f5917e980d779b2"},
-    {file = "gitdb-4.0.8.tar.gz", hash = "sha256:858966a9310649cb24a387c101429bb5a1110068a312517722b0281077e78bc6"},
+    {file = "gitdb-4.0.9-py3-none-any.whl", hash = "sha256:8033ad4e853066ba6ca92050b9df2f89301b8fc8bf7e9324d412a63f8bf1a8fd"},
+    {file = "gitdb-4.0.9.tar.gz", hash = "sha256:bac2fd45c0a1c9cf619e63a90d62bdc63892ef92387424b855792a6cabe789aa"},
 ]
 gitpython = [
     {file = "GitPython-3.1.24-py3-none-any.whl", hash = "sha256:dc0a7f2f697657acc8d7f89033e8b1ea94dd90356b2983bca89dc8d2ab3cc647"},
