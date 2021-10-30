@@ -27,11 +27,11 @@ pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
 pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
 ==pycvcqv.cv:[83:88]
 ==pycvcqv.dataframe:[38:43]
-                            ddof=ddof,
-                            skipna=skipna,
-                            ndigits=ndigits,
-                            correction=correction,
-                            multiplier=multiplier, (duplicate-code)
+            ddof=ddof,
+            skipna=skipna,
+            ndigits=ndigits,
+            correction=correction,
+            multiplier=multiplier, (duplicate-code)
 pycvcqv/cv.py:1:0: R0801: Similar lines in 2 files
 ==pycvcqv.dataframe:[16:21]
 ==pycvcqv.formulas:[15:20]
