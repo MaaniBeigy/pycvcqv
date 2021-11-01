@@ -38,7 +38,7 @@ python = "^3.8"
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.0"
 black = {version = "^21.10b0", allow-prereleases = true}
-coverage = "^6.0"
+coverage = "^6.1"
 coverage-badge = "^1.0.1"
 darglint = "^1.8.0"
 isort = {extras = ["colors"], version = "^5.9.3"}
