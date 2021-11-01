@@ -224,7 +224,7 @@ typing-extensions = {version = ">=3.7.4.3", markers = "python_version < \"3.10\"
 
 [[package]]
 name = "identify"
-version = "2.3.2"
+version = "2.3.3"
 description = "File identification library for Python"
 category = "dev"
 optional = false
@@ -820,8 +820,8 @@ gitpython = [
     {file = "GitPython-3.1.24.tar.gz", hash = "sha256:df83fdf5e684fef7c6ee2c02fc68a5ceb7e7e759d08b694088d0cacb4eba59e5"},
 ]
 identify = [
-    {file = "identify-2.3.2-py2.py3-none-any.whl", hash = "sha256:2f24d420bfde0352f3b44b9aa0ee72930c3c29d4ae25f1be34af4bf4c13dc890"},
-    {file = "identify-2.3.2.tar.gz", hash = "sha256:13f90b8813bcb88d47faf5015fd606545b9677938505622bb155c5c4e94529ba"},
+    {file = "identify-2.3.3-py2.py3-none-any.whl", hash = "sha256:ffab539d9121b386ffdea84628ff3eefda15f520f392ce11b393b0a909632cdf"},
+    {file = "identify-2.3.3.tar.gz", hash = "sha256:b9ffbeb7ed87e96ce017c66b80ca04fda3adbceb5c74e54fc7d99281d27d0859"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
