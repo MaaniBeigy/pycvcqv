@@ -39,7 +39,7 @@ python = "^3.8"
 bandit = "^1.7.1"
 black = {version = "^21.10b0", allow-prereleases = true}
 coverage = "^6.1"
-coverage-badge = "^1.0.1"
+coverage-badge = "^1.1.0"
 darglint = "^1.8.0"
 isort = {extras = ["colors"], version = "^5.10.1"}
 mypy = "^0.910"
