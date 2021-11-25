@@ -9,7 +9,7 @@ from pycvcqv.formulas import _cv
 
 
 def test_cv_with_kwarg():
-    """test cv function without correction with data kwarg"""
+    """Tests cv function without correction with data kwarg."""
     assert (
         coefficient_of_variation(
             data=pd.Series(
@@ -43,7 +43,7 @@ def test_cv_with_kwarg():
 
 
 def test_cv_without_kwarg():
-    """test cv function without correction without data kwarg"""
+    """Tests cv function without correction without data kwarg."""
     assert (
         coefficient_of_variation(
             [
@@ -75,7 +75,7 @@ def test_cv_without_kwarg():
 
 
 def test_cv_corrected():
-    """test cv function with correction"""
+    """Tests cv function with correction."""
     assert (
         coefficient_of_variation(
             data=pd.Series(
@@ -110,7 +110,7 @@ def test_cv_corrected():
 
 
 def test_cv_nonnumeric_type_data_with_kwarg():
-    """test cv function with nonnumeric type of data with kwarg"""
+    """Tests cv function with nonnumeric type of data with kwarg."""
     with pytest.raises(TypeError) as execinfo:
         coefficient_of_variation(
             data=pd.Series(["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"]),
@@ -122,7 +122,7 @@ def test_cv_nonnumeric_type_data_with_kwarg():
 
 
 def test_cv_nonnumeric_type_data_without_kwarg():
-    """test cv function with nonnumeric type of data without kwarg"""
+    """Tests cv function with nonnumeric type of data without kwarg."""
     with pytest.raises(TypeError) as execinfo:
         coefficient_of_variation(
             ["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"],
@@ -134,7 +134,7 @@ def test_cv_nonnumeric_type_data_without_kwarg():
 
 
 def test_cv_wrong_type_data_with_kwarg():
-    """test cv function with wrong type of data with kwarg"""
+    """Tests cv function with wrong type of data with kwarg."""
     with pytest.raises(TypeError) as execinfo:
         coefficient_of_variation(
             data=dict({"1": 2}),
@@ -150,7 +150,7 @@ pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
 
 
 def test_cv_wrong_type_data_without_kwarg():
-    """test cv function with wrong type of data without kwarg"""
+    """Tests cv function with wrong type of data without kwarg."""
     with pytest.raises(TypeError) as execinfo:
         coefficient_of_variation(
             dict({"1": 2}),
@@ -166,7 +166,7 @@ pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
 
 
 def test_cv_wrong_type_data22s():
-    """test with wrong type of data for _cv function"""
+    """Tests with wrong type of data for _cv function."""
     with pytest.raises(TypeError) as execinfo:
         _cv(
             dict({"1": 2}),
@@ -182,14 +182,14 @@ pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
 
 
 def test_cv_dataframe_single_thread():
-    """test cv function for dataframe when num_threads is default"""
-    df = pd.DataFrame(
+    """Tests cv function for dataframe when num_threads is default."""
+    data = pd.DataFrame(
         {
             "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
             "col-2": pd.Series([5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9]),
         }
     )
-    result = coefficient_of_variation(df)
+    result = coefficient_of_variation(data)
     assert_frame_equal(
         result,
         pd.DataFrame(
@@ -202,14 +202,14 @@ def test_cv_dataframe_single_thread():
 
 
 def test_cv_dataframe_zerothread():
-    """test cv function for dataframe when num_threads is zero"""
-    df = pd.DataFrame(
+    """Tests cv function for dataframe when num_threads is zero."""
+    data = pd.DataFrame(
         {
             "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
             "col-2": pd.Series([5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9]),
         }
     )
-    result = coefficient_of_variation(data=df, num_threads=0)
+    result = coefficient_of_variation(data=data, num_threads=0)
     assert_frame_equal(
         result,
         pd.DataFrame(
@@ -222,14 +222,14 @@ def test_cv_dataframe_zerothread():
 
 
 def test_cv_dataframe_multithread():
-    """test cv function for dataframe when num_threads is multi"""
-    df = pd.DataFrame(
+    """Tests cv function for dataframe when num_threads is multi."""
+    data = pd.DataFrame(
         {
             "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
             "col-2": pd.Series([5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9]),
         }
     )
-    result = coefficient_of_variation(data=df, num_threads=-1)
+    result = coefficient_of_variation(data=data, num_threads=-1)
     assert_frame_equal(
         result,
         pd.DataFrame(
@@ -242,14 +242,14 @@ def test_cv_dataframe_multithread():
 
 
 def test_cv_dataframe_multithread_default_3_cores():
-    """test cv function for dataframe when num_threads is multi"""
-    df = pd.DataFrame(
+    """Tests cv function for dataframe when num_threads is multi."""
+    data = pd.DataFrame(
         {
             "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
             "col-2": pd.Series([5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9]),
         }
     )
-    result = coefficient_of_variation(data=df, num_threads=3)
+    result = coefficient_of_variation(data=data, num_threads=3)
     assert_frame_equal(
         result,
         pd.DataFrame(

@@ -1,4 +1,4 @@
-"""dataframe"""
+"""The dataframe module."""
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional
 
@@ -20,10 +20,7 @@ def processor_cv(
     correction: Optional[bool] = False,
     multiplier: Optional[int] = 1,
 ) -> pd.DataFrame:
-    """selects method to perform cv calculations whether on dataframe or array-like
-    objects
-    """
-
+    """Selects method to perform cv calculations on dataframe or array-like objects."""
     # ------------------------------------ threads  -----------------------------------
     if num_threads == -1:
         # ------------------------ multiprocessing.cpu_count() ------------------------
@@ -101,10 +98,7 @@ def processor_cqv(
     multiplier: Optional[int] = 1,
     num_threads: Optional[int] = 1,
 ) -> pd.DataFrame:
-    """selects method to perform cqv calculations whether on dataframe or array-like
-    objects
-    """
-
+    """Selects method to perform cqv calculations on dataframe or array-like objects."""
     # ------------------------------------ threads  -----------------------------------
     if num_threads == -1:
         # ------------------------ multiprocessing.cpu_count() ------------------------

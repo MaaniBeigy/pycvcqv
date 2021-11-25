@@ -8,7 +8,7 @@ from pycvcqv.cqv import cqv
 
 
 def test_cqv_with_kwarg():
-    """test cqv function with data kwarg"""
+    """Tests cqv function with data kwarg."""
     assert (
         cqv(
             data=pd.Series(
@@ -42,7 +42,7 @@ def test_cqv_with_kwarg():
 
 
 def test_cqv_without_kwarg():
-    """test cqv function without data kwarg"""
+    """Tests cqv function without data kwarg."""
     assert (
         cqv(
             [
@@ -74,7 +74,7 @@ def test_cqv_without_kwarg():
 
 
 def test_cqv_nonnumeric_type_data_with_kwarg():
-    """test cqv function with nonnumeric type of data with kwarg"""
+    """Tests cqv function with nonnumeric type of data with kwarg."""
     with pytest.raises(TypeError) as execinfo:
         cqv(
             data=pd.Series(["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"]),
@@ -85,7 +85,7 @@ def test_cqv_nonnumeric_type_data_with_kwarg():
 
 
 def test_cqv_nonnumeric_type_data_without_kwarg():
-    """test cqv function with nonnumeric type of data without kwarg"""
+    """Tests cqv function with nonnumeric type of data without kwarg."""
     with pytest.raises(TypeError) as execinfo:
         cqv(
             ["0.2", "0.5", "1.1", "1.4", "1.8", "2.3", "2.5", " 2.7"],
@@ -96,7 +96,7 @@ def test_cqv_nonnumeric_type_data_without_kwarg():
 
 
 def test_cqv_wrong_type_data_with_kwarg():
-    """test cvq function with wrong type of data with kwarg"""
+    """Tests cvq function with wrong type of data with kwarg."""
     with pytest.raises(TypeError) as execinfo:
         cqv(
             data=dict({"1": 2}),
@@ -111,7 +111,7 @@ pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
 
 
 def test_cqv_wrong_type_data_without_kwarg():
-    """test cqv function with wrong type of data without kwarg"""
+    """Tests cqv function with wrong type of data without kwarg."""
     with pytest.raises(TypeError) as execinfo:
         cqv(
             dict({"1": 2}),
@@ -126,7 +126,7 @@ pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
 
 
 def test_cqv_warning_when_divisor_makes_cqv_nan_without_kwargs():
-    """test cqv function when divisor makes cqv nan without kwargs"""
+    """Tests cqv function when divisor makes cqv nan without kwargs."""
     with pytest.raises(Warning) as execinfo:
         cqv(
             pd.Series(
@@ -378,7 +378,7 @@ def test_cqv_warning_when_divisor_makes_cqv_nan_without_kwargs():
 
 
 def test_cqv_warning_when_divisor_makes_cqv_nan_with_kwargs():
-    """test cqv function when divisor makes cqv nan with kwargs"""
+    """Tests cqv function when divisor makes cqv nan with kwargs."""
     with pytest.raises(Warning) as execinfo:
         cqv(
             data=pd.Series(
@@ -630,7 +630,7 @@ def test_cqv_warning_when_divisor_makes_cqv_nan_with_kwargs():
 
 
 def test_cqv_without_kwarg_raise_warning():
-    """test cqv function without data kwarg raise warning"""
+    """Tests cqv function without data kwarg raise warning."""
     with pytest.raises(Warning) as execinfo:
         cqv(
             [
@@ -654,14 +654,14 @@ def test_cqv_without_kwarg_raise_warning():
 
 
 def test_cqv_dataframe_single_thread_default():
-    """test cqv function for dataframe when num_threads is default"""
-    df = pd.DataFrame(
+    """Tests cqv function for dataframe when num_threads is default."""
+    data = pd.DataFrame(
         {
             "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
             "col-2": pd.Series([5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9]),
         }
     )
-    result = cqv(data=df)
+    result = cqv(data=data)
     assert_frame_equal(
         result,
         pd.DataFrame(
@@ -674,14 +674,14 @@ def test_cqv_dataframe_single_thread_default():
 
 
 def test_cqv_dataframe_zerothread():
-    """test cqv function for dataframe when num_threads is zero"""
-    df = pd.DataFrame(
+    """Tests cqv function for dataframe when num_threads is zero."""
+    data = pd.DataFrame(
         {
             "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
             "col-2": pd.Series([5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9]),
         }
     )
-    result = cqv(data=df, num_threads=0)
+    result = cqv(data=data, num_threads=0)
     assert_frame_equal(
         result,
         pd.DataFrame(
@@ -694,14 +694,14 @@ def test_cqv_dataframe_zerothread():
 
 
 def test_cqv_dataframe_multithread():
-    """test cqv function for dataframe when num_threads is multi"""
-    df = pd.DataFrame(
+    """Tests cqv function for dataframe when num_threads is multi."""
+    data = pd.DataFrame(
         {
             "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
             "col-2": pd.Series([5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9]),
         }
     )
-    result = cqv(data=df, num_threads=-1)
+    result = cqv(data=data, num_threads=-1)
     assert_frame_equal(
         result,
         pd.DataFrame(
@@ -714,14 +714,14 @@ def test_cqv_dataframe_multithread():
 
 
 def test_cqv_dataframe_multithread_3_threads():
-    """test cqv function for dataframe when num_threads is multi"""
-    df = pd.DataFrame(
+    """Tests cqv function for dataframe when num_threads is multi."""
+    data = pd.DataFrame(
         {
             "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
             "col-2": pd.Series([5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9]),
         }
     )
-    result = cqv(data=df, num_threads=3)
+    result = cqv(data=data, num_threads=3)
     assert_frame_equal(
         result,
         pd.DataFrame(

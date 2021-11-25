@@ -1,4 +1,4 @@
-"""is_numeric trait"""
+"""The is_numeric trait."""
 # --------------------------- Import libraries and functions --------------------------
 
 import pandas as pd
@@ -8,7 +8,7 @@ from pandas.api.types import is_numeric_dtype
 
 
 def is_numeric(function):
-    """a decorator function to check whether the input_vector is numeric"""
+    """A decorator function to check whether the input_vector is numeric."""
     # -------------------------------- wrapper function -------------------------------
     def wrapper(*args, **kw):
         # ------------------------ if the **kwargs are not used -----------------------

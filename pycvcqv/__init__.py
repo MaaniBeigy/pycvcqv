@@ -1,8 +1,6 @@
 # type: ignore[attr-defined]
-"""Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV)
-with Confidence Intervals (CI)"""
+"""Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV)."""
 
-import sys
 from importlib import metadata as importlib_metadata
 
 from pycvcqv.cqv import cqv
@@ -14,7 +12,7 @@ from pycvcqv.is_numeric import is_numeric
 
 
 def get_version() -> str:
-    """gets the version of package"""
+    """Gets the version of package."""
     try:
         return importlib_metadata.version(__name__)
     except importlib_metadata.PackageNotFoundError:  # pragma: no cover

@@ -41,6 +41,11 @@ formatting: codestyle
 test:
 	poetry run pytest -c pyproject.toml
 
+.PHONY: extrabadges
+extrabadges:
+	$(SHELL) -c 'chmod u+x+r+w .shell/*.sh'
+	$(SHELL) -c '. .shell/badges.sh'
+
 .PHONY: coverage
 coverage:
 	poetry run pytest --cov-report html --cov pycvcqv tests/

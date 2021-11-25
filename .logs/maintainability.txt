@@ -1,0 +1,7 @@
+pycvcqv/dataframe.py - A (68.66)
+pycvcqv/cqv.py - A (100.00)
+pycvcqv/formulas.py - A (77.86)
+pycvcqv/__init__.py - A (100.00)
+pycvcqv/types.py - A (100.00)
+pycvcqv/is_numeric.py - A (90.80)
+pycvcqv/cv.py - A (100.00)

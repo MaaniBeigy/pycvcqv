@@ -1,4 +1,4 @@
-"""formulas"""
+"""Formulas of cvcqv."""
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional, Union
 
@@ -19,7 +19,7 @@ def _cv(
     correction: Optional[bool] = False,
     multiplier: Optional[int] = 1,
 ) -> float:
-    """Internal function to calculate cv"""
+    """Internal function to calculate cv."""
     # ------------------- convert data to pandas.core.series.Series -------------------
     if isinstance(data, (list, np.ndarray, pd.Series, tuple)):
         data = pd.Series(data)
@@ -62,7 +62,7 @@ def _cqv(
     interpolation: Optional[str] = "linear",
     multiplier: Optional[int] = 1,
 ) -> float:
-    """Internal function to calculate cqv"""
+    """Internal function to calculate cqv."""
     # ------------------- convert data to pandas.core.series.Series -------------------
     data = pd.Series(data)
     # ---------------------- calculate the quantiles of the data ----------------------
