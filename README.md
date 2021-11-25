@@ -10,7 +10,7 @@
 
 [![maintainability](assets/images/maintainability.svg)](.logs/maintainability.txt)
 [![complexity](assets/images/complexity.svg)](.logs/complexity.txt)
-[![Security: bandit](assets/images/vulnerabilities.svg)](.logs/safety.txt)
+[![Safety Vulnerabilities](assets/images/vulnerabilities.svg)](.logs/safety.txt)
 [![docstring coverage](assets/images/interrogate_badge.svg)](.logs/docstring.txt)
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
