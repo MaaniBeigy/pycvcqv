@@ -7,6 +7,7 @@
 [![static analysis](assets/images/mypy.svg)](.logs/mypy.txt)
 [![lint report](assets/images/pylint.svg)](.logs/pylint-log.txt)
 [![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/MaaniBeigy/pycvcqv/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
+
 [![maintainability](assets/images/maintainability.svg)](.logs/maintainability.txt)
 [![complexity](assets/images/complexity.svg)](.logs/complexity.txt)
 [![Security: bandit](assets/images/vulnerabilities.svg)](.logs/safety.txt)
