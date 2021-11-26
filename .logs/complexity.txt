@@ -9,7 +9,7 @@ pycvcqv/formulas.py
 pycvcqv/__init__.py
     F 14:0 get_version - A (2)
 pycvcqv/is_numeric.py
-    F 10:0 is_numeric - A (1)
+    F 11:0 is_numeric - A (1)
 pycvcqv/cv.py
     F 17:0 coefficient_of_variation - A (3)
 

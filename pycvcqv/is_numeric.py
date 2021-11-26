@@ -1,5 +1,6 @@
 """The is_numeric trait."""
 # --------------------------- Import libraries and functions --------------------------
+import functools
 
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
@@ -10,6 +11,7 @@ from pandas.api.types import is_numeric_dtype
 def is_numeric(function):
     """A decorator function to check whether the input_vector is numeric."""
     # -------------------------------- wrapper function -------------------------------
+    @functools.wraps(function)
     def wrapper(*args, **kw):
         # ------------------------ if the **kwargs are not used -----------------------
         if len(kw) == 0 or "data" not in kw:

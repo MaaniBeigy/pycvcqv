@@ -22,9 +22,16 @@
 
 
 Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI)
+
 Python port of [cvcqv](https://github.com/MaaniBeigy/cvcqv)
 
 </div>
+
+## Introduction
+
+`pycvcqv` provides some easy-to-use functions to calculate the
+Coefficient of  Variation (`cv`) and Coefficient of Quartile Variation (`cqv`)
+with confidence intervals provided with all available methods.
 
 ## Install
 
