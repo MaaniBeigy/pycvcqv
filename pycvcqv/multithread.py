@@ -20,7 +20,7 @@ def multithread_cv_processor(
     multiplier: Optional[int] = 1,
 ) -> pd.DataFrame:
     """Performs multiprocessing cv for pd.DataFrame."""
-    assert num_threads == -1
+    print(num_threads)
     with mp.Pool(mp.cpu_count()) as pool:
         result = prepare_cv_datafame(
             data=data,
@@ -43,7 +43,7 @@ def multithread_cqv_processor(
     num_threads: Optional[int] = 1,
 ) -> pd.DataFrame:
     """Performs multiprocessing cqv for pd.DataFrame."""
-    assert num_threads == -1
+    print(num_threads)
     with mp.Pool(mp.cpu_count()) as pool:
         result = prepare_cqv_datafame(
             data=data,

@@ -20,7 +20,7 @@ def singlethread_cv_processor(
     multiplier: Optional[int] = 1,
 ) -> pd.DataFrame:
     """Performs single thread cv for pd.DataFrame."""
-    assert num_threads in (1, 0)
+    print(num_threads)
     with mp.Pool(1) as pool:
         result = prepare_cv_datafame(
             data=data,
@@ -43,7 +43,7 @@ def singlethread_cqv_processor(
     num_threads: Optional[int] = 1,
 ) -> pd.DataFrame:
     """Performs single thread cqv for pd.DataFrame."""
-    assert num_threads in (1, 0)
+    print(num_threads)
     with mp.Pool(1) as pool:
         result = prepare_cqv_datafame(
             data=data,
