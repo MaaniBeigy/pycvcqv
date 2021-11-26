@@ -36,10 +36,15 @@ jobs:
     - name: Run tests
       run: |
         make test
-
+    - name: Run coverage
+      run: |
+        make coverage
     - name: Run safety checks
       run: |
         make check-safety
     - name: Run mypy checks
       run: |
         make mypy
+    - name: Run extra checks
+      run: |
+        make extrabadges
