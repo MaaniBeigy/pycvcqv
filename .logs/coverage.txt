@@ -8,18 +8,22 @@ tests/test_cqv.py .............                                          [ 52%]
 tests/test_cv.py ............                                            [100%]
 
 ---------- coverage: platform linux, python 3.8.10-final-0 -----------
-Name                    Stmts   Miss Branch BrPart  Cover   Missing
--------------------------------------------------------------------
-pycvcqv/__init__.py        11      0      0      0   100%
-pycvcqv/cqv.py             15      0      4      0   100%
-pycvcqv/cv.py              15      0      4      0   100%
-pycvcqv/dataframe.py       37      0     20      0   100%
-pycvcqv/formulas.py        21      0      6      0   100%
-pycvcqv/is_numeric.py      18      0     10      0   100%
-pycvcqv/types.py            9      0      0      0   100%
--------------------------------------------------------------------
-TOTAL                     126      0     44      0   100%
+Name                        Stmts   Miss Branch BrPart  Cover   Missing
+-----------------------------------------------------------------------
+pycvcqv/__init__.py            11      0      0      0   100%
+pycvcqv/cqv.py                 15      0      4      0   100%
+pycvcqv/cv.py                  15      0      4      0   100%
+pycvcqv/dataframe.py           11      0      4      0   100%
+pycvcqv/formulas.py            21      0      6      0   100%
+pycvcqv/is_numeric.py          18      0     10      0   100%
+pycvcqv/multithread.py         16      0      0      0   100%
+pycvcqv/prepare_output.py      13      0      4      0   100%
+pycvcqv/singlethread.py        16      0      0      0   100%
+pycvcqv/types.py               11      0      0      0   100%
+pycvcqv/userthread.py          14      0      0      0   100%
+-----------------------------------------------------------------------
+TOTAL                         161      0     32      0   100%
 
 Required test coverage of 50.0% reached. Total coverage: 100.00%
 
-============================== 25 passed in 1.49s ==============================
+============================== 25 passed in 1.79s ==============================

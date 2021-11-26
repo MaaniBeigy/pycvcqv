@@ -13,6 +13,7 @@ def is_numeric(function):
     # -------------------------------- wrapper function -------------------------------
     @functools.wraps(function)
     def wrapper(*args, **kw):
+        """The wrapper function."""
         # ------------------------ if the **kwargs are not used -----------------------
         if len(kw) == 0 or "data" not in kw:
             # ------------------------------- DataFrame -------------------------------

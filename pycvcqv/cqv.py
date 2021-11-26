@@ -5,7 +5,7 @@ from typing import Optional, Union
 import numpy as np
 import pandas as pd
 
-from pycvcqv.dataframe import processor_cqv
+from pycvcqv.dataframe import cqv_dataframe
 from pycvcqv.formulas import _cqv
 from pycvcqv.is_numeric import is_numeric
 from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
@@ -72,7 +72,7 @@ def cqv(
     """
     # ----------------------------------- DataFrame  ----------------------------------
     if isinstance(data, pd.DataFrame):
-        result = processor_cqv(
+        result = cqv_dataframe(
             data=data,
             num_threads=num_threads,
             ndigits=ndigits,

@@ -5,7 +5,7 @@ from typing import Optional, Union
 import numpy as np
 import pandas as pd
 
-from pycvcqv.dataframe import processor_cv
+from pycvcqv.dataframe import cv_dataframe
 from pycvcqv.formulas import _cv
 from pycvcqv.is_numeric import is_numeric
 from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
@@ -78,7 +78,7 @@ def coefficient_of_variation(
     """
     # ----------------------------------- DataFrame  ----------------------------------
     if isinstance(data, pd.DataFrame):
-        result = processor_cv(
+        result = cv_dataframe(
             data=data,
             num_threads=num_threads,
             ddof=ddof,
