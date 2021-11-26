@@ -49,7 +49,7 @@ extrabadges:
 .PHONY: coverage
 coverage:
 	poetry run pytest --cov-report html --cov pycvcqv tests/
-	coverage-badge -o assets/images/coverage.svg -f
+	poetry run coverage-badge -o assets/images/coverage.svg -f
 
 .PHONY: check-codestyle
 check-codestyle:
