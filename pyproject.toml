@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "pycvcqv"
-version = "0.1.7"
+version = "0.1.8"
 description = "Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI) "
 readme = "README.md"
 authors = ["MaaniBeigy <manibeygi@gmail.com>"]
@@ -233,3 +233,8 @@ color = true
 omit-covered-files = false
 generate-badge = "assets/images/"
 badge-format = "svg"
+
+[tool.radon]
+exclude = "test_*.py"
+cc_min = "A"
+mi_min = "A"

@@ -46,6 +46,18 @@ extrabadges:
 	$(SHELL) -c 'chmod u+x+r+w .shell/*.sh'
 	$(SHELL) -c '. .shell/badges.sh'
 
+.PHONY: complexity
+complexity:
+	poetry run radon cc pycvcqv --total-average
+
+.PHONY: maintainability
+maintainability:
+	poetry run radon mi pycvcqv
+
+.PHONY: interrogate
+interrogate:
+	poetry run interrogate -v pycvcqv
+
 .PHONY: coverage
 coverage:
 	poetry run pytest --cov-report html --cov pycvcqv tests/

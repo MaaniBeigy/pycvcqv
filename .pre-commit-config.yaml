@@ -78,3 +78,19 @@ repos:
     hooks:
       - id: interrogate
         args: [--quiet, --fail-under=50]
+
+  - repo: local
+    hooks:
+      - id: radon-complexity
+        name: radon-complexity
+        entry: poetry run radon cc --total-average
+        types: [python]
+        language: system
+
+  - repo: local
+    hooks:
+      - id: radon-maintainability
+        name: radon-maintainability
+        entry: poetry run radon mi
+        types: [python]
+        language: system

@@ -45,6 +45,12 @@ jobs:
     - name: Run mypy checks
       run: |
         make mypy
-    # - name: Run extra checks
-    #   run: |
-    #     make extrabadges
+    - name: Run complexity
+      run: |
+        make complexity
+    - name: Run maintainability
+      run: |
+        make maintainability
+    - name: Run interrogate
+      run: |
+        make interrogate
