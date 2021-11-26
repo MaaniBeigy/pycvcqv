@@ -45,6 +45,6 @@ jobs:
     - name: Run mypy checks
       run: |
         make mypy
-    - name: Run extra checks
-      run: |
-        make extrabadges
+    # - name: Run extra checks
+    #   run: |
+    #     make extrabadges
