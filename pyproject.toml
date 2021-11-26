@@ -14,7 +14,11 @@ repository = "https://github.com/MaaniBeigy/pycvcqv"
 homepage = "https://github.com/MaaniBeigy/pycvcqv"
 
 # Keywords description https://python-poetry.org/docs/pyproject/#keywords
-keywords = []  #! Update me
+keywords = [
+  "coefficient of variation",
+  "coefficient of quartile variation",
+  "data science",
+]
 
 # Pypi classifiers: https://pypi.org/classifiers/
 classifiers = [  #! Update me

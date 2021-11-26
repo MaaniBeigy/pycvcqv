@@ -108,7 +108,7 @@ def processor_cqv(
             result = pd.DataFrame(
                 {
                     "columns": data.columns,
-                    "cv": pool.map(
+                    "cqv": pool.map(
                         partial(
                             _cqv,
                             ndigits=ndigits,
@@ -128,7 +128,7 @@ def processor_cqv(
             result = pd.DataFrame(
                 {
                     "columns": data.columns,
-                    "cv": pool.map(
+                    "cqv": pool.map(
                         partial(
                             _cqv,
                             ndigits=ndigits,
@@ -148,7 +148,7 @@ def processor_cqv(
             result = pd.DataFrame(
                 {
                     "columns": data.columns,
-                    "cv": pool.map(
+                    "cqv": pool.map(
                         partial(
                             _cqv,
                             ndigits=ndigits,

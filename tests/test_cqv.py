@@ -667,7 +667,7 @@ def test_cqv_dataframe_single_thread_default():
         pd.DataFrame(
             {
                 "columns": pd.Series(["col-1", "col-2"]),
-                "cv": pd.Series([0.3889, 0.0732]),
+                "cqv": pd.Series([0.3889, 0.0732]),
             }
         ),
     )
@@ -687,7 +687,7 @@ def test_cqv_dataframe_zerothread():
         pd.DataFrame(
             {
                 "columns": pd.Series(["col-1", "col-2"]),
-                "cv": pd.Series([0.3889, 0.0732]),
+                "cqv": pd.Series([0.3889, 0.0732]),
             }
         ),
     )
@@ -707,7 +707,7 @@ def test_cqv_dataframe_multithread():
         pd.DataFrame(
             {
                 "columns": pd.Series(["col-1", "col-2"]),
-                "cv": pd.Series([0.3889, 0.0732]),
+                "cqv": pd.Series([0.3889, 0.0732]),
             }
         ),
     )
@@ -727,7 +727,7 @@ def test_cqv_dataframe_multithread_3_threads():
         pd.DataFrame(
             {
                 "columns": pd.Series(["col-1", "col-2"]),
-                "cv": pd.Series([0.3889, 0.0732]),
+                "cqv": pd.Series([0.3889, 0.0732]),
             }
         ),
     )

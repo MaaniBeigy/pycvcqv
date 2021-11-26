@@ -26,6 +26,40 @@ Python port of [cvcqv](https://github.com/MaaniBeigy/cvcqv)
 
 </div>
 
+## Install
+
+```bash
+pip install pycvcqv
+```
+
+## Usage
+
+```python
+data = pd.DataFrame(
+    {
+        "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
+        "col-2": pd.Series([5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9]),
+    }
+)
+coefficient_of_variation(data=data, num_threads=3)
+#   columns      cv
+# 0   col-1  0.6076
+# 1   col-2  0.1359
+
+data = pd.DataFrame(
+    {
+        "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
+        "col-2": pd.Series([5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9]),
+    }
+)
+cqv(data=data, num_threads=-1)
+#   columns      cqv
+# 0   col-1  0.3889
+# 1   col-2  0.0732
+```
+
+## For contributors:
+
 ### Testing:
 
 ```bash
