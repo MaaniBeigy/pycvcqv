@@ -1,18 +1,15 @@
 """Formulas of cvcqv."""
 # --------------------------- Import libraries and functions --------------------------
-from typing import Optional, Union
+from typing import Optional
 
-import numpy as np
 import pandas as pd
 
-from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
+from pycvcqv.types import NumArrayLike
 
 
 # -------------------------------- function definition --------------------------------
 def _cv(
-    data: Union[
-        pd.Series, ArrayInt, ArrayFloat, ListFloat, ListInt, TupleFloat, TupleInt
-    ],
+    data: NumArrayLike,
     ddof: Optional[int] = 1,
     skipna: Optional[bool] = True,
     ndigits: Optional[int] = 4,
@@ -21,16 +18,10 @@ def _cv(
 ) -> float:
     """Internal function to calculate cv."""
     # ------------------- convert data to pandas.core.series.Series -------------------
-    if isinstance(data, (list, np.ndarray, pd.Series, tuple)):
-        data = pd.Series(data)
-    else:
-        raise TypeError(
-            """data must be \
-pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
-        )
+    prep_data: pd.Series = pd.Series(data)
     # ------------------ the basic coefficient of variation function ------------------
-    _cv = data.std(skipna=skipna, ddof=ddof) / data.mean(skipna=skipna)
-    length = len(data)
+    _cv = prep_data.std(skipna=skipna, ddof=ddof) / prep_data.mean(skipna=skipna)
+    length = len(prep_data)
     # ------------------------ return the corrected or basic cv -----------------------
     if correction:
         return round(  # ---------------------- round the result ----------------------
@@ -55,9 +46,7 @@ pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
 
 
 def _cqv(
-    data: Union[
-        pd.Series, ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
-    ],
+    data: NumArrayLike,
     ndigits: Optional[int] = 4,
     interpolation: Optional[str] = "linear",
     multiplier: Optional[int] = 1,

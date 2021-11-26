@@ -2,13 +2,13 @@ pycvcqv/dataframe.py
     F 13:0 cv_dataframe - A (3)
     F 37:0 cqv_dataframe - A (3)
 pycvcqv/cqv.py
-    F 16:0 cqv - A (3)
+    F 15:0 cqv - A (2)
 pycvcqv/singlethread.py
     F 13:0 singlethread_cv_processor - A (2)
     F 38:0 singlethread_cqv_processor - A (2)
 pycvcqv/formulas.py
-    F 12:0 _cv - A (3)
-    F 57:0 _cqv - A (2)
+    F 11:0 _cv - A (2)
+    F 48:0 _cqv - A (2)
 pycvcqv/__init__.py
     F 14:0 get_version - A (2)
 pycvcqv/is_numeric.py
@@ -23,7 +23,7 @@ pycvcqv/prepare_output.py
     F 14:0 prepare_cv_datafame - A (2)
     F 44:0 prepare_cqv_datafame - A (2)
 pycvcqv/cv.py
-    F 17:0 coefficient_of_variation - A (3)
+    F 16:0 coefficient_of_variation - A (2)
 
 16 blocks (classes, functions, methods) analyzed.
-Average complexity: A (2.125)
+Average complexity: A (1.9375)

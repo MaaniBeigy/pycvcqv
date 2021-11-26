@@ -5,7 +5,6 @@ import pytest
 from pandas.testing import assert_frame_equal
 
 from pycvcqv.cv import coefficient_of_variation
-from pycvcqv.formulas import _cv
 
 
 def test_cv_with_kwarg():
@@ -131,54 +130,6 @@ def test_cv_nonnumeric_type_data_without_kwarg():
         )
 
     assert execinfo.value.args[0] == "The data is not numeric!"
-
-
-def test_cv_wrong_type_data_with_kwarg():
-    """Tests cv function with wrong type of data with kwarg."""
-    with pytest.raises(TypeError) as execinfo:
-        coefficient_of_variation(
-            data=dict({"1": 2}),
-            correction=True,
-            multiplier=100,
-        )
-
-    assert (
-        execinfo.value.args[0]
-        == """data must be \
-pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
-    )
-
-
-def test_cv_wrong_type_data_without_kwarg():
-    """Tests cv function with wrong type of data without kwarg."""
-    with pytest.raises(TypeError) as execinfo:
-        coefficient_of_variation(
-            dict({"1": 2}),
-            correction=True,
-            multiplier=100,
-        )
-
-    assert (
-        execinfo.value.args[0]
-        == """data must be \
-pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
-    )
-
-
-def test_cv_wrong_type_data22s():
-    """Tests with wrong type of data for _cv function."""
-    with pytest.raises(TypeError) as execinfo:
-        _cv(
-            dict({"1": 2}),
-            correction=True,
-            multiplier=100,
-        )
-
-    assert (
-        execinfo.value.args[0]
-        == """data must be \
-pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
-    )
 
 
 def test_cv_dataframe_single_thread():

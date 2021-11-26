@@ -95,36 +95,6 @@ def test_cqv_nonnumeric_type_data_without_kwarg():
     assert execinfo.value.args[0] == "The data is not numeric!"
 
 
-def test_cqv_wrong_type_data_with_kwarg():
-    """Tests cvq function with wrong type of data with kwarg."""
-    with pytest.raises(TypeError) as execinfo:
-        cqv(
-            data=dict({"1": 2}),
-            multiplier=100,
-        )
-
-    assert (
-        execinfo.value.args[0]
-        == """data must be \
-pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
-    )
-
-
-def test_cqv_wrong_type_data_without_kwarg():
-    """Tests cqv function with wrong type of data without kwarg."""
-    with pytest.raises(TypeError) as execinfo:
-        cqv(
-            dict({"1": 2}),
-            multiplier=100,
-        )
-
-    assert (
-        execinfo.value.args[0]
-        == """data must be \
-pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
-    )
-
-
 def test_cqv_warning_when_divisor_makes_cqv_nan_without_kwargs():
     """Tests cqv function when divisor makes cqv nan without kwargs."""
     with pytest.raises(Warning) as execinfo:

@@ -2,7 +2,6 @@
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional, Union
 
-import numpy as np
 import pandas as pd
 
 from pycvcqv.dataframe import cqv_dataframe
@@ -54,10 +53,6 @@ def cqv(
     Returns:
         Union[pd.DataFrame, float]: the coefficient(s) of quartile variation.
 
-    Raises:
-        TypeError: If data is not pandas.core.series.Series, numpy.ndarray, list,
-            or tuple!
-
     Examples:
         .. code:: python
 
@@ -80,11 +75,6 @@ def cqv(
             multiplier=multiplier,
         )
     # --------------------------------- non DataFrame  --------------------------------
-    elif isinstance(data, (list, np.ndarray, pd.Series, tuple)):
-        result = float(_cqv(data, ndigits, interpolation, multiplier))
     else:
-        raise TypeError(
-            """data must be \
-pandas.core.series.Series, numpy.ndarray, list, or tuple!"""
-        )
+        result = float(_cqv(data, ndigits, interpolation, multiplier))
     return result
