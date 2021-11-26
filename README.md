@@ -20,7 +20,7 @@
 [![License](https://img.shields.io/github/license/MaaniBeigy/pycvcqv)](https://github.com/MaaniBeigy/pycvcqv/blob/master/LICENSE)
 [![Python Version](https://img.shields.io/pypi/pyversions/pycvcqv.svg)](https://pypi.org/project/pycvcqv/)
 
-:construction: WIP
+
 Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI)
 Python port of [cvcqv](https://github.com/MaaniBeigy/cvcqv)
 
@@ -35,6 +35,19 @@ pip install pycvcqv
 ## Usage
 
 ```python
+import pandas as pd
+from pycvcqv import coefficient_of_variation, cqv
+
+coefficient_of_variation(
+    data=[0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5, 4.4, 4.6, 5.4, 5.4],
+    multiplier=100,
+)
+# 64.6467
+cqv(
+    data=[0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5, 4.4, 4.6, 5.4, 5.4],
+    multiplier=100,
+)
+# 51.7241
 data = pd.DataFrame(
     {
         "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
@@ -45,13 +58,6 @@ coefficient_of_variation(data=data, num_threads=3)
 #   columns      cv
 # 0   col-1  0.6076
 # 1   col-2  0.1359
-
-data = pd.DataFrame(
-    {
-        "col-1": pd.Series([0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5]),
-        "col-2": pd.Series([5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9]),
-    }
-)
 cqv(data=data, num_threads=-1)
 #   columns      cqv
 # 0   col-1  0.3889
