@@ -93,5 +93,10 @@ git push -u origin main
 
 
 ## Credits [![🚀 Your next Python package needs a bleeding-edge project structure.](https://img.shields.io/badge/python--package--template-%F0%9F%9A%80-brightgreen)](https://github.com/TezRomacH/python-package-template)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv?ref=badge_shield)
 
 This project was generated with [`python-package-template`](https://github.com/TezRomacH/python-package-template)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv?ref=badge_large)
