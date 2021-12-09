@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "pycvcqv"
-version = "0.1.8"
+version = "0.1.9"
 description = "Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI) "
 readme = "README.md"
 authors = ["MaaniBeigy <manibeygi@gmail.com>"]
