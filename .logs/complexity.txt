@@ -10,7 +10,7 @@ pycvcqv/formulas.py
     F 11:0 _cv - A (2)
     F 48:0 _cqv - A (2)
 pycvcqv/__init__.py
-    F 14:0 get_version - A (2)
+    F 17:0 get_version - A (2)
 pycvcqv/is_numeric.py
     F 11:0 is_numeric - A (1)
 pycvcqv/multithread.py
