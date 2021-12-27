@@ -1,5 +1,6 @@
-# type: ignore[attr-defined]
 """Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV)."""
+from typing import Any
+
 import sys
 
 from pycvcqv.cqv import cqv
@@ -14,7 +15,7 @@ else:
 
 
 # -------------------------------- function definition --------------------------------
-def get_version() -> str:
+def get_version() -> Any:
     """Gets the version of package."""
     try:
         return importlib_metadata.version(__name__)

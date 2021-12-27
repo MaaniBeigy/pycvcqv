@@ -2,4 +2,4 @@ Installing dependencies from lock file
 
 No dependencies to install or update
 
-Installing the current project: pycvcqv (0.1.9)
+Installing the current project: pycvcqv (0.1.10)

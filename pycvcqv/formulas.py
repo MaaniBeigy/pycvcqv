@@ -53,10 +53,10 @@ def _cqv(
 ) -> float:
     """Internal function to calculate cqv."""
     # ------------------- convert data to pandas.core.series.Series -------------------
-    data = pd.Series(data)
+    _data: pd.Series = pd.Series(data)
     # ---------------------- calculate the quantiles of the data ----------------------
-    quantile1 = data.quantile(0.25, interpolation=interpolation)  # q1 = p25
-    quantile3 = data.quantile(0.75, interpolation=interpolation)  # q3 = p75
+    quantile1 = _data.quantile(0.25, interpolation=interpolation)  # q1 = p25
+    quantile3 = _data.quantile(0.75, interpolation=interpolation)  # q3 = p75
     # ------------------- raise warning for 0 divisor when q3+q1 = 0 ------------------
     if quantile1 + quantile3 == 0:
         raise Warning("cqv is NaN because q3 and q1 are 0")

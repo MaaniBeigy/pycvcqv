@@ -1,7 +1,7 @@
 ============================= test session starts ==============================
 platform linux -- Python 3.8.10, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
 rootdir: /data/aasaam/pycvcqv, configfile: pyproject.toml
-plugins: metadata-1.11.0, html-3.1.1, cov-3.0.0
+plugins: html-3.1.1, metadata-1.11.0, cov-3.0.0
 collected 20 items
 
 tests/test_cqv.py ...........                                            [ 55%]
@@ -10,7 +10,7 @@ tests/test_cv.py .........                                               [100%]
 ---------- coverage: platform linux, python 3.8.10-final-0 -----------
 Name                        Stmts   Miss Branch BrPart  Cover   Missing
 -----------------------------------------------------------------------
-pycvcqv/__init__.py            14      1      2      1    88%   13
+pycvcqv/__init__.py            14      1      2      1    88%   14
 pycvcqv/cqv.py                 12      0      2      0   100%
 pycvcqv/cv.py                  12      0      2      0   100%
 pycvcqv/dataframe.py           11      0      4      0   100%
@@ -26,4 +26,4 @@ TOTAL                         157      1     28      1    99%
 
 Required test coverage of 50.0% reached. Total coverage: 98.92%
 
-============================== 20 passed in 1.35s ==============================
+============================== 20 passed in 2.40s ==============================
