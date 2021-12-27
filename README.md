@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![PyPI](https://img.shields.io/pypi/v/pycvcqv)
+[![PyPI](https://img.shields.io/pypi/v/pycvcqv)](https://pypi.org/project/pycvcqv/)
 [![Python Version](https://img.shields.io/pypi/pyversions/pycvcqv.svg)](https://pypi.org/project/pycvcqv/)
 [![Build status](https://github.com/MaaniBeigy/pycvcqv/workflows/build/badge.svg)](https://github.com/MaaniBeigy/pycvcqv/actions?query=workflow%3Abuild)
 [![coverage report](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/coverage.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/coverage.txt)
