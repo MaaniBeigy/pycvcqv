@@ -84,5 +84,14 @@ def coefficient_of_variation(
         )
     # --------------------------------- non DataFrame  --------------------------------
     else:
-        result = float(_cv(data, ddof, skipna, ndigits, correction, multiplier))
+        result = float(
+            _cv(
+                data=data,
+                ddof=ddof,
+                skipna=skipna,
+                ndigits=ndigits,
+                correction=correction,
+                multiplier=multiplier,
+            )
+        )
     return result

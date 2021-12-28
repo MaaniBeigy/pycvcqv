@@ -3,6 +3,7 @@
 from typing import Optional
 
 import pandas as pd
+from numpy import Inf
 
 from pycvcqv.types import NumArrayLike
 
@@ -19,6 +20,12 @@ def _cv(
     """Internal function to calculate cv."""
     # ------------------- convert data to pandas.core.series.Series -------------------
     prep_data: pd.Series = pd.Series(data)
+    # ------------------------- return Inf if mean close to zero ----------------------
+    if prep_data.mean(skipna=skipna) == 0 or (
+        prep_data.mean(skipna=skipna) < 0.000001
+        and prep_data.std(skipna=skipna, ddof=ddof) > prep_data.mean(skipna=skipna)
+    ):
+        return float(Inf)
     # ------------------ the basic coefficient of variation function ------------------
     _cv = prep_data.std(skipna=skipna, ddof=ddof) / prep_data.mean(skipna=skipna)
     length = len(prep_data)

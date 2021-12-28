@@ -2,6 +2,7 @@
 # --------------------------- Import libraries and functions --------------------------
 import pandas as pd
 import pytest
+from numpy import inf
 from pandas.testing import assert_frame_equal
 
 from pycvcqv.cv import coefficient_of_variation
@@ -210,3 +211,60 @@ def test_cv_dataframe_multithread_default_3_cores():
             }
         ),
     )
+
+
+def test_zero_division_cv_returns_none_with_kwargs():
+    """Tests cv function for zero division with kwargs."""
+    assert coefficient_of_variation(data=[-2, -1, 0, 1, 2]) == float("inf")
+
+
+def test_zero_division_cv_returns_none_without_kwargs():
+    """Tests cv function for zero division without kwargs."""
+    assert coefficient_of_variation([-2, -1, 0, 1, 2]) == float("inf")
+
+
+def test_zero_division_cv_returns_none_without_kwargs_dataframe():
+    """Tests cv function for zero division for dataframe."""
+    data = pd.DataFrame(
+        {
+            "col-1": pd.Series([-2, -1, 0, 1, 2]),
+            "col-2": pd.Series([-2, -1, 0, 1, 2]),
+        }
+    )
+    result = coefficient_of_variation(data=data, num_threads=3)
+    assert_frame_equal(
+        result,
+        pd.DataFrame(
+            {
+                "columns": pd.Series(["col-1", "col-2"]),
+                "cv": pd.Series([float(inf), float(inf)]),
+            }
+        ),
+    )
+
+
+def test_zero_division_cv_returns_none_when_std_is_high():
+    """Tests cv function for zero division when std is high."""
+    vector = [
+        -1.687949,
+        -1.556078,
+        -1.292336,
+        -1.160465,
+        -0.984637,
+        -0.764852,
+        -0.676938,
+        -0.589024,
+        -0.237368,
+        0.158245,
+        0.246159,
+        0.597815,
+        0.597815,
+        0.729686,
+        0.773643,
+        0.817600,
+        0.861557,
+        1.125299,
+        1.345084,
+        1.696740,
+    ]
+    assert coefficient_of_variation(data=vector) == float("inf")

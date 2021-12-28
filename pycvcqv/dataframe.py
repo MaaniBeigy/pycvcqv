@@ -30,7 +30,13 @@ def cv_dataframe(
         if v == num_threads
     )
     return operators[0](
-        data, num_threads, ddof, skipna, ndigits, correction, multiplier
+        data=data,
+        num_threads=num_threads,
+        ddof=ddof,
+        skipna=skipna,
+        ndigits=ndigits,
+        correction=correction,
+        multiplier=multiplier,
     )
 
 
