@@ -10,7 +10,7 @@ tests/test_cv.py .........                                               [100%]
 ---------- coverage: platform linux, python 3.8.10-final-0 -----------
 Name                        Stmts   Miss Branch BrPart  Cover   Missing
 -----------------------------------------------------------------------
-pycvcqv/__init__.py            14      1      2      1    88%   14
+pycvcqv/__init__.py            11      0      0      0   100%
 pycvcqv/cqv.py                 12      0      2      0   100%
 pycvcqv/cv.py                  12      0      2      0   100%
 pycvcqv/dataframe.py           11      0      4      0   100%
@@ -22,8 +22,8 @@ pycvcqv/singlethread.py        16      0      0      0   100%
 pycvcqv/types.py               13      0      0      0   100%
 pycvcqv/userthread.py          14      0      0      0   100%
 -----------------------------------------------------------------------
-TOTAL                         157      1     28      1    99%
+TOTAL                         154      0     26      0   100%
 
-Required test coverage of 50.0% reached. Total coverage: 98.92%
+Required test coverage of 50.0% reached. Total coverage: 100.00%
 
-============================== 20 passed in 1.96s ==============================
+============================== 20 passed in 1.73s ==============================

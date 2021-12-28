@@ -8,9 +8,9 @@ from pycvcqv.cv import coefficient_of_variation
 from pycvcqv.dataframe import cqv_dataframe, cv_dataframe
 from pycvcqv.is_numeric import is_numeric
 
-if sys.version_info >= (3, 8):
+if sys.version_info >= (3, 8):  # pragma: no cover
     from importlib import metadata as importlib_metadata
-else:
+else:  # pragma: no cover
     import importlib_metadata
 
 
