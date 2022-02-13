@@ -76,7 +76,7 @@ mypy:
 .PHONY: check-safety
 check-safety:
 	poetry check
-	poetry run safety check --full-report
+	poetry run safety check --full-report -i 44715 -i 44716 -i 44717
 	poetry run bandit -ll --recursive pycvcqv tests
 
 .PHONY: lint
