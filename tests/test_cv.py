@@ -10,42 +10,8 @@ from pycvcqv.cv import coefficient_of_variation
 
 def test_cv_with_kwarg():
     """Tests cv function without correction with data kwarg."""
-    assert (
-        coefficient_of_variation(
-            data=pd.Series(
-                [
-                    0.2,
-                    0.5,
-                    1.1,
-                    1.4,
-                    1.8,
-                    2.3,
-                    2.5,
-                    2.7,
-                    3.5,
-                    4.4,
-                    4.6,
-                    5.4,
-                    5.4,
-                    5.7,
-                    5.8,
-                    5.9,
-                    6.0,
-                    6.6,
-                    7.1,
-                    7.9,
-                ]
-            ),
-            multiplier=100,
-        )
-        == pytest.approx(57.77, 0.001)
-    )
-
-
-def test_cv_without_kwarg():
-    """Tests cv function without correction without data kwarg."""
-    assert (
-        coefficient_of_variation(
+    assert coefficient_of_variation(
+        data=pd.Series(
             [
                 0.2,
                 0.5,
@@ -67,46 +33,71 @@ def test_cv_without_kwarg():
                 6.6,
                 7.1,
                 7.9,
-            ],
-            multiplier=100,
-        )
-        == pytest.approx(57.77, 0.001)
-    )
+            ]
+        ),
+        multiplier=100,
+    ) == pytest.approx(57.77, 0.001)
+
+
+def test_cv_without_kwarg():
+    """Tests cv function without correction without data kwarg."""
+    assert coefficient_of_variation(
+        [
+            0.2,
+            0.5,
+            1.1,
+            1.4,
+            1.8,
+            2.3,
+            2.5,
+            2.7,
+            3.5,
+            4.4,
+            4.6,
+            5.4,
+            5.4,
+            5.7,
+            5.8,
+            5.9,
+            6.0,
+            6.6,
+            7.1,
+            7.9,
+        ],
+        multiplier=100,
+    ) == pytest.approx(57.77, 0.001)
 
 
 def test_cv_corrected():
     """Tests cv function with correction."""
-    assert (
-        coefficient_of_variation(
-            data=pd.Series(
-                [
-                    0.2,
-                    0.5,
-                    1.1,
-                    1.4,
-                    1.8,
-                    2.3,
-                    2.5,
-                    2.7,
-                    3.5,
-                    4.4,
-                    4.6,
-                    5.4,
-                    5.4,
-                    5.7,
-                    5.8,
-                    5.9,
-                    6.0,
-                    6.6,
-                    7.1,
-                    7.9,
-                ]
-            ),
-            correction=True,
-            multiplier=100,
-        )
-        == pytest.approx(58.05, 0.001)
-    )
+    assert coefficient_of_variation(
+        data=pd.Series(
+            [
+                0.2,
+                0.5,
+                1.1,
+                1.4,
+                1.8,
+                2.3,
+                2.5,
+                2.7,
+                3.5,
+                4.4,
+                4.6,
+                5.4,
+                5.4,
+                5.7,
+                5.8,
+                5.9,
+                6.0,
+                6.6,
+                7.1,
+                7.9,
+            ]
+        ),
+        correction=True,
+        multiplier=100,
+    ) == pytest.approx(58.05, 0.001)
 
 
 def test_cv_nonnumeric_type_data_with_kwarg():
