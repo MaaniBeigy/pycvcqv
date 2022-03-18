@@ -177,7 +177,7 @@ python-versions = "*"
 
 [[package]]
 name = "docstr-coverage"
-version = "2.1.1"
+version = "2.2.0"
 description = "Utility for examining python source files to ensure proper documentation. Lists missing docstrings, and calculates overall docstring coverage percentage rating."
 category = "dev"
 optional = false
@@ -189,7 +189,7 @@ PyYAML = "*"
 
 [package.extras]
 lint = ["flake8 (==3.9.2)", "black (==21.5b2)", "isort (==5.9.0)"]
-test = ["pytest (==5.4.2)", "pytest-mock (==3.4.0)"]
+test = ["pytest (==6.2.5)", "pytest-mock (==3.4.0)"]
 
 [[package]]
 name = "dparse"
@@ -900,7 +900,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7.1,<4.0"
-content-hash = "45db604d600ed99eb5b11c2a3b294fb82bd2c01d74021b7a633d115f75b8c773"
+content-hash = "79e1e865b5627ac51c5886490492fc28e88bf3d6f34767e984f230c456ac3d30"
 
 [metadata.files]
 anybadge = [
@@ -1024,8 +1024,8 @@ distlib = [
     {file = "distlib-0.3.4.zip", hash = "sha256:e4b58818180336dc9c529bfb9a0b58728ffc09ad92027a3f30b7cd91e3458579"},
 ]
 docstr-coverage = [
-    {file = "docstr-coverage-2.1.1.tar.gz", hash = "sha256:e92d60f0fa28245e10db8c1582fc4a358d84e90f6effc1fcfdeb10fae4dfb793"},
-    {file = "docstr_coverage-2.1.1-py3-none-any.whl", hash = "sha256:0945e83b1a3d9e216bdf06000b767cc96dc2a0faf356ac0cc255c45f671c84b9"},
+    {file = "docstr-coverage-2.2.0.tar.gz", hash = "sha256:3487f3f09f7d2c45e2e67f0a3a6c1cc1960b6449e89f3e8eaca30c37e05eace2"},
+    {file = "docstr_coverage-2.2.0-py3-none-any.whl", hash = "sha256:13b21417fb6b743ac297495c4530687f78acecb9a61cfef7e3ec8f00938e574d"},
 ]
 dparse = [
     {file = "dparse-0.5.1-py3-none-any.whl", hash = "sha256:e953a25e44ebb60a5c6efc2add4420c177f1d8404509da88da9729202f306994"},
