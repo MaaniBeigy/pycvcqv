@@ -1,7 +1,7 @@
 ============================= test session starts ==============================
-platform linux -- Python 3.8.10, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
-rootdir: /data/aasaam/pycvcqv, configfile: pyproject.toml
-plugins: html-3.1.1, metadata-1.11.0, cov-3.0.0
+platform linux -- Python 3.8.10, pytest-7.1.2, pluggy-1.0.0
+rootdir: /media/maanib/BE14638A1463450D/aasaam/pycvcqv, configfile: pyproject.toml
+plugins: html-3.1.1, cov-3.0.0
 collected 24 items
 
 tests/test_cqv.py ...........                                            [ 45%]
@@ -26,4 +26,4 @@ TOTAL                         157      0     28      0   100%
 
 Required test coverage of 50.0% reached. Total coverage: 100.00%
 
-============================== 24 passed in 1.59s ==============================
+============================== 24 passed in 2.35s ==============================

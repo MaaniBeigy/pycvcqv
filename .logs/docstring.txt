@@ -1,4 +1,4 @@
-================== Coverage for /data/aasaam/pycvcqv/pycvcqv/ ==================
+===== Coverage for /media/maanib/BE14638A1463450D/aasaam/pycvcqv/pycvcqv/ ======
 ----------------------------------- Summary ------------------------------------
 | Name                     |      Total |      Miss |      Cover |      Cover% |
 |--------------------------|------------|-----------|------------|-------------|
@@ -16,4 +16,4 @@
 |--------------------------|------------|-----------|------------|-------------|
 | TOTAL                    |         28 |         0 |         28 |      100.0% |
 --------------- RESULT: PASSED (minimum: 50.0%, actual: 100.0%) ----------------
-Generated badge to /data/aasaam/pycvcqv/assets/images/interrogate_badge.svg
+Generated badge to /media/maanib/BE14638A1463450D/aasaam/pycvcqv/assets/images/interrogate_badge.svg
