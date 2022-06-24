@@ -77,6 +77,7 @@ cqv(data=data, num_threads=-1)
 ### Testing:
 
 ```bash
+export PATH="$HOME/.poetry/bin:$PATH"
 make install
 make pre-commit-install
 make test && make coverage && make check-codestyle && make mypy && make check-safety && make extrabadges
@@ -85,6 +86,7 @@ make test && make coverage && make check-codestyle && make mypy && make check-sa
 ### Upload code to GitHub:
 
 ```bash
+git pull
 pre-commit run --all-files
 git add .
 git commit -m ":tada: Initial commit"
