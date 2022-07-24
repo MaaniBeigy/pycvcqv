@@ -199,8 +199,8 @@ click = "*"
 PyYAML = "*"
 
 [package.extras]
-lint = ["flake8 (==3.9.2)", "black (==21.5b2)", "isort (==5.9.0)"]
-test = ["pytest (==6.2.5)", "pytest-mock (==3.4.0)"]
+test = ["pytest-mock (==3.4.0)", "pytest (==6.2.5)"]
+lint = ["isort (==5.9.0)", "black (==21.5b2)", "flake8 (==3.9.2)"]
 
 [[package]]
 name = "dparse"
@@ -335,10 +335,10 @@ tabulate = "*"
 toml = "*"
 
 [package.extras]
-dev = ["cairosvg", "sphinx", "sphinx-autobuild", "pytest", "pytest-cov", "pytest-mock", "wheel", "pre-commit"]
-docs = ["sphinx", "sphinx-autobuild"]
+tests = ["pytest-mock", "pytest-cov", "pytest"]
 png = ["cairosvg"]
-tests = ["pytest", "pytest-cov", "pytest-mock"]
+docs = ["sphinx-autobuild", "sphinx"]
+dev = ["pre-commit", "wheel", "pytest-mock", "pytest-cov", "pytest", "sphinx-autobuild", "sphinx", "cairosvg"]
 
 [[package]]
 name = "isort"
@@ -524,12 +524,12 @@ python-versions = ">=3.6"
 importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 
 [package.extras]
-dev = ["pre-commit", "tox"]
-testing = ["pytest", "pytest-benchmark"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "pre-commit"
-version = "2.19.0"
+version = "2.20.0"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 category = "dev"
 optional = false
@@ -565,8 +565,8 @@ Jinja2 = ">=3,<4"
 requests = ">=2.22.0,<3"
 
 [package.extras]
-dev = ["fonttools (>=3.26)", "nox", "Pillow (>=5)", "pytest (>=3.6)", "xmldiff (>=2.4)"]
 pil-measurement = ["Pillow (>=6,<10)"]
+dev = ["xmldiff (>=2.4)", "pytest (>=3.6)", "Pillow (>=5)", "nox", "fonttools (>=3.26)"]
 
 [[package]]
 name = "pycodestyle"
@@ -665,7 +665,7 @@ coverage = {version = ">=5.2.1", extras = ["toml"]}
 pytest = ">=4.6"
 
 [package.extras]
-testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
+testing = ["virtualenv", "pytest-xdist", "six", "process-tests", "hunter", "fields"]
 
 [[package]]
 name = "pytest-html"
@@ -939,7 +939,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7.1,<4.0"
-content-hash = "a80735ba87f786818d38715bfd0c5c2892e4e2c71b58bf0452a86ba734635c44"
+content-hash = "a5f4911bc6edc57ca3a396c7cce6850d2461d8101de9f7c62bc117b0a47b0e44"
 
 [metadata.files]
 anybadge = [
@@ -1321,8 +1321,8 @@ pluggy = [
     {file = "pluggy-1.0.0.tar.gz", hash = "sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159"},
 ]
 pre-commit = [
-    {file = "pre_commit-2.19.0-py2.py3-none-any.whl", hash = "sha256:10c62741aa5704faea2ad69cb550ca78082efe5697d6f04e5710c3c229afdd10"},
-    {file = "pre_commit-2.19.0.tar.gz", hash = "sha256:4233a1e38621c87d9dda9808c6606d7e7ba0e087cd56d3fe03202a01d2919615"},
+    {file = "pre_commit-2.20.0-py2.py3-none-any.whl", hash = "sha256:51a5ba7c480ae8072ecdb6933df22d2f812dc897d5fe848778116129a681aac7"},
+    {file = "pre_commit-2.20.0.tar.gz", hash = "sha256:a978dac7bc9ec0bcee55c18a277d553b0f419d259dadb4b9418ff2d00eb43959"},
 ]
 py = [
     {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
