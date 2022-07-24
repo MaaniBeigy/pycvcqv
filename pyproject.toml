@@ -44,7 +44,7 @@ python = ">=3.7.1,<4.0"
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.4"
 black = {version = "^22.6.0", allow-prereleases = true}
-coverage = "^6.4.1"
+coverage = "^6.4.2"
 coverage-badge = "^1.1.0"
 darglint = "^1.8.1"
 isort = {extras = ["colors"], version = "^5.10.1"}
