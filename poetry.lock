@@ -199,8 +199,8 @@ click = "*"
 PyYAML = "*"
 
 [package.extras]
-lint = ["flake8 (==3.9.2)", "black (==21.5b2)", "isort (==5.9.0)"]
-test = ["pytest (==6.2.5)", "pytest-mock (==3.4.0)"]
+test = ["pytest-mock (==3.4.0)", "pytest (==6.2.5)"]
+lint = ["isort (==5.9.0)", "black (==21.5b2)", "flake8 (==3.9.2)"]
 
 [[package]]
 name = "dparse"
@@ -277,7 +277,7 @@ typing-extensions = {version = ">=3.7.4.3", markers = "python_version < \"3.8\""
 
 [[package]]
 name = "identify"
-version = "2.5.1"
+version = "2.5.3"
 description = "File identification library for Python"
 category = "dev"
 optional = false
@@ -335,10 +335,10 @@ tabulate = "*"
 toml = "*"
 
 [package.extras]
-dev = ["cairosvg", "sphinx", "sphinx-autobuild", "pytest", "pytest-cov", "pytest-mock", "wheel", "pre-commit"]
-docs = ["sphinx", "sphinx-autobuild"]
+tests = ["pytest-mock", "pytest-cov", "pytest"]
 png = ["cairosvg"]
-tests = ["pytest", "pytest-cov", "pytest-mock"]
+docs = ["sphinx-autobuild", "sphinx"]
+dev = ["pre-commit", "wheel", "pytest-mock", "pytest-cov", "pytest", "sphinx-autobuild", "sphinx", "cairosvg"]
 
 [[package]]
 name = "isort"
@@ -524,8 +524,8 @@ python-versions = ">=3.6"
 importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 
 [package.extras]
-dev = ["pre-commit", "tox"]
-testing = ["pytest", "pytest-benchmark"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "pre-commit"
@@ -565,8 +565,8 @@ Jinja2 = ">=3,<4"
 requests = ">=2.22.0,<3"
 
 [package.extras]
-dev = ["fonttools (>=3.26)", "nox", "Pillow (>=5)", "pytest (>=3.6)", "xmldiff (>=2.4)"]
 pil-measurement = ["Pillow (>=6,<10)"]
+dev = ["xmldiff (>=2.4)", "pytest (>=3.6)", "Pillow (>=5)", "nox", "fonttools (>=3.26)"]
 
 [[package]]
 name = "pycodestyle"
@@ -665,7 +665,7 @@ coverage = {version = ">=5.2.1", extras = ["toml"]}
 pytest = ">=4.6"
 
 [package.extras]
-testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
+testing = ["virtualenv", "pytest-xdist", "six", "process-tests", "hunter", "fields"]
 
 [[package]]
 name = "pytest-html"
@@ -1094,8 +1094,8 @@ gitpython = [
     {file = "GitPython-3.1.27.tar.gz", hash = "sha256:1c885ce809e8ba2d88a29befeb385fcea06338d3640712b59ca623c220bb5704"},
 ]
 identify = [
-    {file = "identify-2.5.1-py2.py3-none-any.whl", hash = "sha256:0dca2ea3e4381c435ef9c33ba100a78a9b40c0bab11189c7cf121f75815efeaa"},
-    {file = "identify-2.5.1.tar.gz", hash = "sha256:3d11b16f3fe19f52039fb7e39c9c884b21cb1b586988114fbe42671f03de3e82"},
+    {file = "identify-2.5.3-py2.py3-none-any.whl", hash = "sha256:25851c8c1370effb22aaa3c987b30449e9ff0cece408f810ae6ce408fdd20893"},
+    {file = "identify-2.5.3.tar.gz", hash = "sha256:887e7b91a1be152b0d46bbf072130235a8117392b9f1828446079a816a05ef44"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
