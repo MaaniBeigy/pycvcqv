@@ -1,10 +1,10 @@
 [[package]]
 name = "anybadge"
-version = "1.9.0"
+version = "1.11.1"
 description = "Simple, flexible badge generator for project badges."
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=3.7"
 
 [package.dependencies]
 packaging = "*"
@@ -199,8 +199,8 @@ click = "*"
 PyYAML = "*"
 
 [package.extras]
-lint = ["flake8 (==3.9.2)", "black (==21.5b2)", "isort (==5.9.0)"]
-test = ["pytest (==6.2.5)", "pytest-mock (==3.4.0)"]
+test = ["pytest-mock (==3.4.0)", "pytest (==6.2.5)"]
+lint = ["isort (==5.9.0)", "black (==21.5b2)", "flake8 (==3.9.2)"]
 
 [[package]]
 name = "dparse"
@@ -335,10 +335,10 @@ tabulate = "*"
 toml = "*"
 
 [package.extras]
-dev = ["cairosvg", "sphinx", "sphinx-autobuild", "pytest", "pytest-cov", "pytest-mock", "wheel", "pre-commit"]
-docs = ["sphinx", "sphinx-autobuild"]
+tests = ["pytest-mock", "pytest-cov", "pytest"]
 png = ["cairosvg"]
-tests = ["pytest", "pytest-cov", "pytest-mock"]
+docs = ["sphinx-autobuild", "sphinx"]
+dev = ["pre-commit", "wheel", "pytest-mock", "pytest-cov", "pytest", "sphinx-autobuild", "sphinx", "cairosvg"]
 
 [[package]]
 name = "isort"
@@ -524,8 +524,8 @@ python-versions = ">=3.6"
 importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 
 [package.extras]
-dev = ["pre-commit", "tox"]
-testing = ["pytest", "pytest-benchmark"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "pre-commit"
@@ -565,8 +565,8 @@ Jinja2 = ">=3,<4"
 requests = ">=2.22.0,<3"
 
 [package.extras]
-dev = ["fonttools (>=3.26)", "nox", "Pillow (>=5)", "pytest (>=3.6)", "xmldiff (>=2.4)"]
 pil-measurement = ["Pillow (>=6,<10)"]
+dev = ["xmldiff (>=2.4)", "pytest (>=3.6)", "Pillow (>=5)", "nox", "fonttools (>=3.26)"]
 
 [[package]]
 name = "pycodestyle"
@@ -665,7 +665,7 @@ coverage = {version = ">=5.2.1", extras = ["toml"]}
 pytest = ">=4.6"
 
 [package.extras]
-testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
+testing = ["virtualenv", "pytest-xdist", "six", "process-tests", "hunter", "fields"]
 
 [[package]]
 name = "pytest-html"
@@ -939,12 +939,12 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7.1,<4.0"
-content-hash = "a80735ba87f786818d38715bfd0c5c2892e4e2c71b58bf0452a86ba734635c44"
+content-hash = "f057036200a07a91df9ca6c83aa3fe71bcca3a6e6b46d7b880aacf643e17a8cb"
 
 [metadata.files]
 anybadge = [
-    {file = "anybadge-1.9.0-py2.py3-none-any.whl", hash = "sha256:5f4d9dc81d1b816b688ed937cb94276fcb2a2dee46fbc03bab0f25a8b9f59251"},
-    {file = "anybadge-1.9.0.tar.gz", hash = "sha256:98cf380d284946c5c48ae00a3fe52ce8723880b88eb30fc0808610845034db3c"},
+    {file = "anybadge-1.11.1-py3-none-any.whl", hash = "sha256:7a8fb98a09a6e145c5e93f17595a0704cd57fbd7b57ee3428dececc4265bb3f8"},
+    {file = "anybadge-1.11.1.tar.gz", hash = "sha256:f50570f4389d6f0c200a57974ddefc4de74bd7a851ed112f2858ce1068dc644f"},
 ]
 astroid = [
     {file = "astroid-2.11.6-py3-none-any.whl", hash = "sha256:ba33a82a9a9c06a5ceed98180c5aab16e29c285b828d94696bf32d6015ea82a9"},
