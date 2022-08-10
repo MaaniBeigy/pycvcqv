@@ -199,12 +199,12 @@ click = "*"
 PyYAML = "*"
 
 [package.extras]
-lint = ["flake8 (==3.9.2)", "black (==21.5b2)", "isort (==5.9.0)"]
-test = ["pytest (==6.2.5)", "pytest-mock (==3.4.0)"]
+test = ["pytest-mock (==3.4.0)", "pytest (==6.2.5)"]
+lint = ["isort (==5.9.0)", "black (==21.5b2)", "flake8 (==3.9.2)"]
 
 [[package]]
 name = "dparse"
-version = "0.5.1"
+version = "0.5.2"
 description = "A parser for Python dependency files"
 category = "dev"
 optional = false
@@ -212,11 +212,11 @@ python-versions = ">=3.5"
 
 [package.dependencies]
 packaging = "*"
-pyyaml = "*"
 toml = "*"
 
 [package.extras]
 pipenv = ["pipenv"]
+conda = ["pyyaml"]
 
 [[package]]
 name = "filelock"
@@ -335,10 +335,10 @@ tabulate = "*"
 toml = "*"
 
 [package.extras]
-dev = ["cairosvg", "sphinx", "sphinx-autobuild", "pytest", "pytest-cov", "pytest-mock", "wheel", "pre-commit"]
-docs = ["sphinx", "sphinx-autobuild"]
+tests = ["pytest-mock", "pytest-cov", "pytest"]
 png = ["cairosvg"]
-tests = ["pytest", "pytest-cov", "pytest-mock"]
+docs = ["sphinx-autobuild", "sphinx"]
+dev = ["pre-commit", "wheel", "pytest-mock", "pytest-cov", "pytest", "sphinx-autobuild", "sphinx", "cairosvg"]
 
 [[package]]
 name = "isort"
@@ -524,8 +524,8 @@ python-versions = ">=3.6"
 importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 
 [package.extras]
-dev = ["pre-commit", "tox"]
-testing = ["pytest", "pytest-benchmark"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "pre-commit"
@@ -565,8 +565,8 @@ Jinja2 = ">=3,<4"
 requests = ">=2.22.0,<3"
 
 [package.extras]
-dev = ["fonttools (>=3.26)", "nox", "Pillow (>=5)", "pytest (>=3.6)", "xmldiff (>=2.4)"]
 pil-measurement = ["Pillow (>=6,<10)"]
+dev = ["xmldiff (>=2.4)", "pytest (>=3.6)", "Pillow (>=5)", "nox", "fonttools (>=3.26)"]
 
 [[package]]
 name = "pycodestyle"
@@ -665,7 +665,7 @@ coverage = {version = ">=5.2.1", extras = ["toml"]}
 pytest = ">=4.6"
 
 [package.extras]
-testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
+testing = ["virtualenv", "pytest-xdist", "six", "process-tests", "hunter", "fields"]
 
 [[package]]
 name = "pytest-html"
@@ -1071,8 +1071,8 @@ docstr-coverage = [
     {file = "docstr_coverage-2.2.0-py3-none-any.whl", hash = "sha256:13b21417fb6b743ac297495c4530687f78acecb9a61cfef7e3ec8f00938e574d"},
 ]
 dparse = [
-    {file = "dparse-0.5.1-py3-none-any.whl", hash = "sha256:e953a25e44ebb60a5c6efc2add4420c177f1d8404509da88da9729202f306994"},
-    {file = "dparse-0.5.1.tar.gz", hash = "sha256:a1b5f169102e1c894f9a7d5ccf6f9402a836a5d24be80a986c7ce9eaed78f367"},
+    {file = "dparse-0.5.2-py3-none-any.whl", hash = "sha256:b1514fb08895d85b18d4eba3b1b7025ff9e6ea07286282021e19def872129975"},
+    {file = "dparse-0.5.2.tar.gz", hash = "sha256:c348994a1f41c85f664d8f5a47442647bc4e22c5af5b1b26ef29aff0fa5dddcd"},
 ]
 filelock = [
     {file = "filelock-3.7.1-py3-none-any.whl", hash = "sha256:37def7b658813cda163b56fc564cdc75e86d338246458c4c28ae84cabefa2404"},
