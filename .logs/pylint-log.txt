@@ -1,6 +1,6 @@
 ************* Module pycvcqv.types
 pycvcqv/types.py:18:0: C0103: Type variable name "PoolType" doesn't conform to predefined naming style (invalid-name)
 
-------------------------------------------------------------------
-Your code has been rated at 9.94/10 (previous run: 9.94/10, +0.00)
+-----------------------------------
+Your code has been rated at 9.94/10
 

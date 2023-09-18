@@ -1,13 +1,31 @@
 ============================= test session starts ==============================
-platform linux -- Python 3.8.10, pytest-7.1.2, pluggy-1.0.0
-rootdir: /media/maanib/BE14638A1463450D/aasaam/pycvcqv, configfile: pyproject.toml
-plugins: html-3.1.1, cov-3.0.0
+platform linux -- Python 3.9.18, pytest-7.4.2, pluggy-1.2.0
+rootdir: /data/myprojects/pycvcqv
+configfile: pyproject.toml
+plugins: metadata-3.0.0, cov-3.0.0, html-3.2.0
 collected 24 items
 
 tests/test_cqv.py ...........                                            [ 45%]
 tests/test_cv.py .............                                           [100%]
 
----------- coverage: platform linux, python 3.8.10-final-0 -----------
+=============================== warnings summary ===============================
+../../../home/maanib/.cache/pypoetry/virtualenvs/pycvcqv-1nCALKhD-py3.9/lib/python3.9/site-packages/pytest_cov/plugin.py:256
+  /home/maanib/.cache/pypoetry/virtualenvs/pycvcqv-1nCALKhD-py3.9/lib/python3.9/site-packages/pytest_cov/plugin.py:256: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_configure_node uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_configure_node(self, node):
+
+../../../home/maanib/.cache/pypoetry/virtualenvs/pycvcqv-1nCALKhD-py3.9/lib/python3.9/site-packages/pytest_cov/plugin.py:265
+  /home/maanib/.cache/pypoetry/virtualenvs/pycvcqv-1nCALKhD-py3.9/lib/python3.9/site-packages/pytest_cov/plugin.py:265: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_testnodedown uses old-style configuration options (marks or attributes).
+  Please use the pytest.hookimpl(optionalhook=True) decorator instead
+   to configure the hooks.
+   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
+    def pytest_testnodedown(self, node, error):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform linux, python 3.9.18-final-0 -----------
 Name                        Stmts   Miss Branch BrPart  Cover   Missing
 -----------------------------------------------------------------------
 pycvcqv/__init__.py            11      0      0      0   100%
@@ -25,5 +43,4 @@ pycvcqv/userthread.py          14      0      0      0   100%
 TOTAL                         157      0     28      0   100%
 
 Required test coverage of 50.0% reached. Total coverage: 100.00%
-
-============================== 24 passed in 3.65s ==============================
+======================== 24 passed, 2 warnings in 1.94s ========================
