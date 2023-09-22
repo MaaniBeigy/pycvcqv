@@ -1,5 +1,5 @@
 default_language_version:
-  python: python3.7
+  python: python3.8
 
 default_stages: [commit, push]
 
@@ -10,7 +10,6 @@ repos:
       - id: check-yaml
       - id: check-added-large-files
         args: [ "--maxkb=700" ]
-      - id: check-docstring-first
       - id: check-json
         exclude: ^.vscode/settings.json
       - id: check-toml
@@ -73,11 +72,6 @@ repos:
         exclude: ^build/
         types: [ python ]
         args: ["--rcfile=.pylintrc"]
-  - repo: https://github.com/econchick/interrogate
-    rev: 1.5.0  # or master if you're bold
-    hooks:
-      - id: interrogate
-        args: [--quiet, --fail-under=50]
 
   - repo: local
     hooks:

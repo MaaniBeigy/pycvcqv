@@ -15,7 +15,7 @@ TupleFloat = Tuple[float]
 TupleInt = Tuple[int]
 ArrayFloat = npt.NDArray[np.float_]
 ArrayInt = npt.NDArray[np.int_]
-PoolType = TypeVar("PoolType", bound=pool.Pool)
+PoolTypeT = TypeVar("PoolTypeT", bound=pool.Pool)
 NumArrayLike = TypeVar(
     "NumArrayLike",
     bound=Union[

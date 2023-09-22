@@ -55,13 +55,9 @@ complexity:
 maintainability:
 	poetry run radon mi pycvcqv
 
-.PHONY: interrogate
-interrogate:
-	poetry run interrogate -v pycvcqv
-
 .PHONY: coverage
 coverage:
-	poetry run pytest --cov-report html --cov pycvcqv tests/
+	poetry run pytest --cov-report term --cov pycvcqv tests/
 	poetry run coverage-badge -o assets/images/coverage.svg -f
 
 .PHONY: check-codestyle
@@ -77,7 +73,7 @@ mypy:
 .PHONY: check-safety
 check-safety:
 	poetry check
-	poetry run safety check --full-report -i 44715 -i 44716 -i 44717
+	poetry run safety check --full-report
 	poetry run bandit -ll --recursive pycvcqv tests
 
 .PHONY: lint

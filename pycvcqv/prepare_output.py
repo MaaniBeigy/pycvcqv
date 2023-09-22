@@ -7,12 +7,12 @@ from functools import partial
 import pandas as pd
 
 from pycvcqv.formulas import _cqv, _cv
-from pycvcqv.types import PoolType
+from pycvcqv.types import PoolTypeT
 
 
 # -------------------------------- function definition --------------------------------
 def prepare_cv_datafame(
-    pool: PoolType,
+    pool: PoolTypeT,
     data: pd.DataFrame,
     ddof: Optional[int] = 1,
     skipna: Optional[bool] = True,
@@ -42,7 +42,7 @@ def prepare_cv_datafame(
 
 
 def prepare_cqv_datafame(
-    pool: PoolType,
+    pool: PoolTypeT,
     data: pd.DataFrame,
     ndigits: Optional[int] = 4,
     interpolation: Optional[str] = "linear",
