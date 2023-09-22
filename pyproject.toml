@@ -108,6 +108,7 @@ allow_redefinition = false
 check_untyped_defs = true
 disallow_any_generics = true
 disallow_incomplete_defs = true
+exclude = ['venv', '.venv']
 ignore_missing_imports = true
 implicit_reexport = false
 no_implicit_optional = true
