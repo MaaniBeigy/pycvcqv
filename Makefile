@@ -113,3 +113,6 @@ build-remove:
 
 .PHONY: clean-all
 clean-all: pycache-remove build-remove docker-remove
+
+
+# poetry config pypi-token.pypi your-api-token
