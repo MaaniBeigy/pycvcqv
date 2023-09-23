@@ -14,7 +14,7 @@
 
 +==============================================================================+
 
- [1mREPORT[0m 
+ [1mREPORT[0m
 
 [31m[22m  Safety is using PyUp's free open-source vulnerability database. This
 data is 30 days old and limited. [0m
@@ -35,7 +35,7 @@ sign up at https://pyup.io or email sales@pyup.io[0m
 [1m  0[0m[1m vulnerabilities ignored[0m
 +==============================================================================+
 
- [32m[1mNo known security vulnerabilities found.[0m 
+ [32m[1mNo known security vulnerabilities found.[0m
 
 +==============================================================================+
 

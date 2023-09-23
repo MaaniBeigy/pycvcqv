@@ -31,9 +31,8 @@ def _cv(
     length = len(prep_data)
     # ------------------------ return the corrected or basic cv -----------------------
     if correction:
-        return round(  # ---------------------- round the result ----------------------
-            # ---------------- multiply the cv e.g, 100 for percentage ----------------
-            multiplier
+        corrected_rounded_cv: float = round(  # ----------- round the result ----------
+            multiplier  # ----------- multiply the cv e.g, 100 for percentage ---------
             * (
                 _cv
                 * (
@@ -45,11 +44,12 @@ def _cv(
             ),
             ndigits=ndigits,  # --------------- decimals for the round ----------------
         )
-    return round(  # ------------------------ round the result ------------------------
-        # ------------------ multiply the cv e.g, 100 for percentage ------------------
-        multiplier * (_cv),
+        return corrected_rounded_cv
+    rounded_cv: float = round(  # ------------------ round the result -----------------
+        multiplier * (_cv),  # -------- multiply the cv e.g, 100 for percentage -------
         ndigits=ndigits,  # ------------------ decimals for the round -----------------
     )
+    return rounded_cv
 
 
 def _cqv(
@@ -70,7 +70,8 @@ def _cqv(
     # -------------- the basic coefficient of quartile variation function -------------
     _cqv = (quantile3 - quantile1) / (quantile3 + quantile1)
     # ----------------------- return the corrected or basic cqv -----------------------
-    return round(
+    rounded_cqv: float = round(
         multiplier * _cqv,  # -------- multiply the cqv e.g, 100 for percentage -------
         ndigits=ndigits,  # ------------------ decimals for the round -----------------
     )
+    return rounded_cqv

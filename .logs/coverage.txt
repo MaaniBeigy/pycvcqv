@@ -32,7 +32,7 @@ pycvcqv/__init__.py            11      0      0      0   100%
 pycvcqv/cqv.py                 12      0      2      0   100%
 pycvcqv/cv.py                  12      0      2      0   100%
 pycvcqv/dataframe.py           11      0      4      0   100%
-pycvcqv/formulas.py            21      0      6      0   100%
+pycvcqv/formulas.py            24      0      6      0   100%
 pycvcqv/is_numeric.py          18      0     10      0   100%
 pycvcqv/multithread.py         16      0      0      0   100%
 pycvcqv/prepare_output.py      13      0      4      0   100%
@@ -40,7 +40,7 @@ pycvcqv/singlethread.py        16      0      0      0   100%
 pycvcqv/types.py               13      0      0      0   100%
 pycvcqv/userthread.py          14      0      0      0   100%
 -----------------------------------------------------------------------
-TOTAL                         157      0     28      0   100%
+TOTAL                         160      0     28      0   100%
 
 Required test coverage of 50.0% reached. Total coverage: 100.00%
-======================== 24 passed, 2 warnings in 2.00s ========================
+======================== 24 passed, 2 warnings in 2.50s ========================

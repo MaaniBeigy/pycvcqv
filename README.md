@@ -78,7 +78,9 @@ cqv(data=data, num_threads=-1)
 export PATH="$HOME/.poetry/bin:$PATH"
 make install
 make pre-commit-install
+pre-commit run --all-files
 make test && make coverage && make check-codestyle && make mypy && make check-safety && make extrabadges
+pre-commit run --all-files
 ```
 
 ### Upload code to GitHub:
