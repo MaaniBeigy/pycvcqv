@@ -43,4 +43,4 @@ pycvcqv/userthread.py          14      0      0      0   100%
 TOTAL                         157      0     28      0   100%
 
 Required test coverage of 50.0% reached. Total coverage: 100.00%
-======================== 24 passed, 2 warnings in 2.11s ========================
+======================== 24 passed, 2 warnings in 2.23s ========================
