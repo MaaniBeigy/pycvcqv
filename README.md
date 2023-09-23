@@ -11,7 +11,6 @@
 
 [![maintainability](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/maintainability.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/maintainability.txt)
 [![complexity](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/complexity.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/complexity.txt)
-[![Safety Vulnerabilities](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/vulnerabilities.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/safety.txt)
 [![lint report](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/pylint.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/pylint-log.txt)
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)

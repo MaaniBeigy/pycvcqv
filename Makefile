@@ -79,6 +79,12 @@ check-safety:
 .PHONY: lint
 lint: test check-codestyle mypy check-safety
 
+
+#* Build
+.PHONY: build
+build:
+	poetry build
+
 #* Docker
 # Example: make docker VERSION=latest
 # Example: make docker IMAGE=some_name VERSION=0.1.0
