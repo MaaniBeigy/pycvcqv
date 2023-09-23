@@ -1,9 +1,10 @@
 #!/bin/bash
 find . -name 'safety.txt' -delete
 find . -name 'vulnerabilities.svg' -delete
-poetry run safety check > .logs/safety.txt
-export vulnerabilities=$(grep 'vulnerabilities' .logs/safety.txt | cut -d\  -f2)
-vulnerabilities=${vulnerabilities/"No"/"0"}
-echo "vulnerabilities:" $vulnerabilities
+poetry run safety check --output text > .logs/safety.txt
+poetry run safety check --output json > .logs/safety.json
+vulnerabilities_found=$(jq -r '.report_meta.vulnerabilities_found' .logs/safety.json)
+export VULNERABILITIES_FOUND=$vulnerabilities_found
+echo "vulnerabilities:" $VULNERABILITIES_FOUND
 rm -rf assets/images/vulnerabilities.svg
-poetry run python3 -m pybadges --left-text="vulnerabilities" --right-text=${vulnerabilities} --left-color="#40aef9" --right-color="#0c2739" --logo=assets/images/safety.png --embed-logo >>assets/images/vulnerabilities.svg
+poetry run python3 -m pybadges --left-text="vulnerabilities" --right-text=${VULNERABILITIES_FOUND} --left-color="#40aef9" --right-color="#0c2739" --logo=assets/images/safety.png --embed-logo >>assets/images/vulnerabilities.svg
