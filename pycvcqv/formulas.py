@@ -1,11 +1,11 @@
 """Formulas of cvcqv."""
 # --------------------------- Import libraries and functions --------------------------
-from typing import Optional
+from typing import Optional  # Optional type for function arguments.
 
-import pandas as pd
-from numpy import Inf
+import pandas as pd  # Data analysis and manipulation library.
+from numpy import Inf  # To handle numeric infinity values.
 
-from pycvcqv.types import NumArrayLike
+from pycvcqv.types import NumArrayLike  # custom numeric array defined in types.py.
 
 
 # -------------------------------- function definition --------------------------------
@@ -18,34 +18,34 @@ def _cv(
     multiplier: Optional[int] = 1,
 ) -> float:
     """Internal function to calculate cv."""
-    # ------------------- convert data to pandas.core.series.Series -------------------
-    prep_data: pd.Series = pd.Series(data)
-    # ------------------------- return Inf if mean close to zero ----------------------
-    if prep_data.mean(skipna=skipna) == 0 or (
-        prep_data.mean(skipna=skipna) < 0.000001
-        and prep_data.std(skipna=skipna, ddof=ddof) > prep_data.mean(skipna=skipna)
-    ):
-        return float(Inf)
+    _data: pd.Series = pd.Series(data)
+    if _data.mean(skipna=skipna) == 0 or (  # check if the mean is 0
+        _data.mean(skipna=skipna) < 0.000001  # check if the mean is close to 0
+        # ----------------- also, check if the std is higher than mean ----------------
+        and _data.std(skipna=skipna, ddof=ddof) > _data.mean(skipna=skipna)
+    ):  # ------- The Inf value which comes from numpy to handle infinity cases -------
+        return float(Inf)  # to ensure that the returned infinity value is 'float'
     # ------------------ the basic coefficient of variation function ------------------
-    _cv = prep_data.std(skipna=skipna, ddof=ddof) / prep_data.mean(skipna=skipna)
-    length = len(prep_data)
-    # ------------------------ return the corrected or basic cv -----------------------
-    if correction:
+    _cv = _data.std(skipna=skipna, ddof=ddof) / _data.mean(skipna=skipna)
+    length = len(_data)  # ---------- calculate the length of input array ---------
+    if correction:  # -------------------- return the corrected cv --------------------
         corrected_rounded_cv: float = round(  # ----------- round the result ----------
             multiplier  # ----------- multiply the cv e.g, 100 for percentage ---------
             * (
                 _cv
-                * (
-                    1
-                    - ((4 * (length - 1)) ** (-1))
-                    + ((_cv**2) * (length ** (-1)))
-                    + (2 * ((length - 1) ** (2))) ** (-1)
+                * (  # --- this is the coefficient for the correction of sample size --
+                    1  # ----------- the coefficient should be less than zero ----------
+                    - ((4 * (length - 1)) ** (-1))  # ------------ 1/(4n-1) -----------
+                    + (
+                        (_cv**2) * (length ** (-1))
+                    )  # ----------- (cv^2/n) -----------
+                    + (2 * ((length - 1) ** (2))) ** (-1)  # ----- 1/2*(n-1)^2 --------
                 )
             ),
             ndigits=ndigits,  # --------------- decimals for the round ----------------
         )
         return corrected_rounded_cv
-    rounded_cv: float = round(  # ------------------ round the result -----------------
+    rounded_cv: float = round(  # ---------------- return the basic cv ----------------
         multiplier * (_cv),  # -------- multiply the cv e.g, 100 for percentage -------
         ndigits=ndigits,  # ------------------ decimals for the round -----------------
     )
@@ -59,7 +59,6 @@ def _cqv(
     multiplier: Optional[int] = 1,
 ) -> float:
     """Internal function to calculate cqv."""
-    # ------------------- convert data to pandas.core.series.Series -------------------
     _data: pd.Series = pd.Series(data)
     # ---------------------- calculate the quantiles of the data ----------------------
     quantile1 = _data.quantile(0.25, interpolation=interpolation)  # q1 = p25
@@ -67,10 +66,8 @@ def _cqv(
     # ------------------- raise warning for 0 divisor when q3+q1 = 0 ------------------
     if quantile1 + quantile3 == 0:
         raise Warning("cqv is NaN because q3 and q1 are 0")
-    # -------------- the basic coefficient of quartile variation function -------------
-    _cqv = (quantile3 - quantile1) / (quantile3 + quantile1)
-    # ----------------------- return the corrected or basic cqv -----------------------
-    rounded_cqv: float = round(
+    _cqv = (quantile3 - quantile1) / (quantile3 + quantile1)  # ---- the basic cqv ----
+    rounded_cqv: float = round(  # ------------------ return the cqv ------------------
         multiplier * _cqv,  # -------- multiply the cqv e.g, 100 for percentage -------
         ndigits=ndigits,  # ------------------ decimals for the round -----------------
     )
