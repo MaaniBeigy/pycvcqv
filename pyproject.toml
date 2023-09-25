@@ -48,7 +48,7 @@ coverage = "^6.4.1"
 coverage-badge = "^1.1.0"
 darglint = "^1.8.1"
 docstr-coverage = "^2.2.0"
-flake8 = "^4.0.1"
+flake8 = "^6.1.0"
 isort = {extras = ["colors"], version = "^5.10.1"}
 mypy = "^1.4"
 mypy-extensions = "^1.0.0"
