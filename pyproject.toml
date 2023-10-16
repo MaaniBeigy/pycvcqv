@@ -52,7 +52,7 @@ flake8 = "^4.0.1"
 isort = {extras = ["colors"], version = "^5.10.1"}
 mypy = "^1.4"
 mypy-extensions = "^1.0.0"
-pre-commit = "^2.19.0"
+pre-commit = "^3.5.0"
 pybadges = "^3.0.0"
 pydocstyle = "^6.1.1"
 pylint = "^2.13.9"
