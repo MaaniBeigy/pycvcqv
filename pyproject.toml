@@ -42,7 +42,7 @@ python = ">=3.8.1,<4.0"
 
 [tool.poetry.dev-dependencies]
 anybadge = "^1.9.0"
-bandit = "^1.7.4"
+bandit = "^1.7.6"
 black = {version = "^22.6.0", allow-prereleases = true}
 coverage = "^6.4.1"
 coverage-badge = "^1.1.0"
