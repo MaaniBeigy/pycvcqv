@@ -74,6 +74,7 @@ cqv(data=data, num_threads=-1)
 ## For contributors
 
 ### Testing
+#### Linux
 
 ```bash
 export PATH="$HOME/.poetry/bin:$PATH"
@@ -82,6 +83,76 @@ make pre-commit-install
 pre-commit run --all-files
 make test && make coverage && make check-codestyle && make mypy && make check-safety && make extrabadges
 pre-commit run --all-files
+```
+
+#### Windows
+
+1. Install Poetry:
+
+```powershell
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
+```
+2. Find the poetry installation directory:
+
+```text
+C:\Users\YourUsername\AppData\Roaming\Python\Scripts
+C:\Users\YourUsername\AppData\Local\Programs\Python\PythonXX\Scripts (where XX is the Python version)
+```
+
+3. Add the correct Path to `PATH`:
+
+```powershell
+$env:PATH = "C:\Users\YourUsername\AppData\Roaming\Python\Scripts;" + $env:PATH
+```
+
+4. Verify poetry installation:
+
+```powershell
+poetry --version
+```
+
+5. Create and activate a new virtual environment:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\activate
+```
+
+5. Install required libraries:
+
+```powershell
+poetry lock -n; poetry export --without-hashes > requirements.txt
+poetry install -n
+```
+
+6. Type check with mypy
+
+```powershell
+poetry run mypy --install-types --non-interactive pycvcqv/ tests/
+```
+
+7. Unit tests and coverage
+
+```powershell
+poetry run pytest --cov-report term --cov pycvcqv tests/
+poetry run coverage-badge -o assets/images/coverage.svg -f
+```
+
+8. Codestyle check
+
+```powershell
+poetry run pyupgrade --exit-zero-even-if-changed --py37-plus
+poetry run isort --diff --check-only --settings-path pyproject.toml ./
+poetry run black --diff --check --config pyproject.toml ./
+poetry run darglint --verbosity 2 pycvcqv tests
+```
+
+9. Safety check
+
+```powershell
+poetry check
+poetry run safety check --full-report
+poetry run bandit -ll --recursive pycvcqv tests
 ```
 
 ### Upload code to GitHub
