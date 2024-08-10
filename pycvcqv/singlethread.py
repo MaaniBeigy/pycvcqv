@@ -1,4 +1,5 @@
 """The singlethread module."""
+
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional
 

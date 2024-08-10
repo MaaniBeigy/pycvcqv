@@ -73,7 +73,7 @@ mypy:
 .PHONY: check-safety
 check-safety:
 	poetry check
-	poetry run safety check --full-report
+	poetry run safety check --policy-file safety_policy.yml --full-report
 	poetry run bandit -ll --recursive pycvcqv tests
 
 .PHONY: lint

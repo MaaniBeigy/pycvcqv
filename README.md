@@ -19,7 +19,6 @@
 [![Security: bandit](https://img.shields.io/badge/security-bandit-green.svg)](https://github.com/PyCQA/bandit)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/MaaniBeigy/pycvcqv/blob/master/.pre-commit-config.yaml)
 [![License](https://img.shields.io/github/license/MaaniBeigy/pycvcqv)](https://github.com/MaaniBeigy/pycvcqv/blob/master/LICENSE)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv?ref=badge_shield)
 
 Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI)
 
@@ -30,7 +29,7 @@ Python port of [cvcqv](https://github.com/MaaniBeigy/cvcqv)
 ## Introduction
 
 `pycvcqv` provides some easy-to-use functions to calculate the
-Coefficient of  Variation (`cv`) and Coefficient of Quartile Variation (`cqv`)
+Coefficient of Variation (`cv`) and Coefficient of Quartile Variation (`cqv`)
 with confidence intervals provided with all available methods.
 
 ## Install
@@ -74,6 +73,7 @@ cqv(data=data, num_threads=-1)
 ## For contributors
 
 ### Testing
+
 #### Linux
 
 ```bash
@@ -92,6 +92,7 @@ pre-commit run --all-files
 ```powershell
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
 ```
+
 2. Find the poetry installation directory:
 
 ```text
@@ -138,7 +139,7 @@ poetry run pytest --cov-report term --cov pycvcqv tests/
 poetry run coverage-badge -o assets/images/coverage.svg -f
 ```
 
-8. Codestyle check
+8. Code-style check
 
 ```powershell
 poetry run pyupgrade --exit-zero-even-if-changed --py37-plus
@@ -151,7 +152,7 @@ poetry run darglint --verbosity 2 pycvcqv tests
 
 ```powershell
 poetry check
-poetry run safety check --full-report
+poetry run safety check --policy-file safety_policy.yml --output json > .logs/safety.json
 poetry run bandit -ll --recursive pycvcqv tests
 ```
 
@@ -167,11 +168,5 @@ git push -u origin main
 
 ## Credits
 
-[![🚀 Your next Python package needs a bleeding-edge project structure.](https://img.shields.io/badge/python--package--template-%F0%9F%9A%80-brightgreen)](https://github.com/TezRomacH/python-package-template)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv?ref=badge_shield)
-
+[![🚀 Your next Python package needs a bleeding-edge project structure.](https://img.shields.io/badge/python--package--template-%F0%9F%9A%80-brightgreen)](https://github.com/TezRomacH/python-package-template)   
 This project was generated with [`python-package-template`](https://github.com/TezRomacH/python-package-template)
-
-## License
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv?ref=badge_large)

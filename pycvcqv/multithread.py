@@ -1,4 +1,5 @@
 """The multithread module."""
+
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional
 

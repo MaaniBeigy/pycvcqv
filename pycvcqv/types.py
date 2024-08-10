@@ -1,4 +1,5 @@
 """The types used in the package."""
+
 # --------------------------- Import libraries and functions --------------------------
 from typing import List, Tuple, TypeVar, Union
 

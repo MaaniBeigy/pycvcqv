@@ -1,4 +1,5 @@
 """The prepare_output module."""
+
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional
 

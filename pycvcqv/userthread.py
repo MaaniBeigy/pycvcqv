@@ -1,4 +1,5 @@
 """The userthread module."""
+
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional
 

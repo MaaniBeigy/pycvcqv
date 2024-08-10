@@ -1,4 +1,5 @@
 """Formulas of cvcqv."""
+
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional  # Optional type for function arguments.
 
@@ -36,9 +37,7 @@ def _cv(
                 * (  # --- this is the coefficient for the correction of sample size --
                     1  # ----------- the coefficient should be less than zero ----------
                     - ((4 * (length - 1)) ** (-1))  # ------------ 1/(4n-1) -----------
-                    + (
-                        (_cv**2) * (length ** (-1))
-                    )  # ----------- (cv^2/n) -----------
+                    + ((_cv**2) * (length ** (-1)))  # ----------- (cv^2/n) -----------
                     + (2 * ((length - 1) ** (2))) ** (-1)  # ----- 1/2*(n-1)^2 --------
                 )
             ),

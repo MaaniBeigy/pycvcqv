@@ -1,4 +1,5 @@
 """Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV)."""
+
 from typing import Any
 
 import sys

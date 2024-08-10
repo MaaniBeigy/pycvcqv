@@ -1,8 +1,8 @@
 #!/bin/bash
 find . -name 'safety.txt' -delete
 find . -name 'vulnerabilities.svg' -delete
-poetry run safety check --output text > .logs/safety.txt
-poetry run safety check --output json > .logs/safety.json
+poetry run safety check --policy-file safety_policy.yml --output text > .logs/safety.txt
+poetry run safety check --policy-file safety_policy.yml --output json > .logs/safety.json
 vulnerabilities_found=$(jq -r '.report_meta.vulnerabilities_found' .logs/safety.json)
 export VULNERABILITIES_FOUND=$vulnerabilities_found
 echo "vulnerabilities:" $VULNERABILITIES_FOUND

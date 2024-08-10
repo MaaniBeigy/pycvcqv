@@ -1,4 +1,5 @@
 """Coefficient of Variation (cv)."""
+
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional, Union
 

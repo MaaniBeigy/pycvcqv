@@ -1,4 +1,5 @@
 """Coefficient of Quartile Variation (cqv)."""
+
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional, Union
 
