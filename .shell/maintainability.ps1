@@ -20,10 +20,10 @@ foreach ($score in $maintainabilityScores) {
 
 $averageMaintainability = if ($count -gt 0) { 
     $average = $total / $count
-    "{0:N1}%%" -f $average
+    "{0:N1}%" -f $average
 }
 else { 
-    "0.0%%"
+    "0.0%"
 }
 
 # Output the maintainability score (for verification)
