@@ -1,3 +1,6 @@
+# Run safety
+poetry run safety check --policy-file safety_policy.yml --output json > .logs/safety.json
+
 # Read the JSON file content
 $jsonContent = Get-Content -Path ".logs/safety.json" -Raw
 
