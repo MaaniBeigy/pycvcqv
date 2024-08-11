@@ -14,12 +14,20 @@ $mypy_result = Select-String -Path ".logs/mypy.txt" -Pattern 'Success' | ForEach
     $_ -replace ':', ''
 }
 
-# Output the mypy result (for verification)
+# Create an object to store the mypy_result in JSON format
+$jsonOutput = @{
+    mypy_result = $mypy_result
+} | ConvertTo-Json
+
+# Save the JSON output to a file
+$jsonOutput | Set-Content -Path ".logs/mypy.json"
+
+# Output the lint score (for verification)
 Write-Output "mypy_result: $mypy_result"
 
 # Remove the old mypy.svg file
-Remove-Item -Path "assets/images/mypy.svg" -Force -Recurse
+# Remove-Item -Path "assets/images/mypy.svg" -Force -Recurse
 
 # Generate the mypy badge using pybadges and save it to a file
-$command = "poetry run python -m pybadges --left-text='mypy' --right-color='brightgreen' --right-text=$mypy_result --embed-logo >> assets/images/mypy.svg"
-Invoke-Expression $command
+# $command = "poetry run python -m pybadges --left-text='mypy' --right-color='brightgreen' --right-text=$mypy_result --embed-logo >> assets/images/mypy.svg"
+# Invoke-Expression $command
