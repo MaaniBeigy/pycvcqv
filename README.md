@@ -10,7 +10,8 @@
 [![Downloads](https://static.pepy.tech/badge/pycvcqv)](https://pepy.tech/project/pycvcqv)
 
 [![static analysis](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/mypy.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/mypy.txt)
-[![vulnerabilities](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/vulnerabilities.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/safety.txt)
+[![vulnerabilities](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fsafety.json&query=%24.vulnerabilities_found&label=vulnerabilities&labelColor=%234AADF1&color=%230A0C10
+)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/safety.txt)
 [![maintainability](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/maintainability.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/maintainability.txt)
 [![complexity](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/complexity.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/complexity.txt)
 [![lint report](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/pylint.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/pylint-log.txt)
