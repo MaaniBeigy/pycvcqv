@@ -2,8 +2,10 @@
 
 <div align="center">
 
-[![PyPI](https://img.shields.io/pypi/v/pycvcqv)](https://pypi.org/project/pycvcqv/)
-[![Python Version](https://img.shields.io/pypi/pyversions/pycvcqv.svg)](https://pypi.org/project/pycvcqv/)
+[![PyPI](https://img.shields.io/pypi/v/pycvcqv?logo=pypi&logoColor=white&logoSize=auto
+)](https://pypi.org/project/pycvcqv/)
+[![Python Version](https://img.shields.io/pypi/pyversions/pycvcqv?logo=python&logoColor=white&logoSize=auto
+)](https://pypi.org/project/pycvcqv/)
 [![Build status](https://github.com/MaaniBeigy/pycvcqv/workflows/build/badge.svg)](https://github.com/MaaniBeigy/pycvcqv/actions?query=workflow%3Abuild)
 [![coverage report](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/coverage.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/coverage.txt)
 [![Downloads](https://static.pepy.tech/badge/pycvcqv)](https://pepy.tech/project/pycvcqv)
