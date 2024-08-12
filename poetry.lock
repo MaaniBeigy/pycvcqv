@@ -1133,17 +1133,17 @@ files = [
 
 [[package]]
 name = "pyupgrade"
-version = "2.38.4"
+version = "3.16.0"
 description = "A tool to automatically upgrade syntax for newer versions."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8.1"
 files = [
-    {file = "pyupgrade-2.38.4-py2.py3-none-any.whl", hash = "sha256:944ff993c396ddc2b9012eb3de4cda138eb4c149b22c6c560d4c8bfd0e180982"},
-    {file = "pyupgrade-2.38.4.tar.gz", hash = "sha256:1eb43a49f416752929741ba4d706bf3f33593d3cac9bdc217fc1ef55c047c1f4"},
+    {file = "pyupgrade-3.16.0-py2.py3-none-any.whl", hash = "sha256:7a54ee28f3024d027048d49d101e5c702e88c85edc3a1d08b636c50ebef2a97d"},
+    {file = "pyupgrade-3.16.0.tar.gz", hash = "sha256:237893a05d5b117259b31b423f23cbae4bce0b7eae57ba9a52c06098c2ddd76f"},
 ]
 
 [package.dependencies]
-tokenize-rt = "<5"
+tokenize-rt = ">=5.2.0"
 
 [[package]]
 name = "pyyaml"
@@ -1417,13 +1417,13 @@ pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 
 [[package]]
 name = "tokenize-rt"
-version = "4.2.1"
+version = "6.0.0"
 description = "A wrapper around the stdlib `tokenize` which roundtrips."
 optional = false
-python-versions = ">=3.6.1"
+python-versions = ">=3.8"
 files = [
-    {file = "tokenize_rt-4.2.1-py2.py3-none-any.whl", hash = "sha256:08a27fa032a81cf45e8858d0ac706004fcd523e8463415ddf1442be38e204ea8"},
-    {file = "tokenize_rt-4.2.1.tar.gz", hash = "sha256:0d4f69026fed520f8a1e0103aa36c406ef4661417f20ca643f913e33531b3b94"},
+    {file = "tokenize_rt-6.0.0-py2.py3-none-any.whl", hash = "sha256:d4ff7ded2873512938b4f8cbb98c9b07118f01d30ac585a30d7a88353ca36d22"},
+    {file = "tokenize_rt-6.0.0.tar.gz", hash = "sha256:b9711bdfc51210211137499b5e355d3de5ec88a85d2025c520cbb921b5194367"},
 ]
 
 [[package]]
@@ -1613,4 +1613,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8.1,<4.0"
-content-hash = "f448fc4f260cc6fa87d63d9ce97bba16d229acdf26b75f8515aaffc06d647bba"
+content-hash = "04a3fa4ee331d663ca38e0501e4d07375e1f6d6e0f6fef568d4d443ab3ba6559"
