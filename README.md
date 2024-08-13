@@ -16,8 +16,8 @@
 [![lint report](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fpylint-log.json&query=%24.lintscore&label=pylint&color=brightgreen)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/pylint-log.txt)
 [![docstring](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/interrogate_badge.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/docstring.txt)
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Security: bandit](https://img.shields.io/badge/security-bandit-green.svg)](https://github.com/PyCQA/bandit)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/black.txt)
+[![Security: bandit](https://img.shields.io/badge/security-bandit-green.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/bandit.txt)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/MaaniBeigy/pycvcqv/blob/master/.pre-commit-config.yaml)
 [![License](https://img.shields.io/github/license/MaaniBeigy/pycvcqv)](https://github.com/MaaniBeigy/pycvcqv/blob/master/LICENSE)
 

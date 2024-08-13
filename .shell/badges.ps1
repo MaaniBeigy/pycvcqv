@@ -8,3 +8,5 @@ Write-Output "start"
 & .\.shell\complexity.ps1
 & .\.shell\maintainability.ps1
 & .\.shell\docstring.ps1
+& .\.shell\bandit.ps1
+& .\.shell\black.ps1
