@@ -177,7 +177,8 @@ pip install twine
 pip install --upgrade build
 python -m build
 python -m twine upload --repository pycvcqv dist/*
-git tag -a v0.1.13 -m "v0.1.13"
+git tag -a <tag_name> -m "<message>"
+git push -u origin <tag_name>
 ```
 
 ### Upload code to GitHub
