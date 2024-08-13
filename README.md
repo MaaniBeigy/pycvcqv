@@ -170,6 +170,13 @@ poetry run bandit -ll --configfile pyproject.toml --recursive pycvcqv tests
 .\.shell\badges.ps1
 ```
 
+12. Upload to pypi
+
+```powershell
+pip install twine
+pip install --upgrade build
+```
+
 ### Upload code to GitHub
 
 ```bash
