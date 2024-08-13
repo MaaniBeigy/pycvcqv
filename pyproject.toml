@@ -156,6 +156,9 @@ show_missing = true
 skips = ["B101", "B601"]
 tests = ["B201"]
 
+[tool.bandit.assert_used]
+skips = ['*_test.py', '*/test_*.py']
+
 [tool.bandit.any_other_function_with_shell_equals_true]
 no_shell = [
   "os.execl",
