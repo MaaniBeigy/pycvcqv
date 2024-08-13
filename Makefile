@@ -74,7 +74,7 @@ mypy:
 check-safety:
 	poetry check
 	poetry run safety check --policy-file safety_policy.yml --full-report
-	poetry run bandit -ll --recursive pycvcqv tests
+	poetry run bandit -ll --configfile pyproject.toml --recursive pycvcqv tests
 
 .PHONY: lint
 lint: test check-codestyle mypy check-safety
