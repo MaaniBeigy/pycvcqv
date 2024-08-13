@@ -2,24 +2,17 @@
 
 <div align="center">
 
-[![PyPI](https://img.shields.io/pypi/v/pycvcqv?logo=pypi&logoColor=white&logoSize=auto
-)](https://pypi.org/project/pycvcqv/)
-[![Python Version](https://img.shields.io/pypi/pyversions/pycvcqv?logo=python&logoColor=white&logoSize=auto
-)](https://pypi.org/project/pycvcqv/)
+[![PyPI](https://img.shields.io/pypi/v/pycvcqv?logo=pypi&logoColor=white&logoSize=auto)](https://pypi.org/project/pycvcqv/)
+[![Python Version](https://img.shields.io/pypi/pyversions/pycvcqv?logo=python&logoColor=white&logoSize=auto)](https://pypi.org/project/pycvcqv/)
 [![Build status](https://github.com/MaaniBeigy/pycvcqv/workflows/build/badge.svg)](https://github.com/MaaniBeigy/pycvcqv/actions?query=workflow%3Abuild)
 [![coverage report](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/coverage.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/coverage.txt)
 [![Downloads](https://static.pepy.tech/badge/pycvcqv)](https://pepy.tech/project/pycvcqv)
 
-[![static analysis](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fmypy.json&query=%24.mypy_result&label=mypy&color=brightgreen
-)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/mypy.txt)
-[![vulnerabilities](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fsafety.json&query=%24.vulnerabilities_found&label=vulnerabilities&labelColor=%234AADF1&color=%230A0C10
-)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/safety.txt)
-[![maintainability](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fmaintainability.json&query=%24.maintainability&label=maintainability&color=brightgreen
-)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/maintainability.txt)
-[![complexity](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fcomplexity.json&query=%24.complexity&label=complexity&color=brightgreen
-)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/complexity.txt)
-[![lint report](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fpylint-log.json&query=%24.lintscore&label=pylint&color=brightgreen
-)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/pylint-log.txt)
+[![static analysis](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fmypy.json&query=%24.mypy_result&label=mypy&color=brightgreen)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/mypy.txt)
+[![vulnerabilities](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fsafety.json&query=%24.vulnerabilities_found&label=vulnerabilities&labelColor=%234AADF1&color=%230A0C10)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/safety.txt)
+[![maintainability](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fmaintainability.json&query=%24.maintainability&label=maintainability&color=brightgreen)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/maintainability.txt)
+[![complexity](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fcomplexity.json&query=%24.complexity&label=complexity&color=brightgreen)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/complexity.txt)
+[![lint report](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fpylint-log.json&query=%24.lintscore&label=pylint&color=brightgreen)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/pylint-log.txt)
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Security: bandit](https://img.shields.io/badge/security-bandit-green.svg)](https://github.com/PyCQA/bandit)
@@ -141,8 +134,15 @@ poetry run mypy --install-types --non-interactive pycvcqv/ tests/
 7. Unit tests and coverage
 
 ```powershell
-poetry run pytest --cov-report term --cov pycvcqv tests/
+poetry run
+ --cov-report term --cov pycvcqv tests/
 poetry run coverage-badge -o assets/images/coverage.svg -f
+```
+
+8. Lint
+
+```powershell
+poetry run pylint pycvcqv
 ```
 
 8. Code-style check
@@ -162,6 +162,12 @@ poetry run safety check --policy-file safety_policy.yml --output json > .logs/sa
 poetry run bandit -ll --recursive pycvcqv tests
 ```
 
+10. Creating badges data
+
+```powershell
+.\.shell\badges.ps1
+```
+
 ### Upload code to GitHub
 
 ```bash
@@ -174,5 +180,5 @@ git push -u origin main
 
 ## Credits
 
-[![🚀 Your next Python package needs a bleeding-edge project structure.](https://img.shields.io/badge/python--package--template-%F0%9F%9A%80-brightgreen)](https://github.com/TezRomacH/python-package-template)   
+[![🚀 Your next Python package needs a bleeding-edge project structure.](https://img.shields.io/badge/python--package--template-%F0%9F%9A%80-brightgreen)](https://github.com/TezRomacH/python-package-template)  
 This project was generated with [`python-package-template`](https://github.com/TezRomacH/python-package-template)
