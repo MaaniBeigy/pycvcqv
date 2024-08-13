@@ -14,7 +14,7 @@ ListFloat = List[float]
 ListInt = List[int]
 TupleFloat = Tuple[float]
 TupleInt = Tuple[int]
-ArrayFloat = npt.NDArray[np.float_]
+ArrayFloat = npt.NDArray[np.float64]
 ArrayInt = npt.NDArray[np.int_]
 PoolTypeT = TypeVar("PoolTypeT", bound=pool.Pool)
 NumArrayLike = TypeVar(

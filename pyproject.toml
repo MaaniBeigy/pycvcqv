@@ -10,7 +10,7 @@ license = "MIT"
 name = "pycvcqv"
 readme = "README.md"
 repository = "https://github.com/MaaniBeigy/pycvcqv"
-version = "0.1.15"
+version = "0.1.14"
 
 # Keywords description https://python-poetry.org/docs/pyproject/#keywords
 keywords = [
@@ -36,30 +36,28 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-numpy = "^1.21.2"
-pandas = "^1.3.3"
+numpy = "^1.24.4"
+pandas = "*"
 python = ">=3.8.1,<4.0"
-setuptools = "^72.1.0"
-wheel = "^0.41.0"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.4"
 black = {version = "^24.3.0", allow-prereleases = true}
-coverage = "^6.4.1"
-coverage-badge = "^1.1.0"
+coverage = "*"
+coverage-badge = "*"
 darglint = "^1.8.1"
 docstr-coverage = "^2.2.0"
 flake8 = "^4.0.1"
 interrogate = "^1.5.0"
 isort = {extras = ["colors"], version = "^5.10.1"}
-mypy = "^1.4"
-mypy-extensions = "^1.0.0"
+mypy = "*"
+mypy-extensions = "*"
 pre-commit = "^2.19.0"
 py = "^1.11.0"
 pydocstyle = "^6.1.1"
 pylint = "^2.13.9"
-pytest = "^7.1.1"
-pytest-cov = "^3.0.0"
+pytest = "*"
+pytest-cov = "*"
 pyupgrade = "^2.37.2"
 radon = "^5.1.0"
 safety = "^2.0.0"

@@ -3,8 +3,8 @@
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional  # Optional type for function arguments.
 
+import numpy as np  # To handle numeric infinity values.
 import pandas as pd  # Data analysis and manipulation library.
-from numpy import Inf  # To handle numeric infinity values.
 
 from pycvcqv.types import NumArrayLike  # custom numeric array defined in types.py.
 
@@ -25,7 +25,7 @@ def _cv(
         # ----------------- also, check if the std is higher than mean ----------------
         and _data.std(skipna=skipna, ddof=ddof) > _data.mean(skipna=skipna)
     ):  # ------- The Inf value which comes from numpy to handle infinity cases -------
-        return float(Inf)  # to ensure that the returned infinity value is 'float'
+        return float(np.inf)  # to ensure that the returned infinity value is 'float'
     # ------------------ the basic coefficient of variation function ------------------
     _cv = _data.std(skipna=skipna, ddof=ddof) / _data.mean(skipna=skipna)
     length = len(_data)  # ---------- calculate the length of input array ---------

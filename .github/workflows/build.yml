@@ -24,33 +24,33 @@ jobs:
         with:
           path: .venv
           key: venv-${{ matrix.python-version }}-${{ hashFiles('pyproject.toml') }}-${{ hashFiles('poetry.lock') }}
-
       - name: Install dependencies
         run: |
           poetry config virtualenvs.in-project true
-          poetry install --no-root
-          pip install --no-cache-dir --no-use-pep517 numpy==1.24.4
+          poetry install
 
       - name: Run style checks
-        run: make check-codestyle
+        run: |
+          make check-codestyle
 
       - name: Run tests
-        run: make test
-
+        run: |
+          make test
       - name: Run coverage
-        run: make coverage
-
+        run: |
+          make coverage
       - name: Run safety checks
-        run: make check-safety
-
+        run: |
+          make check-safety
       - name: Run mypy checks
-        run: make mypy
-
+        run: |
+          make mypy
       - name: Run complexity
-        run: make complexity
-
+        run: |
+          make complexity
       - name: Run maintainability
-        run: make maintainability
-
+        run: |
+          make maintainability
       - name: Run interrogate
-        run: make interrogate
+        run: |
+          make interrogate
