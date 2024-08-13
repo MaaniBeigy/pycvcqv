@@ -1,3 +1,5 @@
+# Run pylint using poetry and save the output to a log file
+poetry run interrogate -v pycvcqv | Tee-Object -FilePath ".logs/docstring.txt"
 # Run the interrogate command and capture the output
 $output = poetry run interrogate pycvcqv
 
@@ -23,3 +25,5 @@ $jsonOutput | Set-Content -Path ".logs/docstring.json"
 
 # Output for verification
 Write-Output "RESULT: $result, actual: $actual"
+# Run the interrogate --generate-badge command to save the badge svg file
+poetry run interrogate --generate-badge .\assets\images\interrogate_badge.svg

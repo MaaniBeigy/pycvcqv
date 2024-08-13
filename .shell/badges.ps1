@@ -7,3 +7,4 @@ Write-Output "start"
 & .\.shell\safety.ps1
 & .\.shell\complexity.ps1
 & .\.shell\maintainability.ps1
+& .\.shell\docstring.ps1
