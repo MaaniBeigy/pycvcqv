@@ -7,5 +7,7 @@ security: # configuration for the `safety check` command
     ignore-vulnerabilities: # Here you can list multiple specific vulnerabilities you want to ignore (optionally for a time period)
         70612:
             reason: disputed, inapplicable
+        51457:
+            reason: disputed, inapplicable
     continue-on-vulnerability-error: False # Suppress non-zero exit codes when vulnerabilities are found. Enable this in pipelines and CI/CD processes if you want to pass builds that have vulnerabilities
   

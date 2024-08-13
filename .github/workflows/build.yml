@@ -51,3 +51,6 @@ jobs:
     - name: Run maintainability
       run: |
         make maintainability
+    - name: Run interrogate
+      run: |
+        make interrogate

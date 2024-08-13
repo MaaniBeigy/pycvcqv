@@ -55,6 +55,10 @@ complexity:
 maintainability:
 	poetry run radon mi pycvcqv
 
+.PHONY: interrogate
+interrogate:
+	poetry run interrogate -v pycvcqv
+
 .PHONY: coverage
 coverage:
 	poetry run pytest --cov-report term --cov pycvcqv tests/

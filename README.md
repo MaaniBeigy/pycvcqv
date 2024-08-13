@@ -135,8 +135,7 @@ poetry run mypy --install-types --non-interactive pycvcqv/ tests/
 7. Unit tests and coverage
 
 ```powershell
-poetry run
- --cov-report term --cov pycvcqv tests/
+poetry run pytest --cov-report term --cov pycvcqv tests/
 poetry run coverage-badge -o assets/images/coverage.svg -f
 ```
 
@@ -153,14 +152,15 @@ poetry run pyupgrade --exit-zero-even-if-changed --py37-plus
 poetry run isort --diff --check-only --settings-path pyproject.toml ./
 poetry run black --diff --check --config pyproject.toml ./
 poetry run darglint --verbosity 2 pycvcqv tests
+poetry run interrogate -v pycvcqv
 ```
 
 9. Safety check
 
 ```powershell
 poetry check
-poetry run safety check --policy-file safety_policy.yml --output json > .logs/safety.json
-poetry run bandit -ll --recursive pycvcqv tests
+poetry run safety check --policy-file safety_policy.yml
+poetry run bandit -ll --configfile pyproject.toml --recursive pycvcqv tests
 ```
 
 10. Creating badges data

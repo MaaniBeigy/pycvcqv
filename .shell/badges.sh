@@ -7,3 +7,4 @@ sh .shell/complexity.sh
 sh .shell/maintainability.sh
 sh .shell/cov.sh
 sh .shell/dependencies.sh
+sh .shell/docstring.sh
