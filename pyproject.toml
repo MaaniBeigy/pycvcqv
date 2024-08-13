@@ -10,7 +10,7 @@ license = "MIT"
 name = "pycvcqv"
 readme = "README.md"
 repository = "https://github.com/MaaniBeigy/pycvcqv"
-version = "0.1.14"
+version = "0.1.15"
 
 # Keywords description https://python-poetry.org/docs/pyproject/#keywords
 keywords = [
