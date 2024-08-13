@@ -29,7 +29,7 @@ jobs:
         run: |
           poetry config virtualenvs.in-project true
           poetry install --no-root
-          pip install --no-use-pep517 numpy==1.24.4
+          pip wheel --no-cache-dir --use-pep517 "numpy (==1.24.4)"
 
       - name: Run style checks
         run: make check-codestyle
