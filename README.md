@@ -175,6 +175,9 @@ poetry run bandit -ll --configfile pyproject.toml --recursive pycvcqv tests
 ```powershell
 pip install twine
 pip install --upgrade build
+python -m build
+python -m twine upload --repository pycvcqv dist/*
+git tag -a v0.1.13 -m "v0.1.13"
 ```
 
 ### Upload code to GitHub
