@@ -19,7 +19,6 @@ repos:
       - id: check-toml
       - id: end-of-file-fixer
         exclude: LICENSE
-      - id: requirements-txt-fixer
       - id: trailing-whitespace
       - id: debug-statements
       - id: detect-private-key

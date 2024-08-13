@@ -7,19 +7,21 @@ If you don't have `poetry`, you should install with `make poetry-download`.
 
 To install dependencies and prepare [`pre-commit`](https://pre-commit.com/) hooks you would need to run `install` command:
 
-### Linux
+#### Linux
 
 ```bash
 make install
 make pre-commit-install
 ```
 
-### Windows
+#### Windows
 
 ```powershell
 poetry run pre-commit install
 pre-commit run --all-files
 ```
+
+### Preparing for a release
 
 #### Linux
 
