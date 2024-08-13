@@ -18,11 +18,11 @@ foreach ($score in $maintainabilityScores) {
     $count++
 }
 
-$averageMaintainability = if ($count -gt 0) { 
+$averageMaintainability = if ($count -gt 0) {
     $average = $total / $count
     "{0:N1}%" -f $average
 }
-else { 
+else {
     "0.0%"
 }
 
