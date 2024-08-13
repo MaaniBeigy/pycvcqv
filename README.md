@@ -146,7 +146,7 @@ poetry run coverage-badge -o assets/images/coverage.svg -f
 poetry run pylint pycvcqv
 ```
 
-8. Code-style check
+9. Code-style check
 
 ```powershell
 poetry run pyupgrade --exit-zero-even-if-changed --py37-plus
@@ -156,7 +156,7 @@ poetry run darglint --verbosity 2 pycvcqv tests
 poetry run interrogate -v pycvcqv
 ```
 
-9. Safety check
+10. Safety check
 
 ```powershell
 poetry check
@@ -164,7 +164,7 @@ poetry run safety check --policy-file safety_policy.yml
 poetry run bandit -ll --configfile pyproject.toml --recursive pycvcqv tests
 ```
 
-10. Creating badges data
+11. Creating badges data
 
 ```powershell
 .\.shell\badges.ps1
