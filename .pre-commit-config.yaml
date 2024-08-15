@@ -12,14 +12,15 @@ repos:
     hooks:
       - id: check-yaml
       - id: check-added-large-files
-        args: [ "--maxkb=700" ]
+        args: [ "--maxkb=2000" ]
       - id: check-docstring-first
       - id: check-json
         exclude: ^.vscode/settings.json
       - id: check-toml
       - id: end-of-file-fixer
-        exclude: LICENSE
+        exclude: 'assets/docs/pycvcqv/_build/.*|LICENSE'
       - id: trailing-whitespace
+        exclude: 'assets/docs/pycvcqv/_build/.*'
       - id: debug-statements
       - id: detect-private-key
       - id: check-executables-have-shebangs

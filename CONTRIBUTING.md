@@ -128,6 +128,12 @@ git commit -m ":tada: Initial commit"
 git push -u origin main
 ```
 
+### Documentation with jupyter-book
+
+```powershell
+poetry run jupyter-book build .\assets\docs\pycvcqv
+```
+
 12. Upload to pypi (for maintainers)
 
 ```powershell
