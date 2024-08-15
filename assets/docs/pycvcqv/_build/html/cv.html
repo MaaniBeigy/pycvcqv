@@ -380,10 +380,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelley-confidence-interval">Kelley Confidence Interval</a></li>
 </ul>
             </nav>
         </div>
@@ -397,10 +394,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="coefficient-of-variation">
 <h1>Coefficient of Variation<a class="headerlink" href="#coefficient-of-variation" title="Link to this heading">#</a></h1>
-<p>Coefficient of variation <em>(<span class="math notranslate nohighlight">\(CV\)</span>)</em> is a measure of relative dispersion representing the degree of variability relative to the mean <span id="id1">[<a class="reference internal" href="#id14" title="Ken Kelley. Sample size planning for the coefficient of variation from the accuracy in parameter estimation approach. Behavior Research Methods, 39(4):755–766, 2007. doi:10.3758/BF03192966.">1</a>]</span>. Since cv is unitless, it is useful for comparison of variables with different units <span id="id2">[<a class="reference internal" href="#id16" title="Ahmed N. Albatineh, B. M.Golam Kibria, Meredith L. Wilcox, and Bashar Zogheib. Confidence interval estimation for the population coefficient of variation using ranked set sampling: A simulation study. Journal of Applied Statistics, 41(4):733–751, 2014. doi:10.1080/02664763.2013.847405.">2</a>]</span>. It is also a measure of homogeneity. The <em>population</em> coefficient of variation is:</p>
+<p>Coefficient of variation <em>(<span class="math notranslate nohighlight">\(CV\)</span>)</em> is a measure of relative dispersion representing the degree of variability relative to the mean <span id="id1">[<a class="reference internal" href="#id16" title="Ken Kelley. Sample size planning for the coefficient of variation from the accuracy in parameter estimation approach. Behavior Research Methods, 39(4):755–766, 2007. doi:10.3758/BF03192966.">1</a>]</span>. Since cv is unitless, it is useful for comparison of variables with different units <span id="id2">[<a class="reference internal" href="#id18" title="Ahmed N. Albatineh, B. M.Golam Kibria, Meredith L. Wilcox, and Bashar Zogheib. Confidence interval estimation for the population coefficient of variation using ranked set sampling: A simulation study. Journal of Applied Statistics, 41(4):733–751, 2014. doi:10.1080/02664763.2013.847405.">2</a>]</span>. It is also a measure of homogeneity. The <em>population</em> coefficient of variation is:</p>
 <div class="math notranslate nohighlight">
 \[CV = \frac{\sigma}{\mu},\]</div>
-<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the population standard deviation and <span class="math notranslate nohighlight">\(\mu\)</span> is the population mean. Almost always, we analyze data from samples but want to generalize it as the population’s parameter <span id="id3">[<a class="reference internal" href="#id16" title="Ahmed N. Albatineh, B. M.Golam Kibria, Meredith L. Wilcox, and Bashar Zogheib. Confidence interval estimation for the population coefficient of variation using ranked set sampling: A simulation study. Journal of Applied Statistics, 41(4):733–751, 2014. doi:10.1080/02664763.2013.847405.">2</a>]</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the population standard deviation and <span class="math notranslate nohighlight">\(\mu\)</span> is the population mean. Almost always, we analyze data from samples but want to generalize it as the population’s parameter <span id="id3">[<a class="reference internal" href="#id18" title="Ahmed N. Albatineh, B. M.Golam Kibria, Meredith L. Wilcox, and Bashar Zogheib. Confidence interval estimation for the population coefficient of variation using ranked set sampling: A simulation study. Journal of Applied Statistics, 41(4):733–751, 2014. doi:10.1080/02664763.2013.847405.">2</a>]</span>.</p>
 <p>Its sample’s estimate is given as:</p>
 <div class="math notranslate nohighlight">
 \[cv = \frac{sd}{\bar{X}}\]</div>
@@ -412,57 +409,38 @@ cv_{corr} = cv * \biggl(1 - \frac{1}{4(n-1)}
 + \frac{1}{n}cv^2
 + \frac{1}{2 (n-1)^2} \biggr)
 \]</div>
-<section id="what-is-myst">
-<h2>What is MyST?<a class="headerlink" href="#what-is-myst" title="Link to this heading">#</a></h2>
-<p>MyST stands for “Markedly Structured Text”. It
-is a slight variation on a flavor of markdown called “CommonMark” markdown,
-with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
-in the Sphinx ecosystem.</p>
-<p>For more about MyST, see <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST Markdown Overview</a>.</p>
-</section>
-<section id="sample-roles-and-directives">
-<h2>Sample Roles and Directives<a class="headerlink" href="#sample-roles-and-directives" title="Link to this heading">#</a></h2>
-<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
-<strong>directives span many lines</strong>. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.</p>
-<p>Here is a “note” directive:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note</p>
-</div>
-<p>It will be rendered in a special box when you build your book.</p>
-<p>Here is an inline directive to refer to a document: <a class="reference internal" href="cqv.html"><span class="doc">Notebooks with MyST Markdown</span></a>.</p>
-</section>
-<section id="citations">
-<h2>Citations<a class="headerlink" href="#citations" title="Link to this heading">#</a></h2>
-<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
-the following syntax: .</p>
-<p>Moreover, you can insert a bibliography into your page with this syntax:
-The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
-render properly.
-For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
-then the bibliography is inserted with:</p>
-<div class="docutils container" id="id4">
+<p>There are various methods for the calculation of <strong>confidence intervals (CI)</strong> for <em>cv</em>. All of them are fruitful and have particular use cases. Some of them are model-based hence their usage depends the assumptions regarding the distribution of data. For sake of versatility, we cover almost all of these methods in <code class="docutils literal notranslate"><span class="pre">cvcqv</span></code> package. Here, we explain them along with some examples:</p>
+<section id="kelley-confidence-interval">
+<h2>Kelley Confidence Interval<a class="headerlink" href="#kelley-confidence-interval" title="Link to this heading">#</a></h2>
+<p>Let us assume that <em>CV</em> follows a noncentral <em>t</em> distribution, when the parent population of the scores is <em>normally-distributed</em>, with noncentrality (<span class="math notranslate nohighlight">\(\lambda\)</span>) parameter:</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda = \frac{\sqrt{n}}{cv}
+\]</div>
+<p>with <em>v</em> degrees of freedom, where <span class="math notranslate nohighlight">\(v = n - 1\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(1 - \alpha\)</span> be the CI coverage with <span class="math notranslate nohighlight">\(\alpha_L + \alpha_U = \alpha\)</span> in which <span class="math notranslate nohighlight">\(\alpha_L\)</span> is the the proportion of times that <em>cv</em> will be
+less than the lower confidence bound and <span class="math notranslate nohighlight">\(\alpha_U\)</span> the proportion of times that <em>cv</em> will be greater than the upper confidence bound in the CI procedure <span id="id4">[<a class="reference internal" href="#id16" title="Ken Kelley. Sample size planning for the coefficient of variation from the accuracy in parameter estimation approach. Behavior Research Methods, 39(4):755–766, 2007. doi:10.3758/BF03192966.">1</a>]</span>. The lower confidence tile for <span class="math notranslate nohighlight">\(\lambda\)</span> is is the noncentrality parameter that results in <span class="math notranslate nohighlight">\(t_{(1-\alpha_L,v,\lambda_L)}=\hat{\lambda}\)</span> and the upper confidence tile for <span class="math notranslate nohighlight">\(\lambda\)</span> is is the noncentrality parameter that results in <span class="math notranslate nohighlight">\(t_{(\alpha_U,v,\lambda_U)}=\hat{\lambda}\)</span>, where <span class="math notranslate nohighlight">\(t_{(1-\alpha_L,v,\lambda_L)}=\hat{\lambda}\)</span> is the value of noncentral <em>t</em> distribution at the <span class="math notranslate nohighlight">\(1-\alpha_L\)</span> <strong>quantile</strong> with noncentrality parameter <span class="math notranslate nohighlight">\(\lambda_L\)</span> and <span class="math notranslate nohighlight">\(t_{(\alpha_U,v,\lambda_U)}=\hat{\lambda}\)</span> is the value of noncentral <em>t</em> distribution at the <span class="math notranslate nohighlight">\(\alpha_U\)</span> <strong>quantile</strong> with noncentrality parameter <span class="math notranslate nohighlight">\(\lambda_U\)</span>, respectively <span id="id5">[<a class="reference internal" href="#id16" title="Ken Kelley. Sample size planning for the coefficient of variation from the accuracy in parameter estimation approach. Behavior Research Methods, 39(4):755–766, 2007. doi:10.3758/BF03192966.">1</a>]</span>. Afterwards, we transform the tiles of the confidence interval for <span class="math notranslate nohighlight">\(\lambda\)</span>, by dividing the tiles by <span class="math notranslate nohighlight">\(\sqrt{n}\)</span> and thereafter inverting them; the CI limits of
+<span class="math notranslate nohighlight">\(cv\)</span> will be obtained:</p>
+<div class="math notranslate nohighlight">
+\[
+p\left[\biggl(\frac{\lambda_U}{\sqrt{n}}\biggr)^{-1}
+\le CV \le \biggl(\frac{\lambda_L}{\sqrt{n}}\biggr)^{-1}\right] = 1-\alpha
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> stands for <em>probability</em>.</p>
+<div class="docutils container" id="id6">
 <div role="list" class="citation-list">
-<div class="citation" id="id14" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id16" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id4">2</a>,<a role="doc-backlink" href="#id5">3</a>)</span>
 <p>Ken Kelley. Sample size planning for the coefficient of variation from the accuracy in parameter estimation approach. <em>Behavior Research Methods</em>, 39(4):755–766, 2007. <a class="reference external" href="https://doi.org/10.3758/BF03192966">doi:10.3758/BF03192966</a>.</p>
 </div>
-<div class="citation" id="id16" role="doc-biblioentry">
+<div class="citation" id="id18" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
 <p>Ahmed N. Albatineh, B. M.Golam Kibria, Meredith L. Wilcox, and Bashar Zogheib. Confidence interval estimation for the population coefficient of variation using ranked set sampling: A simulation study. <em>Journal of Applied Statistics</em>, 41(4):733–751, 2014. <a class="reference external" href="https://doi.org/10.1080/02664763.2013.847405">doi:10.1080/02664763.2013.847405</a>.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="learn-more">
-<h2>Learn more<a class="headerlink" href="#learn-more" title="Link to this heading">#</a></h2>
-<p>This is just a simple starter to get you started.
-You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
 </section>
 </section>
 
@@ -530,10 +508,7 @@ You can learn a lot more at <a class="reference external" href="https://jupyterb
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-myst">What is MyST?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-roles-and-directives">Sample Roles and Directives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citations">Citations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelley-confidence-interval">Kelley Confidence Interval</a></li>
 </ul>
   </nav></div>
 

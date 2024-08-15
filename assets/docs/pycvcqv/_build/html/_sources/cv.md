@@ -20,50 +20,29 @@ cv_{corr} = cv * \biggl(1 - \frac{1}{4(n-1)}
 + \frac{1}{2 (n-1)^2} \biggr)
 $$
 
-## What is MyST?
+There are various methods for the calculation of **confidence intervals (CI)** for _cv_. All of them are fruitful and have particular use cases. Some of them are model-based hence their usage depends the assumptions regarding the distribution of data. For sake of versatility, we cover almost all of these methods in `cvcqv` package. Here, we explain them along with some examples:
 
-MyST stands for "Markedly Structured Text". It
-is a slight variation on a flavor of markdown called "CommonMark" markdown,
-with small syntax extensions to allow you to write **roles** and **directives**
-in the Sphinx ecosystem.
+## Kelley Confidence Interval
 
-For more about MyST, see [the MyST Markdown Overview](https://jupyterbook.org/content/myst.html).
+Let us assume that _CV_ follows a noncentral _t_ distribution, when the parent population of the scores is _normally-distributed_, with noncentrality ($\lambda$) parameter:
 
-## Sample Roles and Directives
+$$
+\lambda = \frac{\sqrt{n}}{cv}
+$$
 
-Roles and directives are two of the most powerful tools in Jupyter Book. They
-are like functions, but written in a markup language. They both
-serve a similar purpose, but **roles are written in one line**, whereas
-**directives span many lines**. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.
+with _v_ degrees of freedom, where $v = n - 1$.
 
-Here is a "note" directive:
+Let $1 - \alpha$ be the CI coverage with $\alpha_L + \alpha_U = \alpha$ in which $\alpha_L$ is the the proportion of times that _cv_ will be
+less than the lower confidence bound and $\alpha_U$ the proportion of times that _cv_ will be greater than the upper confidence bound in the CI procedure {cite:p}`Kelley2007`. The lower confidence tile for $\lambda$ is is the noncentrality parameter that results in $t_{(1-\alpha_L,v,\lambda_L)}=\hat{\lambda}$ and the upper confidence tile for $\lambda$ is is the noncentrality parameter that results in $t_{(\alpha_U,v,\lambda_U)}=\hat{\lambda}$, where $t_{(1-\alpha_L,v,\lambda_L)}=\hat{\lambda}$ is the value of noncentral _t_ distribution at the $1-\alpha_L$ **quantile** with noncentrality parameter $\lambda_L$ and $t_{(\alpha_U,v,\lambda_U)}=\hat{\lambda}$ is the value of noncentral _t_ distribution at the $\alpha_U$ **quantile** with noncentrality parameter $\lambda_U$, respectively {cite:p}`Kelley2007`. Afterwards, we transform the tiles of the confidence interval for $\lambda$, by dividing the tiles by $\sqrt{n}$ and thereafter inverting them; the CI limits of
+$cv$ will be obtained:
 
-```{note}
-Here is a note
-```
+$$
+p\left[\biggl(\frac{\lambda_U}{\sqrt{n}}\biggr)^{-1}
+\le CV \le \biggl(\frac{\lambda_L}{\sqrt{n}}\biggr)^{-1}\right] = 1-\alpha
+$$
 
-It will be rendered in a special box when you build your book.
-
-Here is an inline directive to refer to a document: {doc}`cqv`.
-
-## Citations
-
-You can also cite references that are stored in a `bibtex` file. For example,
-the following syntax: .
-
-Moreover, you can insert a bibliography into your page with this syntax:
-The `{bibliography}` directive must be used for all the `{cite}` roles to
-render properly.
-For example, if the references for your book are stored in `references.bib`,
-then the bibliography is inserted with:
+where $p$ stands for _probability_.
 
 ```{bibliography}
 :style: unsrt
 ```
-
-## Learn more
-
-This is just a simple starter to get you started.
-You can learn a lot more at [jupyterbook.org](https://jupyterbook.org).
