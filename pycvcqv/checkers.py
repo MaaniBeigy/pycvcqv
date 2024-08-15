@@ -2,6 +2,7 @@
 
 # --------------------------- Import libraries and functions --------------------------
 import functools
+import warnings
 
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
@@ -40,7 +41,27 @@ def is_numeric(function):
     return wrapper
 
 
-def is_positive_natural_number(function):
+def is_ncp_huge(function):
+    """
+    A decorator function to check whether the noncentrality parameter exceeds 37.62.
+    """
+
+    @functools.wraps(function)
+    def wrapper(*args, **kw):
+        """The wrapper function."""
+        ncp = kw.get("ncp", args[0] if args else None)
+        if ncp is not None and abs(ncp) > 37.62:
+            warnings.warn(
+                "The noncentrality parameter exceeds 37.62, which may affect accuracy.",
+                RuntimeWarning,
+                stacklevel=2,
+            )
+        return function(*args, **kw)
+
+    return wrapper
+
+
+def is_dof_positive_natural_number(function):
     """A decorator function to check whether the input is a positive natural number."""
 
     # -------------------------------- wrapper function -------------------------------
