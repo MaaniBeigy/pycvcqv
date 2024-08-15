@@ -38,3 +38,24 @@ def is_numeric(function):
 
     # ------------------------------- return the wrapper ------------------------------
     return wrapper
+
+
+def is_positive_natural_number(function):
+    """A decorator function to check whether the input is a positive natural number."""
+
+    # -------------------------------- wrapper function -------------------------------
+    @functools.wraps(function)
+    def wrapper(*args, **kw):
+        """The wrapper function."""
+        # ------------------------ if the **kwargs are not used -----------------------
+        if len(kw) == 0 or "dof" not in kw:
+            if not isinstance(args[1], int) or args[1] <= 0:
+                raise ValueError("Argument dof should be a positive natural number!")
+        # ------------------------- if the **kwargs include dof -----------------------
+        if len(kw) != 0 and (not isinstance(kw["dof"], int) or kw["dof"]) <= 0:
+            # ----------------------- return the actual function ----------------------
+            raise ValueError("Argument dof should be a positive natural number!")
+        return function(*args, **kw)
+
+    # ------------------------------- return the wrapper ------------------------------
+    return wrapper
