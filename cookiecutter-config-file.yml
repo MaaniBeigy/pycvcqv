@@ -8,6 +8,6 @@ default_context:
   minimal_python_version: 3.9
   github_name: "MaaniBeigy"
   email: "manibeygi@gmail.com"
-  version: "0.1.16"
+  version: "0.1.17"
   line_length: "88"
   create_example_template: "none"
