@@ -1,4 +1,4 @@
-"""The is_numeric trait."""
+"""The checkers traits."""
 
 # --------------------------- Import libraries and functions --------------------------
 import functools

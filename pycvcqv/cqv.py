@@ -5,9 +5,9 @@ from typing import Optional, Union
 
 import pandas as pd
 
+from pycvcqv.checkers import is_numeric
 from pycvcqv.dataframe import cqv_dataframe
 from pycvcqv.formulas import _cqv
-from pycvcqv.is_numeric import is_numeric
 from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
 
 

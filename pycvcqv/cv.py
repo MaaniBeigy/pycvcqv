@@ -5,9 +5,9 @@ from typing import Optional, Union
 
 import pandas as pd
 
+from pycvcqv.checkers import is_numeric
 from pycvcqv.dataframe import cv_dataframe
 from pycvcqv.formulas import _cv
-from pycvcqv.is_numeric import is_numeric
 from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, TupleInt
 
 # -------------------------------- function definition --------------------------------
@@ -49,7 +49,7 @@ def coefficient_of_variation(
             correction might be set to True.
         multiplier (int, default 1): cv will be multiplied by it, such as 100,
             when you want to report cv as percentage.
-        num_threads (int, default 1): The number of therads to use. This speeds up
+        num_threads (int, default 1): The number of threads to use. This speeds up
             calculation for the pd.DataFrame inputs. Defaults to single thread. If -1
             is specified then multiprocessing.cpu_count() is used instead.
 
