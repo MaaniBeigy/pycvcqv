@@ -1,7 +1,7 @@
 """Noncentral t-distribution module."""
 
 # --------------------------- Import libraries and functions --------------------------
-from typing import Dict, Optional, Union
+from typing import Any, Dict, Optional, Union
 
 import numpy as np
 from scipy.optimize import minimize_scalar
@@ -10,8 +10,76 @@ from scipy.stats import nct
 from pycvcqv.checkers import is_dof_positive_natural_number, is_ncp_huge
 from pycvcqv.sanitizers import validate_ncp_confidence_level_arguments
 
-
 # -------------------------------- function definition --------------------------------
+
+
+def _ci_nct_lower(
+    val_of_interest: float, alpha_lower: float, dof: int, ncp: float
+) -> float:
+    """Computes lower confidence limit for noncentral t parameter."""
+    # ------------------------ Ensuring alpha_lower is not None -----------------------
+    result: float = nct.ppf(1 - alpha_lower, dof, val_of_interest, loc=0)
+    return (result - ncp) ** 2
+
+
+def _ci_nct_upper(
+    val_of_interest: float, alpha_upper: float, dof: int, ncp: float
+) -> float:
+    """Computes upper confidence limit for noncentral t parameter."""
+    # ------------------------ Ensuring alpha_lower is not None -----------------------
+    result: float = nct.ppf(alpha_upper, dof, val_of_interest, loc=0)
+    return (result - ncp) ** 2
+
+
+def _calculate_alpha_tails(
+    conf_level: Optional[float] = None,
+    alpha_lower: Optional[float] = None,
+    alpha_upper: Optional[float] = None,
+) -> Dict[str, Any]:
+    """Calculates alpha tails of noncentral t parameter confidence interval."""
+    # ----- If all three are None, use default conf_level and compute alpha values ----
+    if all(scalar is None for scalar in [conf_level, alpha_lower, alpha_upper]):
+        conf_level = 0.95
+        alpha_lower = alpha_upper = (1 - conf_level) / 2
+    # ------ Calculate the alpha_lower and alpha_upper based on given conf_level ------
+    elif conf_level is not None and all(
+        scalar is None for scalar in [alpha_lower, alpha_upper]
+    ):
+        alpha_lower = alpha_upper = (1 - conf_level) / 2
+    # ------------------------ Preparing the alpha tails output -----------------------
+    alpha_tails = {"alpha_lower": alpha_lower, "alpha_upper": alpha_upper}
+    return alpha_tails
+
+
+def _calculate_out_of_range_probabilities(
+    ncp: float,
+    dof: int,
+    ncp_lower_limit: float,
+    valid_alpha_lower: float,
+    ncp_upper_limit: float,
+    valid_alpha_upper: float,
+) -> Dict[str, Any]:
+    """
+    Calculates the probabilities for out of range of noncentral t parameter
+    confidence interval.
+    """
+    # ------------- Probability that the NCP is less than the lower limit -------------
+    prob_less_lower = (
+        1 - nct.cdf(ncp, dof, ncp_lower_limit, loc=0) if valid_alpha_lower != 0 else 0
+    )
+    # ------------ Probability that the NCP is greater than the upper limit -----------
+    prob_greater_upper = (
+        nct.cdf(ncp, dof, ncp_upper_limit, loc=0) if valid_alpha_upper != 0 else 0
+    )
+    # -------------------- Preparing the out of range probabilities -------------------
+    out_of_range_probabilities = {
+        "prob_less_lower": prob_less_lower,
+        "prob_greater_upper": prob_greater_upper,
+    }
+    return out_of_range_probabilities
+
+
+# ------------------ Decorators to check validity of input arguments ------------------
 @is_dof_positive_natural_number
 @is_ncp_huge
 @validate_ncp_confidence_level_arguments
@@ -58,55 +126,43 @@ def conf_limits_nct_minimize_scalar(
             ...     'prob_greater_upper': 0.024999999971943743
             ...     }
     """
-    # --- If all three are None, use default conf_level and compute alpha values --
-    if conf_level is None and alpha_lower is None and alpha_upper is None:
-        conf_level = 0.95
-        alpha_lower = (1 - conf_level) / 2
-        alpha_upper = (1 - conf_level) / 2
-    # ---- Calculate the alpha_lower and alpha_upper based on given conf_level ----
-    elif conf_level is not None and alpha_lower is None and alpha_upper is None:
-        alpha_lower = (1 - conf_level) / 2
-        alpha_upper = (1 - conf_level) / 2
-
-    def _ci_nct_lower(val_of_interest: float) -> float:
-        """Internal function to compute lower confidence limit."""
-        assert alpha_lower is not None  # Ensuring alpha_lower is not None
-        result: float = nct.ppf(
-            1 - alpha_lower, dof, val_of_interest, loc=0
-        )  # Explicit type declaration
-        return (result - ncp) ** 2
-
-    def _ci_nct_upper(val_of_interest: float) -> float:
-        """Internal function to compute upper confidence limit."""
-        assert alpha_upper is not None  # Ensuring alpha_upper is not None
-        result: float = nct.ppf(
-            alpha_upper, dof, val_of_interest, loc=0
-        )  # Explicit type declaration
-        return (result - ncp) ** 2
-
+    # ------ Calculates alpha tails of noncentral t parameter confidence interval -----
+    alpha_tails = _calculate_alpha_tails(conf_level, alpha_lower, alpha_upper)
+    valid_alpha_lower = alpha_tails["alpha_lower"]
+    valid_alpha_upper = alpha_tails["alpha_upper"]
+    # ------------------------ allowed minimum and maximum NCP ------------------------
     min_ncp = min(-150, -5 * ncp)
     max_ncp = max(150, 5 * ncp)
-
-    lower_limit = minimize_scalar(
+    # ------------------------- calculate lower_limit for NCP -------------------------
+    ncp_lower_limit = minimize_scalar(
         _ci_nct_lower,
         bounds=(min_ncp, max_ncp),
         method="bounded",
         options={"xatol": tol, "disp": 0, "maxiter": max_iter},
-    )
-    upper_limit = minimize_scalar(
+        args=(valid_alpha_lower, dof, ncp),
+    ).x
+    # ------------------------- calculate upper_limit for NCP -------------------------
+    ncp_upper_limit = minimize_scalar(
         _ci_nct_upper,
         bounds=(min_ncp, max_ncp),
         method="bounded",
         options={"xatol": tol, "disp": 0, "maxiter": max_iter},
+        args=(valid_alpha_upper, dof, ncp),
+    ).x
+    # -------------- Calculates the probabilities for out of range values -------------
+    out_of_range_probabilities = _calculate_out_of_range_probabilities(
+        ncp,
+        dof,
+        ncp_lower_limit,
+        valid_alpha_lower,
+        ncp_upper_limit,
+        valid_alpha_upper,
     )
-
-    return {
-        "lower_limit": lower_limit.x if alpha_lower != 0 else -np.inf,
-        "prob_less_lower": (
-            1 - nct.cdf(ncp, dof, lower_limit.x, loc=0) if alpha_lower != 0 else 0
-        ),
-        "upper_limit": upper_limit.x if alpha_upper != 0 else np.inf,
-        "prob_greater_upper": (
-            nct.cdf(ncp, dof, upper_limit.x, loc=0) if alpha_upper != 0 else 0
-        ),
+    # ----------------------------- preparing the result  -----------------------------
+    result = {
+        "lower_limit": ncp_lower_limit if valid_alpha_lower != 0 else -np.inf,
+        "prob_less_lower": out_of_range_probabilities["prob_less_lower"],
+        "upper_limit": ncp_upper_limit if valid_alpha_upper != 0 else np.inf,
+        "prob_greater_upper": out_of_range_probabilities["prob_greater_upper"],
     }
+    return result
