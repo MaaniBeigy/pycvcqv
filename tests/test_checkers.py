@@ -6,11 +6,8 @@ from typing import Optional
 
 import pytest
 
-from pycvcqv.checkers import (
-    is_dof_positive_natural_number,
-    is_ncp_huge,
-    validate_ncp_confidence_level_arguments,
-)
+from pycvcqv.checkers import is_dof_positive_natural_number, is_ncp_huge
+from pycvcqv.sanitizers import validate_ncp_confidence_level_arguments
 
 
 @is_dof_positive_natural_number
