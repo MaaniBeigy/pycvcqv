@@ -242,3 +242,109 @@ def conf_limits_nct_minimize(
         "prob_greater_upper": out_of_range_probabilities["prob_greater_upper"],
     }
     return result
+
+
+def conf_limits_nct(
+    ncp: float,
+    dof: int,
+    conf_level: Optional[float] = None,
+    alpha_lower: Optional[float] = None,
+    alpha_upper: Optional[float] = None,
+    tol: Optional[float] = 1e-9,
+    max_iter: Optional[int] = 10000,
+) -> Dict[str, Union[float, int]]:
+    """Calculate confidence limits for the noncentrality parameter (NCP) of
+    the noncentral t-distribution.
+
+    This function computes the lower and upper confidence limits for the noncentrality
+    parameter (NCP) given the degrees of freedom, confidence level, and other parameters.
+    It uses two different methods of scipy.optimize.minimize and
+    scipy.optimize.minimize_scaler to estimate the limits and selects the most accurate
+    one.
+
+    Args:
+        ncp (float): The observed noncentrality parameter. Can be passed as 't_value'.
+        dof (int): Degrees of freedom. Must be positive.
+        conf_level (float, optional): The confidence level for the interval.
+        alpha_lower (float, optional): The significance level for the lower tail.
+        alpha_upper (float, optional): The significance level for the upper tail.
+        tol (float, optional): Tolerance for the optimization algorithms. Default is 1e-9.
+        max_iter (int, optional): Maximum number of iterations to perform. Default is 10000.
+
+    Returns:
+        dict: A dictionary with the following keys:
+            - lower_limit (float): Lower confidence limit for the NCP.
+            - prob_less_lower (float): Probability that the NCP is less than the lower limit.
+            - upper_limit (float): Upper confidence limit for the NCP.
+            - prob_greater_upper (float): Probability that the NCP is greater than the upper limit.
+
+    Example:
+        .. code:: python
+            >>> conf_limits_nct(ncp=2.83, dof=126, conf_level=0.95)
+            ...     {
+            ...     'lower_limit': 0.8337502600175457,
+            ...     'prob_less_lower': 0.02499999995262825,
+            ...     'upper_limit': 4.815359140504376,
+            ...     'prob_greater_upper': 0.024999999971943743
+            ...     }
+    """
+    # ------ Calculates alpha tails of noncentral t parameter confidence interval -----
+    alpha_tails = _calculate_alpha_tails(conf_level, alpha_lower, alpha_upper)
+    valid_alpha_lower = alpha_tails["alpha_lower"]
+    valid_alpha_upper = alpha_tails["alpha_upper"]
+    # ---------------- Execute both methods and choose the best result ----------------
+    result_m1 = conf_limits_nct_minimize_scalar(
+        ncp=ncp,
+        dof=dof,
+        conf_level=conf_level,
+        alpha_lower=alpha_lower,
+        alpha_upper=alpha_upper,
+        tol=tol,
+        max_iter=max_iter,
+    )
+    result_m2 = conf_limits_nct_minimize(
+        ncp=ncp,
+        dof=dof,
+        conf_level=conf_level,
+        alpha_lower=alpha_lower,
+        alpha_upper=alpha_upper,
+        tol=tol,
+    )
+
+    # ----------- Choose the best lower limit based on minimum squared error ----------
+    best_low = min(
+        (result_m1["prob_less_lower"] - valid_alpha_lower) ** 2,
+        (result_m2["prob_less_lower"] - valid_alpha_lower) ** 2,
+    )
+    lower_limit = (
+        result_m1["lower_limit"]
+        if best_low == (result_m1["prob_less_lower"] - valid_alpha_lower) ** 2
+        else result_m2["lower_limit"]
+    )
+
+    # ----------- Choose the best upper limit based on minimum squared error ----------
+    best_up = min(
+        (result_m1["prob_greater_upper"] - valid_alpha_upper) ** 2,
+        (result_m2["prob_greater_upper"] - valid_alpha_upper) ** 2,
+    )
+    upper_limit = (
+        result_m1["upper_limit"]
+        if best_up == (result_m1["prob_greater_upper"] - valid_alpha_upper) ** 2
+        else result_m2["upper_limit"]
+    )
+    # ----------------------------- preparing the result  -----------------------------
+    result = {
+        "lower_limit": lower_limit,
+        "prob_less_lower": (
+            result_m1["prob_less_lower"]
+            if best_low == (result_m1["prob_less_lower"] - valid_alpha_lower) ** 2
+            else result_m2["prob_less_lower"]
+        ),
+        "upper_limit": upper_limit,
+        "prob_greater_upper": (
+            result_m1["prob_greater_upper"]
+            if best_up == (result_m1["prob_greater_upper"] - valid_alpha_upper) ** 2
+            else result_m2["prob_greater_upper"]
+        ),
+    }
+    return result
