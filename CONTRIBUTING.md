@@ -112,7 +112,14 @@ poetry run safety check --policy-file safety_policy.yml
 poetry run bandit -ll --configfile pyproject.toml --recursive pycvcqv tests
 ```
 
-11. Creating badges data
+11. Code maintainability and complexity
+
+```powershell
+.\.shell\maintainability.ps1
+.\.shell\complexity.ps1
+```
+
+12. Creating badges data
 
 ```powershell
 .\.shell\badges.ps1
