@@ -91,7 +91,7 @@ def conf_limits_nct_minimize_scalar(
         _ci_nct_lower,
         bounds=(min_ncp, max_ncp),
         method="bounded",
-        options={"xatol": tol},
+        options={"xatol": tol, "disp": 0, "maxiter": max_iter},
     )
     upper_limit = minimize_scalar(
         _ci_nct_upper,
