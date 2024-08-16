@@ -62,12 +62,6 @@ repos:
         args:
         - -s
         - B101,B603
-  - repo: https://github.com/pycqa/flake8
-    rev: 3.9.2
-    hooks:
-      - id: flake8
-        exclude: ^build/
-        args: [--config, setup.cfg]
   - repo: local
     hooks:
       - id: pylint
