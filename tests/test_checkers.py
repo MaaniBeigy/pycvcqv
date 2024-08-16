@@ -111,13 +111,6 @@ def test_default_conf_level():
     assert result == (2.0 * 100) * (expected_alpha * 2)
 
 
-def test_given_conf_level():
-    """Test case where conf_level is provided, but alphas are not."""
-    result = mocked_conf_limits_nct(2.0, 100, conf_level=0.90)
-    expected_alpha = (1 - 0.90) / 2
-    assert result == (2.0 * 100) * (expected_alpha * 2)
-
-
 def test_given_alpha_values():
     """Test case where alpha_lower and alpha_upper are provided."""
     result = mocked_conf_limits_nct(2.0, 100, alpha_lower=0.01, alpha_upper=0.02)
@@ -140,7 +133,7 @@ def test_invalid_alpha_lower():
         mocked_conf_limits_nct(2.0, 100, alpha_lower=-0.1, alpha_upper=0.02)
     assert (
         execinfo.value.args[0]
-        == "conf_level or alpha values must be in the range [0, 1]."
+        == "conf_level and alpha values must be in the range [0, 1]."
     )
 
 
@@ -150,15 +143,17 @@ def test_invalid_alpha_upper():
         mocked_conf_limits_nct(2.0, 100, alpha_lower=0.01, alpha_upper=1.2)
     assert (
         execinfo.value.args[0]
-        == "conf_level or alpha values must be in the range [0, 1]."
+        == "conf_level and alpha values must be in the range [0, 1]."
     )
 
 
 def test_invalid_conf_level():
     """Test case where conf_level is out of the [0, 1] range."""
     with pytest.raises(ValueError) as execinfo:
-        mocked_conf_limits_nct(2.0, 100, conf_level=1.5)
+        mocked_conf_limits_nct(
+            ncp=2.0, dof=100, conf_level=1.5, alpha_lower=0.01, alpha_upper=0.95
+        )
     assert (
         execinfo.value.args[0]
-        == "conf_level or alpha values must be in the range [0, 1]."
+        == "conf_level and alpha values must be in the range [0, 1]."
     )

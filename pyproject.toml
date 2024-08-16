@@ -38,6 +38,7 @@ classifiers = [
 numpy = "^1.26.4"
 pandas = "*"
 python = ">=3.9,<4.0"
+scipy = "*"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.4"

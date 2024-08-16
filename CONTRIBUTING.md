@@ -84,14 +84,14 @@ poetry run mypy --install-types --non-interactive pycvcqv/ tests/
 7. Unit tests and coverage
 
 ```powershell
-poetry run pytest --cov-report term --cov pycvcqv tests/
+poetry run pytest --cov-report html --cov pycvcqv tests/
 poetry run coverage-badge -o assets/images/coverage.svg -f
 ```
 
 8. Lint
 
 ```powershell
-poetry run pylint pycvcqv
+poetry run pylint pycvcqv tests
 ```
 
 9. Code-style check
