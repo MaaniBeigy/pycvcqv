@@ -117,14 +117,11 @@ def conf_limits_nct_minimize_scalar(
             - prob_greater_upper (float): Probability that the NCP is greater than the upper limit.
 
     Example:
-        .. code:: python
-            >>> conf_limits_nct_minimize_scalar(ncp=2.83, dof=126, conf_level=0.95)
-            ...     {
-            ...     'lower_limit': 0.8337502600175457,
-            ...     'prob_less_lower': 0.02499999995262825,
-            ...     'upper_limit': 4.815359140504376,
-            ...     'prob_greater_upper': 0.024999999971943743
-            ...     }
+        >>> conf_limits_nct_minimize_scalar(ncp=2.83, dof=126, conf_level=0.95)
+        {'lower_limit': 0.8337502600175457,
+        'prob_less_lower': 0.02499999995262825,
+        'upper_limit': 4.815359140504376,
+        'prob_greater_upper': 0.024999999971943743}
     """
     # ------ Calculates alpha tails of noncentral t parameter confidence interval -----
     alpha_tails = _calculate_alpha_tails(conf_level, alpha_lower, alpha_upper)
@@ -204,14 +201,11 @@ def conf_limits_nct_minimize(
             - prob_greater_upper (float): Probability that the NCP is greater than the upper limit.
 
     Example:
-        .. code:: python
-            >>> conf_limits_nct_minimize(ncp=2.83, dof=126, conf_level=0.95)
-            ...     {
-            ...         'lower_limit': 0.833750253390236,
-            ...         'prob_less_lower': 0.024999999571209908,
-            ...         'upper_limit': 4.815359132565956,
-            ...         'prob_greater_upper': 0.025000000428616057
-            ...     }
+        >>> conf_limits_nct_minimize(ncp=2.83, dof=126, conf_level=0.95)
+        {'lower_limit': 0.833750253390236,
+         'prob_less_lower': 0.024999999571209908,
+         'upper_limit': 4.815359132565956,
+         'prob_greater_upper': 0.025000000428616057}
     """
     # ------ Calculates alpha tails of noncentral t parameter confidence interval -----
     alpha_tails = _calculate_alpha_tails(conf_level, alpha_lower, alpha_upper)
@@ -279,14 +273,11 @@ def conf_limits_nct(
             - prob_greater_upper (float): Probability that the NCP is greater than the upper limit.
 
     Example:
-        .. code:: python
-            >>> conf_limits_nct(ncp=2.83, dof=126, conf_level=0.95)
-            ...     {
-            ...         'lower_limit': 0.8337502600175457,
-            ...         'prob_less_lower': 0.02499999995262825,
-            ...         'upper_limit': 4.815359140504376,
-            ...         'prob_greater_upper': 0.024999999971943743
-            ...     }
+        >>> conf_limits_nct(ncp=2.83, dof=126, conf_level=0.95)
+        {'lower_limit': 0.8337502600175457,
+         'prob_less_lower': 0.02499999995262825,
+         'upper_limit': 4.815359140504376,
+         'prob_greater_upper': 0.024999999971943743}
     """
     # ------ Calculates alpha tails of noncentral t parameter confidence interval -----
     alpha_tails = _calculate_alpha_tails(conf_level, alpha_lower, alpha_upper)
