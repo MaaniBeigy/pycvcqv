@@ -83,7 +83,7 @@ def coefficient_of_variation(
             ...     correction=False,
             ...     multiplier=100
             ... )
-            57.77
+            {'cv': 57.7735, 'lower': 41.2843, 'upper': 97.8854}
     """
     # ----------------------------------- DataFrame  ----------------------------------
     if isinstance(data, pd.DataFrame):
