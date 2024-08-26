@@ -1,7 +1,7 @@
 """The types used in the package."""
 
 # --------------------------- Import libraries and functions --------------------------
-from typing import List, Tuple, TypeVar, Union
+from typing import Callable, List, Optional, Tuple, TypeVar, Union
 
 from multiprocessing import pool
 
@@ -23,3 +23,21 @@ NumArrayLike = TypeVar(
         pd.Series, ArrayInt, ArrayFloat, ListFloat, ListInt, TupleFloat, TupleInt
     ],
 )
+CvProcessor = Callable[
+    [
+        pd.DataFrame,
+        str,
+        Optional[int],
+        Optional[int],
+        Optional[bool],
+        Optional[int],
+        Optional[bool],
+        Optional[int],
+        Optional[float],
+        Optional[float],
+        Optional[float],
+        Optional[float],
+        Optional[int],
+    ],
+    pd.DataFrame,
+]

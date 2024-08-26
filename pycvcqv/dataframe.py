@@ -7,21 +7,28 @@ import pandas as pd
 
 from pycvcqv.multithread import multithread_cqv_processor, multithread_cv_processor
 from pycvcqv.singlethread import singlethread_cqv_processor, singlethread_cv_processor
+from pycvcqv.types import CvProcessor
 from pycvcqv.userthread import userthread_cqv_processor, userthread_cv_processor
 
 
 # -------------------------------- function definition --------------------------------
 def cv_dataframe(
     data: pd.DataFrame,
+    method: str = "kelley",
     num_threads: Optional[int] = 1,
     ddof: Optional[int] = 1,
     skipna: Optional[bool] = True,
     ndigits: Optional[int] = 4,
     correction: Optional[bool] = False,
     multiplier: Optional[int] = 1,
+    conf_level: Optional[float] = None,
+    alpha_lower: Optional[float] = None,
+    alpha_upper: Optional[float] = None,
+    tol: Optional[float] = 1e-9,
+    max_iter: Optional[int] = 10000,
 ) -> pd.DataFrame:
     """Selects method to perform cv calculations on dataframe or array-like objects."""
-    operators = list(
+    operators: list[CvProcessor] = list(
         k
         for k, v in {
             multithread_cv_processor: -1,
@@ -31,13 +38,19 @@ def cv_dataframe(
         if v == num_threads
     )
     return operators[0](
-        data=data,
-        num_threads=num_threads,
-        ddof=ddof,
-        skipna=skipna,
-        ndigits=ndigits,
-        correction=correction,
-        multiplier=multiplier,
+        data,
+        method,
+        num_threads,
+        ddof,
+        skipna,
+        ndigits,
+        correction,
+        multiplier,
+        conf_level,
+        alpha_lower,
+        alpha_upper,
+        tol,
+        max_iter,
     )
 
 

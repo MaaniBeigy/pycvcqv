@@ -45,10 +45,14 @@ import pandas as pd
 from pycvcqv import coefficient_of_variation, cqv
 
 coefficient_of_variation(
-    data=[0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5, 4.4, 4.6, 5.4, 5.4],
+    data=[
+        0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5, 4.4,
+        4.6, 5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9
+    ],
     multiplier=100,
+    ndigits=2
 )
-# 64.6467
+# {'cv': 57.77, 'lower': 41.43, 'upper': 98.38}
 cqv(
     data=[0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5, 4.4, 4.6, 5.4, 5.4],
     multiplier=100,
@@ -61,9 +65,9 @@ data = pd.DataFrame(
     }
 )
 coefficient_of_variation(data=data, num_threads=3)
-#   columns      cv
-# 0   col-1  0.6076
-# 1   col-2  0.1359
+#   columns      cv      lower      upper
+# 0   col-1  0.6076     0.3770     1.6667
+# 1   col-2  0.1359     0.0913     0.2651
 cqv(data=data, num_threads=-1)
 #   columns      cqv
 # 0   col-1  0.3889

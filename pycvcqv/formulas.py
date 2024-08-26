@@ -3,6 +3,8 @@
 # --------------------------- Import libraries and functions --------------------------
 from typing import Optional  # Optional type for function arguments.
 
+import math
+
 import numpy as np  # To handle numeric infinity values.
 import pandas as pd  # Data analysis and manipulation library.
 
@@ -28,7 +30,7 @@ def _cv(
         return float(np.inf)  # to ensure that the returned infinity value is 'float'
     # ------------------ the basic coefficient of variation function ------------------
     _cv = _data.std(skipna=skipna, ddof=ddof) / _data.mean(skipna=skipna)
-    length = len(_data)  # ---------- calculate the length of input array ---------
+    _length = len(_data)  # ------------ calculate the length of input array ----------
     if correction:  # -------------------- return the corrected cv --------------------
         corrected_rounded_cv: float = round(  # ----------- round the result ----------
             multiplier  # ----------- multiply the cv e.g, 100 for percentage ---------
@@ -36,9 +38,9 @@ def _cv(
                 _cv
                 * (  # --- this is the coefficient for the correction of sample size --
                     1  # ----------- the coefficient should be less than zero ----------
-                    - ((4 * (length - 1)) ** (-1))  # ------------ 1/(4n-1) -----------
-                    + ((_cv**2) * (length ** (-1)))  # ----------- (cv^2/n) -----------
-                    + (2 * ((length - 1) ** (2))) ** (-1)  # ----- 1/2*(n-1)^2 --------
+                    - ((4 * (_length - 1)) ** (-1))  # ------------ 1/(4n-1) -----------
+                    + ((_cv**2) * (_length ** (-1)))  # ----------- (cv^2/n) -----------
+                    + (2 * ((_length - 1) ** (2))) ** (-1)  # ----- 1/2*(n-1)^2 --------
                 )
             ),
             ndigits=ndigits,  # --------------- decimals for the round ----------------
@@ -49,6 +51,22 @@ def _cv(
         ndigits=ndigits,  # ------------------ decimals for the round -----------------
     )
     return rounded_cv
+
+
+def _noncentral_t_parameter(
+    data: NumArrayLike,
+    ddof: Optional[int] = 1,
+    skipna: Optional[bool] = True,
+    ndigits: Optional[int] = 4,
+    correction: Optional[bool] = False,
+) -> float:
+    """Internal function to calculate noncentral t parameter (NCP)."""
+    _data: pd.Series = pd.Series(data)
+    # -------------------- calculates cv based on the _cv function --------------------
+    _calculated_cv = _cv(data, ddof, skipna, ndigits, correction)
+    _data_length = len(_data)  # --------- calculate the length of input array --------
+    ncp: float = math.sqrt(_data_length) / _calculated_cv
+    return ncp
 
 
 def _cqv(

@@ -13,23 +13,35 @@ from pycvcqv.prepare_output import prepare_cqv_datafame, prepare_cv_datafame
 # -------------------------------- function definition --------------------------------
 def userthread_cv_processor(
     data: pd.DataFrame,
+    method: str = "kelley",
     num_threads: Optional[int] = 1,
     ddof: Optional[int] = 1,
     skipna: Optional[bool] = True,
     ndigits: Optional[int] = 4,
     correction: Optional[bool] = False,
     multiplier: Optional[int] = 1,
+    conf_level: Optional[float] = None,
+    alpha_lower: Optional[float] = None,
+    alpha_upper: Optional[float] = None,
+    tol: Optional[float] = 1e-9,
+    max_iter: Optional[int] = 10000,
 ) -> pd.DataFrame:
     """Performs user-defined thread cv for pd.DataFrame."""
     with mp.Pool(num_threads) as pool:
         result = prepare_cv_datafame(
+            pool=pool,
             data=data,
+            method=method,
             ddof=ddof,
             skipna=skipna,
             ndigits=ndigits,
             correction=correction,
             multiplier=multiplier,
-            pool=pool,
+            conf_level=conf_level,
+            alpha_lower=alpha_lower,
+            alpha_upper=alpha_upper,
+            tol=tol,
+            max_iter=max_iter,
         )
     pool.close()
     return result

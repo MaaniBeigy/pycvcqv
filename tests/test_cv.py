@@ -37,7 +37,11 @@ def test_cv_with_kwarg():
             ]
         ),
         multiplier=100,
-    ) == pytest.approx(57.77, 0.001)
+    ) == {
+        "cv": pytest.approx(57.774, 0.001),
+        "lower": pytest.approx(41.284, 0.001),
+        "upper": pytest.approx(97.885, 0.001),
+    }
 
 
 def test_cv_without_kwarg():
@@ -66,7 +70,11 @@ def test_cv_without_kwarg():
             7.9,
         ],
         multiplier=100,
-    ) == pytest.approx(57.77, 0.001)
+    ) == {
+        "cv": pytest.approx(57.774, 0.001),
+        "lower": pytest.approx(41.284, 0.001),
+        "upper": pytest.approx(97.885, 0.001),
+    }
 
 
 def test_cv_corrected():
@@ -98,7 +106,11 @@ def test_cv_corrected():
         ),
         correction=True,
         multiplier=100,
-    ) == pytest.approx(58.05, 0.001)
+    ) == {
+        "cv": pytest.approx(58.05, 0.001),
+        "lower": pytest.approx(41.469, 0.001),
+        "upper": pytest.approx(98.515, 0.001),
+    }
 
 
 def test_cv_nonnumeric_type_data_with_kwarg():
@@ -140,6 +152,8 @@ def test_cv_dataframe_single_thread():
             {
                 "columns": pd.Series(["col-1", "col-2"]),
                 "cv": pd.Series([0.6076, 0.1359]),
+                "lower": pd.Series([0.377, 0.0913]),
+                "upper": pd.Series([1.6667, 0.2651]),
             }
         ),
     )
@@ -160,6 +174,8 @@ def test_cv_dataframe_zerothread():
             {
                 "columns": pd.Series(["col-1", "col-2"]),
                 "cv": pd.Series([0.6076, 0.1359]),
+                "lower": pd.Series([0.377, 0.0913]),
+                "upper": pd.Series([1.6667, 0.2651]),
             }
         ),
     )
@@ -180,6 +196,8 @@ def test_cv_dataframe_multithread():
             {
                 "columns": pd.Series(["col-1", "col-2"]),
                 "cv": pd.Series([0.6076, 0.1359]),
+                "lower": pd.Series([0.377, 0.0913]),
+                "upper": pd.Series([1.6667, 0.2651]),
             }
         ),
     )
@@ -200,6 +218,8 @@ def test_cv_dataframe_multithread_default_3_cores():
             {
                 "columns": pd.Series(["col-1", "col-2"]),
                 "cv": pd.Series([0.6076, 0.1359]),
+                "lower": pd.Series([0.377, 0.0913]),
+                "upper": pd.Series([1.6667, 0.2651]),
             }
         ),
     )
@@ -207,12 +227,20 @@ def test_cv_dataframe_multithread_default_3_cores():
 
 def test_zero_division_cv_returns_none_with_kwargs():
     """Tests cv function for zero division with kwargs."""
-    assert coefficient_of_variation(data=[-2, -1, 0, 1, 2]) == float("inf")
+    assert coefficient_of_variation(data=[-2, -1, 0, 1, 2]) == {
+        "cv": inf,
+        "lower": 1.1409,
+        "upper": -1.1409,
+    }
 
 
 def test_zero_division_cv_returns_none_without_kwargs():
     """Tests cv function for zero division without kwargs."""
-    assert coefficient_of_variation([-2, -1, 0, 1, 2]) == float("inf")
+    assert coefficient_of_variation([-2, -1, 0, 1, 2]) == {
+        "cv": inf,
+        "lower": 1.1409,
+        "upper": -1.1409,
+    }
 
 
 def test_zero_division_cv_returns_none_without_kwargs_dataframe():
@@ -230,6 +258,8 @@ def test_zero_division_cv_returns_none_without_kwargs_dataframe():
             {
                 "columns": pd.Series(["col-1", "col-2"]),
                 "cv": pd.Series([float(inf), float(inf)]),
+                "lower": pd.Series([1.1409, 1.1409]),
+                "upper": pd.Series([-1.1409, -1.1409]),
             }
         ),
     )
@@ -259,4 +289,8 @@ def test_zero_division_cv_returns_none_when_std_is_high():
         1.345084,
         1.696740,
     ]
-    assert coefficient_of_variation(data=vector) == float("inf")
+    assert coefficient_of_variation(data=vector) == {
+        "cv": inf,
+        "lower": 2.2817,
+        "upper": -2.2817,
+    }
