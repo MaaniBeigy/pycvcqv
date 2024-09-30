@@ -62,7 +62,7 @@ pytest = "*"
 pytest-cov = "*"
 pyupgrade = "^2.37.2"
 radon = "^5.1.0"
-safety = "^2.0.0"
+safety = "^3.2.8"
 
 [tool.black]
 # https://github.com/psf/black
