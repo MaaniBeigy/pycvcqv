@@ -42,7 +42,7 @@ scipy = "*"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.4"
-black = {version = "^24.3.0", allow-prereleases = true}
+black = {version = "^24.10.0", allow-prereleases = true}
 coverage = "*"
 coverage-badge = "*"
 darglint = "^1.8.1"
