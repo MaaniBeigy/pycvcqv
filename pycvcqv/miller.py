@@ -32,7 +32,7 @@ def _miller_cv_confidence_interval(
     conf_level: Optional[float] = None,
     alpha_lower: Optional[float] = None,
     alpha_upper: Optional[float] = None,
-    tol: Optional[float] = 1e-9,      # unused (kept for API consistency)
+    tol: Optional[float] = 1e-9,  # unused (kept for API consistency)
     max_iter: Optional[int] = 10000,  # unused (kept for API consistency)
 ) -> Dict[str, Union[float, int]]:
     """Compute Miller's confidence interval for the coefficient of variation (CV).
@@ -153,13 +153,9 @@ def _miller_cv_confidence_interval(
     degrees_of_freedom = _length - 1
     z_value = NormalDist().inv_cdf(1.0 - alpha_over_2)
 
-    u_value = math.sqrt(
-        (cv_internal**2 / degrees_of_freedom)
-        * (0.5 + cv_internal**2)
-    )
+    u_value = math.sqrt((cv_internal**2 / degrees_of_freedom) * (0.5 + cv_internal**2))
 
     half_width = z_value * u_value
-
 
     lower_bound = round(mult * (cv_internal - half_width), ndigits)
     upper_bound = round(mult * (cv_internal + half_width), ndigits)

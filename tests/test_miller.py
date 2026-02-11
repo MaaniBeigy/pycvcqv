@@ -54,7 +54,9 @@ def test_miller_skipna_false_with_nan_raises():
 
 def test_miller_skipna_false_without_nan_ok():
     """Tests skipna=False branch when there is no missing value."""
-    result = _cv_confidence_intervals(data=[1.0, 2.0, 3.0], method="miller", skipna=False)
+    result = _cv_confidence_intervals(
+        data=[1.0, 2.0, 3.0], method="miller", skipna=False
+    )
     assert result["lower"] <= result["cv"] <= result["upper"]
 
 
