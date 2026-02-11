@@ -37,75 +37,31 @@ def _miller_cv_confidence_interval(
 ) -> Dict[str, Union[float, int]]:
     """Compute Miller's confidence interval for the coefficient of variation (CV).
 
-    This function calculates the confidence interval for the coefficient of
-    variation using Miller's normal approximation method. The CV is computed
-    internally using the project's `_cv` function, and the interval is derived
-    based on an asymptotic normal approximation.
-
     Args:
-        data (Union[pd.Series, ArrayInt, ArrayFloat, ListFloat, ListInt,
-            TupleFloat, TupleInt, pd.DataFrame]):
-            Input data used to compute the coefficient of variation.
-            Must contain at least two non-missing observations.
-
-        ddof (int, optional):
-            Delta degrees of freedom used in standard deviation calculation.
-            Defaults to 1.
-
-        skipna (bool, optional):
-            Whether to ignore missing values (NaNs). If False and missing values
-            are present, a ValueError is raised. Defaults to True.
-
-        ndigits (int, optional):
-            Number of decimal places for rounding the confidence bounds.
-            Defaults to 4.
-
-        correction (bool, optional):
-            Whether to apply bias correction in the internal CV calculation.
-            Passed directly to `_cv`. Defaults to False.
-
-        multiplier (int, optional):
-            Scaling factor applied to the final CV and confidence bounds.
-            Defaults to 1.
-
-        conf_level (float, optional):
-            Confidence level (e.g., 0.95 for a 95% confidence interval).
-            If provided, `alpha_lower` and `alpha_upper` are ignored.
-
-        alpha_lower (float, optional):
-            Lower tail probability (α/2) for the confidence interval.
-            Used only if `conf_level` is not provided.
-
-        alpha_upper (float, optional):
-            Upper tail probability (α/2) for the confidence interval.
-            Used only if `conf_level` is not provided.
-
-        tol (float, optional):
-            Unused parameter kept for API consistency. Defaults to 1e-9.
-
-        max_iter (int, optional):
-            Unused parameter kept for API consistency. Defaults to 10000.
+        data: A sequence of numeric values.
+        skipna: If True, ignore missing values (None/NaN). If False, raise if any are present.
+        ddof: Delta degrees of freedom used in CV calculation.
+        ndigits: Number of decimal digits for rounding outputs.
+        correction: Whether to apply bias correction (kept for API compatibility).
+        multiplier: A multiplier applied to the reported CV and bounds (e.g., 100 for percent).
+        conf_level: Confidence level in (0, 1). Mutually exclusive with alpha_lower/alpha_upper.
+        alpha_lower: Lower tail probability. Mutually exclusive with conf_level.
+        alpha_upper: Upper tail probability. Mutually exclusive with conf_level.
+        tol: Numerical tolerance (unused; kept for API consistency).
+        max_iter: Maximum iterations (unused; kept for API consistency).
 
     Returns:
-        Dict[str, Union[float, int]]:
-            A dictionary containing:
-                - "cv": The calculated coefficient of variation.
-                - "lower": Lower bound of the confidence interval.
-                - "upper": Upper bound of the confidence interval.
+        A dictionary with keys:
+        - cv: The coefficient of variation.
+        - lower: The lower confidence bound.
+        - upper: The upper confidence bound.
+        - alpha_lower: Lower tail probability used.
+        - alpha_upper: Upper tail probability used.
+        - conf_level: Confidence level used.
 
     Raises:
-        ValueError:
-            If the number of valid observations is less than 2.
-            If missing values are present and `skipna=False`.
-            If the derived alpha/2 is not between 0 and 0.5.
-
-    Notes:
-        - Miller's interval is based on a normal approximation and is most
-          appropriate for moderate to large sample sizes.
-        - If the calculated CV is infinite, both confidence bounds are
-          returned as positive infinity.
-        - Internally, the multiplier is removed before interval calculation
-          and reapplied to the final bounds.
+        ValueError: If inputs are invalid (e.g., insufficient length, invalid alphas/conf_level,
+            or missing values when skipna is False).
     """
 
     # unused parameters kept for API compatibility
