@@ -1,32 +1,36 @@
 [build-system]
 build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core>=1.9.0"]
+requires = ["poetry-core>=2.0.0"]
 
-[tool.poetry]
-authors = ["MaaniBeigy <manibeygi@gmail.com>"]
-description = "Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI) "
-homepage = "https://github.com/MaaniBeigy/pycvcqv"
-license = "MIT"
+# Project metadata follows PEP 621. Poetry 2.x prefers this over the legacy
+# `[tool.poetry]` keys for everything except dependency specs (which we keep
+# under `[tool.poetry.*]` so we can use Poetry's `^` / `~` version syntax).
+[project]
 name = "pycvcqv"
-readme = "README.md"
-repository = "https://github.com/MaaniBeigy/pycvcqv"
 version = "0.1.18"
-
-# Keywords description https://python-poetry.org/docs/pyproject/#keywords
+description = "Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI)"
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+# `dependencies` is filled in by Poetry at build time from
+# [tool.poetry.dependencies] (which uses Poetry's `^` / `~` syntax).
+# PEP 621 requires us to declare it as dynamic when we don't list it statically.
+dynamic = ["dependencies"]
+authors = [
+  {name = "MaaniBeigy", email = "manibeygi@gmail.com"},
+]
 keywords = [
   "coefficient of variation",
   "coefficient of quartile variation",
   "data science",
 ]
-
-# Pypi classifiers: https://pypi.org/classifiers/
+# Note: with `license = "MIT"` set above, the SPDX-equivalent license
+# classifier is added automatically — we no longer list it here.
 classifiers = [
-  #! Update me
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
   "Operating System :: OS Independent",
   "Topic :: Software Development :: Libraries :: Python Modules",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
@@ -34,8 +38,15 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
 ]
 
+[project.urls]
+Homepage = "https://github.com/MaaniBeigy/pycvcqv"
+Repository = "https://github.com/MaaniBeigy/pycvcqv"
+
+[tool.poetry]
+# Poetry-specific package configuration (none currently). Metadata above lives
+# in the PEP 621 `[project]` table; dependency specs below use Poetry syntax.
+
 [tool.poetry.dependencies]
-python = ">=3.11,<3.15"
 numpy = "^2.4"
 pandas = "^3.0"
 scipy = "^1.17"
@@ -61,6 +72,10 @@ pytest-cov = "^7.0"
 pyupgrade = "^3.21"
 radon = "^6.0"
 safety = "^3.6"
+# coverage-badge still imports the legacy `pkg_resources` module, which is no
+# longer bundled with modern Python venvs. Pin setuptools so the import works.
+# Floor at 78.1.1 to avoid CVE-2025-47273 (path traversal in PackageIndex.download).
+setuptools = "^78.1.1"
 
 [tool.black]
 # https://github.com/psf/black
