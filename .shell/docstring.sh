@@ -1,6 +1,13 @@
 #!/bin/bash
+# Regenerate the docstring-coverage report and the corresponding shields.io
+# badge, then write the textual report to .logs/docstring.txt.
+
+mkdir -p .logs assets/images
+
 find . -name 'docstring.txt' -delete
-interrogate -v lib/web/ >>.logs/docstring.txt
+
+poetry run interrogate -v pycvcqv >.logs/docstring.txt
 poetry run interrogate pycvcqv
-# Run the interrogate --generate-badge command to save the badge svg file
-poetry run interrogate --generate-badge .\assets\images\interrogate_badge.svg
+
+# Generate the SVG badge (forward slashes — backslashes get eaten by bash).
+poetry run interrogate --generate-badge assets/images/interrogate_badge.svg
