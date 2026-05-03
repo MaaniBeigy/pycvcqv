@@ -151,3 +151,55 @@ def test_conf_limits_nct_alpha_lower_0_alpha_upper_0_05():
     assert result["prob_less_lower"] == 0
     assert result["upper_limit"] == pytest.approx(4.495224841782837, rel=1e-9)
     assert result["prob_greater_upper"] == pytest.approx(0.04999999999219518, rel=1e-9)
+
+
+# The next three tests exercise the symmetric `alpha_upper == 0` branch in each
+# of the three NCP confidence-interval functions. Without them, the
+# `ncp_upper_limit = np.inf` line is unreached (the existing tests above only
+# cover `alpha_lower == 0`). Assertions are semantic — we check that the upper
+# tail collapses to +inf with prob 0 and that the lower tail converges to the
+# requested alpha — instead of locking to magic numbers, so they're robust
+# across optimizer-version differences.
+def test_conf_limits_nct_minimize_scalar_alpha_lower_0_05_alpha_upper_0():
+    """Tests the conf_limits_nct_minimize_scalar when alpha_upper is zero."""
+    ncp = 2.83
+    result = conf_limits_nct_minimize_scalar(
+        ncp=ncp, dof=126, conf_level=None, alpha_lower=0.05, alpha_upper=0
+    )
+
+    # Upper tail: alpha=0 ⇒ +inf, no probability mass beyond it.
+    assert isinf(result["upper_limit"]) and result["upper_limit"] > 0
+    assert result["prob_greater_upper"] == 0
+    # Lower tail: optimizer should drive prob_less_lower to ≈alpha_lower (0.05),
+    # and the bound must be finite and below ncp.
+    assert result["prob_less_lower"] == pytest.approx(0.05, abs=1e-6)
+    assert result["lower_limit"] < ncp
+    assert not isinf(result["lower_limit"])
+
+
+def test_conf_limits_nct_minimize_alpha_lower_0_05_alpha_upper_0():
+    """Tests the conf_limits_nct_minimize when alpha_upper is zero."""
+    ncp = 2.83
+    result = conf_limits_nct_minimize(
+        ncp=ncp, dof=126, conf_level=None, alpha_lower=0.05, alpha_upper=0
+    )
+
+    assert isinf(result["upper_limit"]) and result["upper_limit"] > 0
+    assert result["prob_greater_upper"] == 0
+    assert result["prob_less_lower"] == pytest.approx(0.05, abs=1e-6)
+    assert result["lower_limit"] < ncp
+    assert not isinf(result["lower_limit"])
+
+
+def test_conf_limits_nct_alpha_lower_0_05_alpha_upper_0():
+    """Tests the conf_limits_nct (combined) when alpha_upper is zero."""
+    ncp = 2.83
+    result = conf_limits_nct(
+        ncp=ncp, dof=126, conf_level=None, alpha_lower=0.05, alpha_upper=0
+    )
+
+    assert isinf(result["upper_limit"]) and result["upper_limit"] > 0
+    assert result["prob_greater_upper"] == 0
+    assert result["prob_less_lower"] == pytest.approx(0.05, abs=1e-6)
+    assert result["lower_limit"] < ncp
+    assert not isinf(result["lower_limit"])
