@@ -1,46 +1,39 @@
 ============================= test session starts ==============================
-platform linux -- Python 3.9.18, pytest-7.4.2, pluggy-1.3.0
-rootdir: /data/myprojects/pycvcqv
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0
+rootdir: /mnt/c/Users/20240700/projects/pycvcqv
 configfile: pyproject.toml
-plugins: cov-3.0.0
-collected 24 items
+plugins: anyio-4.13.0, cov-7.1.0
+collected 65 items
 
-tests/test_cqv.py ...........                                            [ 45%]
-tests/test_cv.py .............                                           [100%]
+tests/test_checkers.py ..............                                    [ 21%]
+tests/test_cqv.py ...........                                            [ 38%]
+tests/test_cv.py .............                                           [ 58%]
+tests/test_kelley.py ..                                                  [ 61%]
+tests/test_miller.py ..........                                          [ 76%]
+tests/test_noncentralt.py ...............                                [100%]
 
-=============================== warnings summary ===============================
-../../../home/maanib/.cache/pypoetry/virtualenvs/pycvcqv-1nCALKhD-py3.9/lib/python3.9/site-packages/pytest_cov/plugin.py:256
-  /home/maanib/.cache/pypoetry/virtualenvs/pycvcqv-1nCALKhD-py3.9/lib/python3.9/site-packages/pytest_cov/plugin.py:256: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_configure_node uses old-style configuration options (marks or attributes).
-  Please use the pytest.hookimpl(optionalhook=True) decorator instead
-   to configure the hooks.
-   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
-    def pytest_configure_node(self, node):
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.3-final-0 ________________
 
-../../../home/maanib/.cache/pypoetry/virtualenvs/pycvcqv-1nCALKhD-py3.9/lib/python3.9/site-packages/pytest_cov/plugin.py:265
-  /home/maanib/.cache/pypoetry/virtualenvs/pycvcqv-1nCALKhD-py3.9/lib/python3.9/site-packages/pytest_cov/plugin.py:265: PytestDeprecationWarning: The hookimpl CovPlugin.pytest_testnodedown uses old-style configuration options (marks or attributes).
-  Please use the pytest.hookimpl(optionalhook=True) decorator instead
-   to configure the hooks.
-   See https://docs.pytest.org/en/latest/deprecations.html#configuring-hook-specs-impls-using-markers
-    def pytest_testnodedown(self, node, error):
-
--- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-
----------- coverage: platform linux, python 3.9.18-final-0 -----------
-Name                        Stmts   Miss Branch BrPart  Cover   Missing
------------------------------------------------------------------------
-pycvcqv/__init__.py            11      0      0      0   100%
-pycvcqv/cqv.py                 12      0      2      0   100%
-pycvcqv/cv.py                  12      0      2      0   100%
-pycvcqv/dataframe.py           11      0      4      0   100%
-pycvcqv/formulas.py            24      0      6      0   100%
-pycvcqv/is_numeric.py          18      0     10      0   100%
-pycvcqv/multithread.py         16      0      0      0   100%
-pycvcqv/prepare_output.py      13      0      4      0   100%
-pycvcqv/singlethread.py        16      0      0      0   100%
-pycvcqv/types.py               13      0      0      0   100%
-pycvcqv/userthread.py          14      0      0      0   100%
------------------------------------------------------------------------
-TOTAL                         160      0     28      0   100%
-
+Name                                Stmts   Miss Branch BrPart  Cover   Missing
+-------------------------------------------------------------------------------
+pycvcqv/__init__.py                    11      0      0      0   100%
+pycvcqv/checkers.py                    37      0     18      0   100%
+pycvcqv/cqv.py                         11      0      2      0   100%
+pycvcqv/cv.py                          12      0      2      0   100%
+pycvcqv/cv_confidence_interval.py       7      0      0      0   100%
+pycvcqv/dataframe.py                   11      0      0      0   100%
+pycvcqv/formulas.py                    30      0      6      0   100%
+pycvcqv/kelley.py                      16      0      0      0   100%
+pycvcqv/miller.py                      40      0     18      0   100%
+pycvcqv/multithread.py                 15      0      0      0   100%
+pycvcqv/noncentralt.py                 71      0     12      0   100%
+pycvcqv/prepare_output.py              14      0      0      0   100%
+pycvcqv/sanitizers.py                  19      0     14      0   100%
+pycvcqv/singlethread.py                15      0      0      0   100%
+pycvcqv/types.py                       15      0      0      0   100%
+pycvcqv/userthread.py                  13      0      0      0   100%
+-------------------------------------------------------------------------------
+TOTAL                                 337      0     72      0   100%
 Required test coverage of 50.0% reached. Total coverage: 100.00%
-======================== 24 passed, 2 warnings in 1.98s ========================
+============================= 65 passed in 33.73s ==============================
