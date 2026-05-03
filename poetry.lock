@@ -56,6 +56,21 @@ files = [
 ]
 
 [[package]]
+name = "anybadge"
+version = "1.16.0"
+description = "Simple, flexible badge generator for project badges."
+optional = false
+python-versions = ">=3.7"
+groups = ["dev"]
+files = [
+    {file = "anybadge-1.16.0-py3-none-any.whl", hash = "sha256:bc9ef2e20d875ee09237a15250a17b6fd7e67276f083d32a297963cdec179918"},
+    {file = "anybadge-1.16.0.tar.gz", hash = "sha256:f4e95eca834482f9932f9020ac2fe04a5ca863728b446324a8d35b1e67faab71"},
+]
+
+[package.dependencies]
+packaging = "*"
+
+[[package]]
 name = "anyio"
 version = "4.13.0"
 description = "High-level concurrency and networking framework on top of asyncio or Trio"
@@ -2946,6 +2961,26 @@ files = [
 ]
 
 [[package]]
+name = "pybadges"
+version = "3.0.1"
+description = "A library and command-line tool for generating Github-style badges"
+optional = false
+python-versions = ">=3.4"
+groups = ["dev"]
+files = [
+    {file = "pybadges-3.0.1-py3-none-any.whl", hash = "sha256:6e37f3eacd503143c3110438cf69bc3f2cd988ce4514de23dd5de8cbfa162a05"},
+    {file = "pybadges-3.0.1.tar.gz", hash = "sha256:a29962d3435a5a1b5b775f3f2b89e2d519f39d947d5118c279e36bf890158faa"},
+]
+
+[package.dependencies]
+Jinja2 = ">=3,<4"
+requests = ">=2.22.0,<3"
+
+[package.extras]
+dev = ["Flask (>=2.0)", "Pillow (>=5)", "fonttools (>=3.26)", "nox", "pytest (>=3.6)", "xmldiff (>=2.4)"]
+pil-measurement = ["Pillow (>=6,<10)"]
+
+[[package]]
 name = "pybtex"
 version = "0.26.1"
 description = "A BibTeX-compatible bibliography processor in Python"
@@ -4909,4 +4944,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.15"
-content-hash = "b1c284b4ec1aab519f35bd7f07a6806ac4c88d397422d73a0a39007c86fb9ae3"
+content-hash = "962bb287af0306760fa0bba058e62f5f8343064206aa74f66afa4a7a427ae7d9"
