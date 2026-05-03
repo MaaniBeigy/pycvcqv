@@ -1,7 +1,7 @@
 """Noncentral t-distribution module."""
 
 # --------------------------- Import libraries and functions --------------------------
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import numpy as np
 from scipy.optimize import minimize, minimize_scalar
@@ -32,10 +32,10 @@ def _ci_nct_upper(
 
 
 def _calculate_alpha_tails(
-    conf_level: Optional[float] = None,
-    alpha_lower: Optional[float] = None,
-    alpha_upper: Optional[float] = None,
-) -> Dict[str, Any]:
+    conf_level: float | None = None,
+    alpha_lower: float | None = None,
+    alpha_upper: float | None = None,
+) -> dict[str, Any]:
     """Calculates alpha tails of noncentral t parameter confidence interval."""
     # ----- If all three are None, use default conf_level and compute alpha values ----
     if all(scalar is None for scalar in [conf_level, alpha_lower, alpha_upper]):
@@ -58,7 +58,7 @@ def _calculate_out_of_range_probabilities(
     valid_alpha_lower: float,
     ncp_upper_limit: float,
     valid_alpha_upper: float,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """
     Calculates the probabilities for out of range of noncentral t parameter
     confidence interval.
@@ -86,12 +86,12 @@ def _calculate_out_of_range_probabilities(
 def conf_limits_nct_minimize_scalar(
     ncp: float,
     dof: int,
-    conf_level: Optional[float] = None,
-    alpha_lower: Optional[float] = None,
-    alpha_upper: Optional[float] = None,
-    tol: Optional[float] = 1e-9,
-    max_iter: Optional[int] = 10000,
-) -> Dict[str, Union[float, int]]:
+    conf_level: float | None = None,
+    alpha_lower: float | None = None,
+    alpha_upper: float | None = None,
+    tol: float | None = 1e-9,
+    max_iter: int | None = 10000,
+) -> dict[str, float | int]:
     """
     Calculate confidence limits for the noncentrality parameter (NCP) of the
     noncentral t-distribution using scipy.optimize.minimize_scalar.
@@ -124,22 +124,32 @@ def conf_limits_nct_minimize_scalar(
     # ------------------------ allowed minimum and maximum NCP ------------------------
     min_ncp = min(-150, -5 * ncp)
     max_ncp = max(150, 5 * ncp)
+    # When a tail's alpha is exactly 0, nct.ppf evaluates at probability 1 (lower)
+    # or 0 (upper) and returns +/-inf. Feeding that into minimize_scalar causes a
+    # RuntimeWarning (inf - inf = nan during Brent interpolation), and the result
+    # is discarded anyway (we report +/-inf for that tail). Skip the optimizer.
     # ------------------------- calculate lower_limit for NCP -------------------------
-    ncp_lower_limit = minimize_scalar(
-        _ci_nct_lower,
-        bounds=(min_ncp, max_ncp),
-        method="bounded",
-        options={"xatol": tol, "disp": 0, "maxiter": max_iter},
-        args=(valid_alpha_lower, dof, ncp),
-    ).x
+    if valid_alpha_lower == 0:
+        ncp_lower_limit = -np.inf
+    else:
+        ncp_lower_limit = minimize_scalar(
+            _ci_nct_lower,
+            bounds=(min_ncp, max_ncp),
+            method="bounded",
+            options={"xatol": tol, "disp": 0, "maxiter": max_iter},
+            args=(valid_alpha_lower, dof, ncp),
+        ).x
     # ------------------------- calculate upper_limit for NCP -------------------------
-    ncp_upper_limit = minimize_scalar(
-        _ci_nct_upper,
-        bounds=(min_ncp, max_ncp),
-        method="bounded",
-        options={"xatol": tol, "disp": 0, "maxiter": max_iter},
-        args=(valid_alpha_upper, dof, ncp),
-    ).x
+    if valid_alpha_upper == 0:
+        ncp_upper_limit = np.inf
+    else:
+        ncp_upper_limit = minimize_scalar(
+            _ci_nct_upper,
+            bounds=(min_ncp, max_ncp),
+            method="bounded",
+            options={"xatol": tol, "disp": 0, "maxiter": max_iter},
+            args=(valid_alpha_upper, dof, ncp),
+        ).x
     # -------------- Calculates the probabilities for out of range values -------------
     out_of_range_probabilities = _calculate_out_of_range_probabilities(
         ncp,
@@ -166,11 +176,11 @@ def conf_limits_nct_minimize_scalar(
 def conf_limits_nct_minimize(
     ncp: float,
     dof: int,
-    conf_level: Optional[float] = None,
-    alpha_lower: Optional[float] = None,
-    alpha_upper: Optional[float] = None,
-    tol: Optional[float] = 1e-9,
-) -> Dict[str, Union[float, int]]:
+    conf_level: float | None = None,
+    alpha_lower: float | None = None,
+    alpha_upper: float | None = None,
+    tol: float | None = 1e-9,
+) -> dict[str, float | int]:
     """
     Calculate confidence limits for the noncentrality parameter (NCP) of the
     noncentral t-distribution using scipy.optimize.minimize.
@@ -199,14 +209,23 @@ def conf_limits_nct_minimize(
     alpha_tails = _calculate_alpha_tails(conf_level, alpha_lower, alpha_upper)
     valid_alpha_lower = alpha_tails["alpha_lower"]
     valid_alpha_upper = alpha_tails["alpha_upper"]
+    # See note in conf_limits_nct_minimize_scalar: skip the optimizer when a tail's
+    # alpha is 0, otherwise nct.ppf returns +/-inf and the optimizer produces nan
+    # warnings without affecting the final reported limit.
     # ------------------------- calculate lower_limit for NCP -------------------------
-    ncp_lower_limit = minimize(
-        _ci_nct_lower, ncp, tol=tol, args=(valid_alpha_upper, dof, ncp)
-    ).x[0]
+    if valid_alpha_lower == 0:
+        ncp_lower_limit = -np.inf
+    else:
+        ncp_lower_limit = minimize(
+            _ci_nct_lower, ncp, tol=tol, args=(valid_alpha_lower, dof, ncp)
+        ).x[0]
     # ------------------------- calculate upper_limit for NCP -------------------------
-    ncp_upper_limit = minimize(
-        _ci_nct_upper, ncp, tol=tol, args=(valid_alpha_upper, dof, ncp)
-    ).x[0]
+    if valid_alpha_upper == 0:
+        ncp_upper_limit = np.inf
+    else:
+        ncp_upper_limit = minimize(
+            _ci_nct_upper, ncp, tol=tol, args=(valid_alpha_upper, dof, ncp)
+        ).x[0]
     # -------------- Calculates the probabilities for out of range values -------------
     out_of_range_probabilities = _calculate_out_of_range_probabilities(
         ncp,
@@ -229,12 +248,12 @@ def conf_limits_nct_minimize(
 def conf_limits_nct(
     ncp: float,
     dof: int,
-    conf_level: Optional[float] = None,
-    alpha_lower: Optional[float] = None,
-    alpha_upper: Optional[float] = None,
-    tol: Optional[float] = 1e-9,
-    max_iter: Optional[int] = 10000,
-) -> Dict[str, Union[float, int]]:
+    conf_level: float | None = None,
+    alpha_lower: float | None = None,
+    alpha_upper: float | None = None,
+    tol: float | None = 1e-9,
+    max_iter: int | None = 10000,
+) -> dict[str, float | int]:
     """Calculate confidence limits for the noncentrality parameter (NCP) of
     the noncentral t-distribution.
 
