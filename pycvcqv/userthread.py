@@ -1,8 +1,6 @@
 """The userthread module."""
 
 # --------------------------- Import libraries and functions --------------------------
-from typing import Optional
-
 import multiprocessing as mp
 
 import pandas as pd
@@ -14,17 +12,17 @@ from pycvcqv.prepare_output import prepare_cqv_datafame, prepare_cv_datafame
 def userthread_cv_processor(
     data: pd.DataFrame,
     method: str = "kelley",
-    num_threads: Optional[int] = 1,
-    ddof: Optional[int] = 1,
-    skipna: Optional[bool] = True,
-    ndigits: Optional[int] = 4,
-    correction: Optional[bool] = False,
-    multiplier: Optional[int] = 1,
-    conf_level: Optional[float] = None,
-    alpha_lower: Optional[float] = None,
-    alpha_upper: Optional[float] = None,
-    tol: Optional[float] = 1e-9,
-    max_iter: Optional[int] = 10000,
+    num_threads: int | None = 1,
+    ddof: int | None = 1,
+    skipna: bool | None = True,
+    ndigits: int | None = 4,
+    correction: bool | None = False,
+    multiplier: int | None = 1,
+    conf_level: float | None = None,
+    alpha_lower: float | None = None,
+    alpha_upper: float | None = None,
+    tol: float | None = 1e-9,
+    max_iter: int | None = 10000,
 ) -> pd.DataFrame:
     """Performs user-defined thread cv for pd.DataFrame."""
     with mp.Pool(num_threads) as pool:
@@ -49,10 +47,10 @@ def userthread_cv_processor(
 
 def userthread_cqv_processor(
     data: pd.DataFrame,
-    ndigits: Optional[int] = 4,
-    interpolation: Optional[str] = "linear",
-    multiplier: Optional[int] = 1,
-    num_threads: Optional[int] = 1,
+    ndigits: int | None = 4,
+    interpolation: str | None = "linear",
+    multiplier: int | None = 1,
+    num_threads: int | None = 1,
 ) -> pd.DataFrame:
     """Performs user-defined thread cqv for pd.DataFrame."""
     with mp.Pool(num_threads) as pool:

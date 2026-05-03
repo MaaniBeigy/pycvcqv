@@ -1,8 +1,6 @@
 """Kelley confidence interval."""
 
 # --------------------------- Import libraries and functions --------------------------
-from typing import Dict, Optional, Union  # Optional type for function arguments.
-
 import math
 
 import pandas as pd  # Data analysis and manipulation library.
@@ -14,27 +12,27 @@ from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, 
 
 # -------------------------------- function definition --------------------------------
 def _kelley_cv_confidence_interval(
-    data: Union[
-        pd.Series,
-        ArrayInt,
-        ArrayFloat,
-        ListFloat,
-        ListInt,
-        TupleFloat,
-        TupleInt,
-        pd.DataFrame,
-    ],
-    ddof: Optional[int] = 1,
-    skipna: Optional[bool] = True,
-    ndigits: Optional[int] = 4,
-    correction: Optional[bool] = False,
-    multiplier: Optional[int] = 1,
-    conf_level: Optional[float] = None,
-    alpha_lower: Optional[float] = None,
-    alpha_upper: Optional[float] = None,
-    tol: Optional[float] = 1e-9,
-    max_iter: Optional[int] = 10000,
-) -> Dict[str, Union[float, int]]:
+    data: (
+        pd.Series
+        | ArrayInt
+        | ArrayFloat
+        | ListFloat
+        | ListInt
+        | TupleFloat
+        | TupleInt
+        | pd.DataFrame
+    ),
+    ddof: int | None = 1,
+    skipna: bool | None = True,
+    ndigits: int | None = 4,
+    correction: bool | None = False,
+    multiplier: int | None = 1,
+    conf_level: float | None = None,
+    alpha_lower: float | None = None,
+    alpha_upper: float | None = None,
+    tol: float | None = 1e-9,
+    max_iter: int | None = 10000,
+) -> dict[str, float | int]:
     """Calculates Kelley's confidence interval for the coefficient of variation.
 
     Args:

@@ -2,8 +2,6 @@
 
 # --------------------------- Import libraries and functions --------------------------
 
-from typing import Optional
-
 import pytest
 
 from pycvcqv.checkers import is_dof_positive_natural_number, is_ncp_huge
@@ -16,9 +14,9 @@ from pycvcqv.sanitizers import validate_ncp_confidence_level_arguments
 def mocked_conf_limits_nct(
     ncp: float,
     dof: int,
-    conf_level: Optional[float] = None,
-    alpha_lower: Optional[float] = None,
-    alpha_upper: Optional[float] = None,
+    conf_level: float | None = None,
+    alpha_lower: float | None = None,
+    alpha_upper: float | None = None,
 ) -> float:
     """Mock function for conf_limits_nct decorator tests."""
     # Ensure alpha_lower and alpha_upper are not None
