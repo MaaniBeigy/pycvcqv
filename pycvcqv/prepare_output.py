@@ -1,8 +1,6 @@
 """The prepare_output module."""
 
 # --------------------------- Import libraries and functions --------------------------
-from typing import Optional
-
 from functools import partial
 
 import pandas as pd
@@ -17,16 +15,16 @@ def prepare_cv_datafame(
     pool: PoolTypeT,
     data: pd.DataFrame,
     method: str = "kelley",
-    ddof: Optional[int] = 1,
-    skipna: Optional[bool] = True,
-    ndigits: Optional[int] = 4,
-    correction: Optional[bool] = False,
-    multiplier: Optional[int] = 1,
-    conf_level: Optional[float] = None,
-    alpha_lower: Optional[float] = None,
-    alpha_upper: Optional[float] = None,
-    tol: Optional[float] = 1e-9,
-    max_iter: Optional[int] = 10000,
+    ddof: int | None = 1,
+    skipna: bool | None = True,
+    ndigits: int | None = 4,
+    correction: bool | None = False,
+    multiplier: int | None = 1,
+    conf_level: float | None = None,
+    alpha_lower: float | None = None,
+    alpha_upper: float | None = None,
+    tol: float | None = 1e-9,
+    max_iter: int | None = 10000,
 ) -> pd.DataFrame:
     """Prepares result pd.DataFrame for cv."""
     data = data.select_dtypes(include="number")
@@ -63,9 +61,9 @@ def prepare_cv_datafame(
 def prepare_cqv_datafame(
     pool: PoolTypeT,
     data: pd.DataFrame,
-    ndigits: Optional[int] = 4,
-    interpolation: Optional[str] = "linear",
-    multiplier: Optional[int] = 1,
+    ndigits: int | None = 4,
+    interpolation: str | None = "linear",
+    multiplier: int | None = 1,
 ) -> pd.DataFrame:
     """Prepares result pd.DataFrame for cqv."""
     data = data.select_dtypes(include="number")

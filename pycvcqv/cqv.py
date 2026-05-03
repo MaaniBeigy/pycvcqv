@@ -1,8 +1,6 @@
 """Coefficient of Quartile Variation (cqv)."""
 
 # --------------------------- Import libraries and functions --------------------------
-from typing import Optional, Union
-
 import pandas as pd
 
 from pycvcqv.checkers import is_numeric
@@ -14,21 +12,21 @@ from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, 
 # -------------------------------- function definition --------------------------------
 @is_numeric  # decorator to check whether the input vector is numeric
 def cqv(
-    data: Union[
-        pd.Series,
-        ArrayFloat,
-        ArrayInt,
-        ListFloat,
-        ListInt,
-        TupleFloat,
-        TupleInt,
-        pd.DataFrame,
-    ],
-    ndigits: Optional[int] = 4,
-    interpolation: Optional[str] = "linear",
-    multiplier: Optional[int] = 1,
-    num_threads: Optional[int] = 1,
-) -> Union[pd.DataFrame, float]:
+    data: (
+        pd.Series
+        | ArrayFloat
+        | ArrayInt
+        | ListFloat
+        | ListInt
+        | TupleFloat
+        | TupleInt
+        | pd.DataFrame
+    ),
+    ndigits: int | None = 4,
+    interpolation: str | None = "linear",
+    multiplier: int | None = 1,
+    num_threads: int | None = 1,
+) -> pd.DataFrame | float:
     """Coefficient of quartile variation.
 
     Args:

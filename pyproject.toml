@@ -1,74 +1,87 @@
 [build-system]
 build-backend = "poetry.core.masonry.api"
-requires = ["poetry_core>=1.0.0"]
+requires = ["poetry-core>=2.0.0"]
 
-[tool.poetry]
-authors = ["MaaniBeigy <manibeygi@gmail.com>"]
-description = "Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI) "
-homepage = "https://github.com/MaaniBeigy/pycvcqv"
-license = "MIT"
+# Project metadata follows PEP 621. Poetry 2.x prefers this over the legacy
+# `[tool.poetry]` keys for everything except dependency specs (which we keep
+# under `[tool.poetry.*]` so we can use Poetry's `^` / `~` version syntax).
+[project]
 name = "pycvcqv"
+version = "0.2.0"
+description = "Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI)"
+license = "MIT"
 readme = "README.md"
-repository = "https://github.com/MaaniBeigy/pycvcqv"
-version = "0.1.18"
-
-# Keywords description https://python-poetry.org/docs/pyproject/#keywords
+requires-python = ">=3.11,<3.15"
+# `dependencies` is filled in by Poetry at build time from
+# [tool.poetry.dependencies] (which uses Poetry's `^` / `~` syntax).
+# PEP 621 requires us to declare it as dynamic when we don't list it statically.
+dynamic = ["dependencies"]
+authors = [
+  {name = "MaaniBeigy", email = "manibeygi@gmail.com"},
+]
 keywords = [
   "coefficient of variation",
   "coefficient of quartile variation",
   "data science",
 ]
-
-# Pypi classifiers: https://pypi.org/classifiers/
+# Note: with `license = "MIT"` set above, the SPDX-equivalent license
+# classifier is added automatically — we no longer list it here.
 classifiers = [
-  #! Update me
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
   "Operating System :: OS Independent",
   "Topic :: Software Development :: Libraries :: Python Modules",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
 
-[tool.poetry.dependencies]
-numpy = "^1.26.4"
-pandas = "*"
-python = ">=3.9,<4.0"
-scipy = "*"
+[project.urls]
+Homepage = "https://github.com/MaaniBeigy/pycvcqv"
+Repository = "https://github.com/MaaniBeigy/pycvcqv"
 
-[tool.poetry.dev-dependencies]
-bandit = "^1.7.4"
-black = {version = "^24.3.0", allow-prereleases = true}
-coverage = "*"
-coverage-badge = "*"
+[tool.poetry]
+# Poetry-specific package configuration (none currently). Metadata above lives
+# in the PEP 621 `[project]` table; dependency specs below use Poetry syntax.
+
+[tool.poetry.dependencies]
+numpy = "^2.4"
+pandas = "^3.0"
+scipy = "^1.17"
+
+[tool.poetry.group.dev.dependencies]
+bandit = "^1.8"
+black = "^26.3"
+coverage = "^7.10"
+coverage-badge = "^1.1"
 darglint = "^1.8.1"
-docstr-coverage = "^2.2.0"
-flake8 = "^4.0.1"
-interrogate = "^1.5.0"
-isort = {extras = ["colors"], version = "^5.10.1"}
-jupyter-book = "*"
-matplotlib = "*"
-mypy = "*"
-mypy-extensions = "*"
-pre-commit = "^2.19.0"
-py = "^1.11.0"
-pydocstyle = "^6.1.1"
-pylint = "^2.13.9"
-pytest = "*"
-pytest-cov = "*"
-pyupgrade = "^2.37.2"
-radon = "^5.1.0"
-safety = "^2.0.0"
+flake8 = "^7.3"
+interrogate = "^1.7"
+isort = {extras = ["colors"], version = "^6.0"}
+jupyter-book = "^1.0"
+matplotlib = "^3.9"
+mypy = "^1.20"
+mypy-extensions = "^1.1"
+pre-commit = "^4.3"
+pydocstyle = "^6.3"
+pylint = "^4.0"
+pytest = "^9.0"
+pytest-cov = "^7.0"
+pyupgrade = "^3.21"
+radon = "^6.0"
+safety = "^3.6"
+# coverage-badge still imports the legacy `pkg_resources` module, which is no
+# longer bundled with modern Python venvs. Pin setuptools so the import works.
+# Floor at 78.1.1 to avoid CVE-2025-47273 (path traversal in PackageIndex.download).
+setuptools = "^78.1.1"
 
 [tool.black]
 # https://github.com/psf/black
 color = true
 line-length = 88
-target-version = ["py37"]
+target-version = ["py311"]
 
 exclude = '''
 /(
@@ -89,7 +102,7 @@ exclude = '''
 [tool.isort]
 # https://github.com/timothycrosley/isort/
 line_length = 88
-py_version = 37
+py_version = 311
 
 color_output = true
 force_grid_wrap = 0
@@ -103,6 +116,7 @@ use_parentheses = true
 
 [tool.mypy]
 # https://mypy.readthedocs.io/en/latest/config_file.html#using-a-pyproject-toml-file
+python_version = "3.11"
 color_output = true
 pretty = true
 show_traceback = true
@@ -128,7 +142,7 @@ warn_unused_configs = true
 warn_unused_ignores = true
 
 [tool.pytest.ini_options]
-# https://docs.pytest.org/en/6.2.x/customize.html#pyproject-toml
+# https://docs.pytest.org/en/stable/reference/customize.html#pyproject-toml
 # Directories that are not visited by pytest collector:
 doctest_optionflags = ["NUMBER", "NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL"]
 norecursedirs = ["hooks", "*.egg", ".eggs", "dist", "build", "docs", ".tox", ".git", "__pycache__"]
@@ -143,17 +157,14 @@ addopts = [
 
 [tool.coverage.run]
 source = ['pycvcqv', 'tests']
-
-[coverage.paths]
-
-source = 'pycvcqv'
-
-[coverage.run]
 branch = true
 
-[coverage.report]
+[tool.coverage.report]
 fail_under = 50
 show_missing = true
+
+[tool.coverage.paths]
+source = ['pycvcqv']
 
 [tool.bandit]
 skips = ["B101", "B601"]
@@ -208,6 +219,20 @@ max-line-length = 88
 
 [tool.pydocstyle]
 convention = "google"
+
+[tool.pylint.format]
+max-line-length = 88
+
+[tool.pylint.messages_control]
+# R0917 too-many-positional-arguments: the public API surface here is wide on
+#   purpose (statistical functions take many tunable parameters), so we accept
+#   the count rather than refactor every entry point into a config object.
+# C0114/C0115/C0116 are covered by interrogate + pydocstyle elsewhere.
+disable = [
+  "too-many-positional-arguments",
+  "too-many-arguments",
+  "too-many-locals",
+]
 
 [tool.radon]
 cc_min = "A"

@@ -1,8 +1,6 @@
 """Formulas of cvcqv."""
 
 # --------------------------- Import libraries and functions --------------------------
-from typing import Optional  # Optional type for function arguments.
-
 import math
 
 import numpy as np  # To handle numeric infinity values.
@@ -14,11 +12,11 @@ from pycvcqv.types import NumArrayLike  # custom numeric array defined in types.
 # -------------------------------- function definition --------------------------------
 def _cv(
     data: NumArrayLike,
-    ddof: Optional[int] = 1,
-    skipna: Optional[bool] = True,
-    ndigits: Optional[int] = 4,
-    correction: Optional[bool] = False,
-    multiplier: Optional[int] = 1,
+    ddof: int | None = 1,
+    skipna: bool | None = True,
+    ndigits: int | None = 4,
+    correction: bool | None = False,
+    multiplier: int | None = 1,
 ) -> float:
     """Internal function to calculate cv."""
     _data: pd.Series = pd.Series(data)
@@ -55,10 +53,10 @@ def _cv(
 
 def _noncentral_t_parameter(
     data: NumArrayLike,
-    ddof: Optional[int] = 1,
-    skipna: Optional[bool] = True,
-    ndigits: Optional[int] = 4,
-    correction: Optional[bool] = False,
+    ddof: int | None = 1,
+    skipna: bool | None = True,
+    ndigits: int | None = 4,
+    correction: bool | None = False,
 ) -> float:
     """Internal function to calculate noncentral t parameter (NCP)."""
     _data: pd.Series = pd.Series(data)
@@ -71,9 +69,9 @@ def _noncentral_t_parameter(
 
 def _cqv(
     data: NumArrayLike,
-    ndigits: Optional[int] = 4,
-    interpolation: Optional[str] = "linear",
-    multiplier: Optional[int] = 1,
+    ndigits: int | None = 4,
+    interpolation: str | None = "linear",
+    multiplier: int | None = 1,
 ) -> float:
     """Internal function to calculate cqv."""
     _data: pd.Series = pd.Series(data)

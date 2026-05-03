@@ -1,14 +1,14 @@
 default_language_version:
-  python: python3.11
+  python: python3.12
 
-default_stages: [commit, push]
+default_stages: [pre-commit, pre-push]
 files: ''
 exclude: '^.txt$'
 fail_fast: false
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: check-yaml
       - id: check-added-large-files
@@ -32,7 +32,7 @@ repos:
     hooks:
       - id: pyupgrade
         name: pyupgrade
-        entry: poetry run pyupgrade --py37-plus
+        entry: poetry run pyupgrade --py311-plus
         types: [python]
         language: system
 
@@ -53,8 +53,8 @@ repos:
         language: system
 
 
-  - repo: https://github.com/pycqa/bandit
-    rev: 1.7.0
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.8.6
     hooks:
       - id: bandit
         language_version: python3
@@ -70,7 +70,7 @@ repos:
         types: [python]
         language: system
   - repo: https://github.com/econchick/interrogate
-    rev: 1.5.0  # or master if you're bold
+    rev: 1.7.0
     hooks:
       - id: interrogate
         args: [--quiet, --fail-under=50]

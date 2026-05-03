@@ -2,17 +2,12 @@
 
 from typing import Any
 
-import sys
+from importlib import metadata as importlib_metadata
 
 from pycvcqv.checkers import is_numeric
 from pycvcqv.cqv import cqv
 from pycvcqv.cv import coefficient_of_variation
 from pycvcqv.dataframe import cqv_dataframe, cv_dataframe
-
-if sys.version_info >= (3, 8):  # pragma: no cover
-    from importlib import metadata as importlib_metadata
-else:  # pragma: no cover
-    import importlib_metadata
 
 
 # -------------------------------- function definition --------------------------------

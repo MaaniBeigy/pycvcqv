@@ -78,15 +78,23 @@ def test_conf_limits_nct_minimize_conf_level_95():
 
 
 def test_conf_limits_nct_minimize_alpha_lower_0_01_alpha_upper_0_04():
-    """Tests the conf_limits_nct_minimize when alpha levels are non-zero."""
+    """Tests the conf_limits_nct_minimize when alpha levels are non-zero.
+
+    The fixture values match the conf_limits_nct_minimize_scalar reference (the
+    two methods should converge to the same NCP) with a slightly looser
+    tolerance to account for the different optimizer (minimize vs.
+    minimize_scalar/Brent). Previously this test was locked to the output of a
+    copy-paste bug that fed valid_alpha_upper into the lower-limit objective;
+    the expected values were updated when that bug was fixed.
+    """
     result = conf_limits_nct_minimize(
         ncp=2.83, dof=126, conf_level=None, alpha_lower=0.01, alpha_upper=0.04
     )
 
-    assert result["lower_limit"] == pytest.approx(1.04627633833502, rel=1e-9)
-    assert result["prob_less_lower"] == pytest.approx(0.03999999981306357, rel=1e-9)
-    assert result["upper_limit"] == pytest.approx(4.602743332359321, rel=1e-9)
-    assert result["prob_greater_upper"] == pytest.approx(0.040000000631974, rel=1e-9)
+    assert result["lower_limit"] == pytest.approx(0.46169197879015583, rel=1e-4)
+    assert result["prob_less_lower"] == pytest.approx(0.01, abs=1e-6)
+    assert result["upper_limit"] == pytest.approx(4.602743332359321, rel=1e-4)
+    assert result["prob_greater_upper"] == pytest.approx(0.04, abs=1e-6)
 
 
 def test_conf_limits_nct_minimize_alpha_lower_0_alpha_upper_0_05():
