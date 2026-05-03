@@ -1,8 +1,6 @@
 """Miller confidence interval."""
 
 # --------------------------- Import libraries and functions --------------------------
-from typing import Dict, Optional, Union
-
 import math
 from statistics import NormalDist
 
@@ -14,37 +12,41 @@ from pycvcqv.types import ArrayFloat, ArrayInt, ListFloat, ListInt, TupleFloat, 
 
 # -------------------------------- function definition --------------------------------
 def _miller_cv_confidence_interval(
-    data: Union[
-        pd.Series,
-        ArrayInt,
-        ArrayFloat,
-        ListFloat,
-        ListInt,
-        TupleFloat,
-        TupleInt,
-        pd.DataFrame,
-    ],
-    ddof: Optional[int] = 1,
-    skipna: Optional[bool] = True,
-    ndigits: Optional[int] = 4,
-    correction: Optional[bool] = False,
-    multiplier: Optional[int] = 1,
-    conf_level: Optional[float] = None,
-    alpha_lower: Optional[float] = None,
-    alpha_upper: Optional[float] = None,
-    tol: Optional[float] = 1e-9,  # unused (kept for API consistency)
-    max_iter: Optional[int] = 10000,  # unused (kept for API consistency)
-) -> Dict[str, Union[float, int]]:
+    data: (
+        pd.Series
+        | ArrayInt
+        | ArrayFloat
+        | ListFloat
+        | ListInt
+        | TupleFloat
+        | TupleInt
+        | pd.DataFrame
+    ),
+    ddof: int | None = 1,
+    skipna: bool | None = True,
+    ndigits: int | None = 4,
+    correction: bool | None = False,
+    multiplier: int | None = 1,
+    conf_level: float | None = None,
+    alpha_lower: float | None = None,
+    alpha_upper: float | None = None,
+    tol: float | None = 1e-9,  # unused (kept for API consistency)
+    max_iter: int | None = 10000,  # unused (kept for API consistency)
+) -> dict[str, float | int]:
     """Compute Miller's confidence interval for the coefficient of variation (CV).
 
     Args:
         data: A sequence of numeric values.
-        skipna: If True, ignore missing values (None/NaN). If False, raise if any are present.
+        skipna: If True, ignore missing values (None/NaN). If False, raise if
+            any are present.
         ddof: Delta degrees of freedom used in CV calculation.
         ndigits: Number of decimal digits for rounding outputs.
-        correction: Whether to apply bias correction (kept for API compatibility).
-        multiplier: A multiplier applied to the reported CV and bounds (e.g., 100 for percent).
-        conf_level: Confidence level in (0, 1). Mutually exclusive with alpha_lower/alpha_upper.
+        correction: Whether to apply bias correction (kept for API
+            compatibility).
+        multiplier: A multiplier applied to the reported CV and bounds
+            (e.g., 100 for percent).
+        conf_level: Confidence level in (0, 1). Mutually exclusive with
+            alpha_lower/alpha_upper.
         alpha_lower: Lower tail probability. Mutually exclusive with conf_level.
         alpha_upper: Upper tail probability. Mutually exclusive with conf_level.
         tol: Numerical tolerance (unused; kept for API consistency).
@@ -60,8 +62,8 @@ def _miller_cv_confidence_interval(
         - conf_level: Confidence level used.
 
     Raises:
-        ValueError: If inputs are invalid (e.g., insufficient length, invalid alphas/conf_level,
-            or missing values when skipna is False).
+        ValueError: If inputs are invalid (e.g., insufficient length, invalid
+            alphas/conf_level, or missing values when skipna is False).
     """
 
     # unused parameters kept for API compatibility
@@ -100,6 +102,9 @@ def _miller_cv_confidence_interval(
                 alpha_upper = alpha_lower
             if alpha_lower is None:
                 alpha_lower = alpha_upper
+            # Both are guaranteed non-None after the propagation above (we got
+            # here because at least one was non-None). Assert for mypy.
+            assert alpha_upper is not None
             alpha_over_2 = float(alpha_upper)
 
     if not 0.0 < alpha_over_2 < 0.5:
