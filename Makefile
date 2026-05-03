@@ -9,18 +9,19 @@ VERSION := latest
 #* Poetry
 .PHONY: poetry-download
 poetry-download:
-	# curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | $(PYTHON) -
 	curl -sSL https://install.python-poetry.org | $(PYTHON) -
 
 .PHONY: poetry-remove
 poetry-remove:
-	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | $(PYTHON) - --uninstall
+	curl -sSL https://install.python-poetry.org | $(PYTHON) - --uninstall
 
 #* Installation
 .PHONY: install
 install:
-	poetry lock -n && poetry export --without-hashes > requirements.txt
-	poetry install -n
+	poetry self add poetry-plugin-export || true
+	poetry lock
+	poetry export --without-hashes -f requirements.txt -o requirements.txt
+	poetry install
 	-poetry run mypy --install-types --non-interactive pycvcqv/ tests/
 
 .PHONY: pre-commit-install
@@ -30,7 +31,7 @@ pre-commit-install:
 #* Formatters
 .PHONY: codestyle
 codestyle:
-	poetry run pyupgrade --exit-zero-even-if-changed --py37-plus **/*.py
+	$(SHELL) -c 'shopt -s globstar; poetry run pyupgrade --exit-zero-even-if-changed --py311-plus pycvcqv/**/*.py tests/**/*.py'
 	poetry run isort --settings-path pyproject.toml ./
 	poetry run black --config pyproject.toml ./
 
@@ -77,7 +78,16 @@ mypy:
 .PHONY: check-safety
 check-safety:
 	poetry check
-	poetry run safety check --policy-file safety_policy.yml --full-report
+	@# `safety scan` (v3) needs an authenticated user and will prompt for
+	@# browser-based registration in a TTY. Only run it when SAFETY_API_KEY is
+	@# set. Otherwise fall back to the still-functional (deprecated) `safety
+	@# check`, which doesn't need auth.
+	@if [ -n "$$SAFETY_API_KEY" ]; then \
+		poetry run safety scan --policy-file safety_policy.yml --output screen; \
+	else \
+		echo "SAFETY_API_KEY not set — using legacy 'safety check' (no auth)."; \
+		poetry run safety check --policy-file safety_policy.yml --full-report; \
+	fi
 	poetry run bandit -ll --configfile pyproject.toml --recursive pycvcqv tests
 
 .PHONY: lint
