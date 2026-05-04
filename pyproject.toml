@@ -77,7 +77,7 @@ safety = "^3.6"
 # coverage-badge still imports the legacy `pkg_resources` module, which is no
 # longer bundled with modern Python venvs. Pin setuptools so the import works.
 # Floor at 78.1.1 to avoid CVE-2025-47273 (path traversal in PackageIndex.download).
-setuptools = "^78.1.1"
+setuptools = "^82.0.1"
 twine = "^6.2.0"
 
 [tool.black]
