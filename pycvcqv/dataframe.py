@@ -1,6 +1,7 @@
 """The dataframe module."""
 
 # --------------------------- Import libraries and functions --------------------------
+import numpy as np
 import pandas as pd
 
 from pycvcqv.multithread import multithread_cqv_processor, multithread_cv_processor
@@ -24,6 +25,8 @@ def cv_dataframe(
     alpha_upper: float | None = None,
     tol: float | None = 1e-9,
     max_iter: int | None = 10000,
+    num_replicates: int | None = None,
+    random_state: int | np.random.Generator | None = None,
 ) -> pd.DataFrame:
     """Selects method to perform cv calculations on dataframe or array-like objects."""
     operators: list[CvProcessor] = list(
@@ -49,6 +52,8 @@ def cv_dataframe(
         alpha_upper,
         tol,
         max_iter,
+        num_replicates,
+        random_state,
     )
 
 

@@ -3,6 +3,7 @@
 # --------------------------- Import libraries and functions --------------------------
 from functools import partial
 
+import numpy as np
 import pandas as pd
 
 from pycvcqv.cv_confidence_interval import _cv_confidence_intervals
@@ -25,6 +26,8 @@ def prepare_cv_datafame(
     alpha_upper: float | None = None,
     tol: float | None = 1e-9,
     max_iter: int | None = 10000,
+    num_replicates: int | None = None,
+    random_state: int | np.random.Generator | None = None,
 ) -> pd.DataFrame:
     """Prepares result pd.DataFrame for cv."""
     data = data.select_dtypes(include="number")
@@ -43,6 +46,8 @@ def prepare_cv_datafame(
             alpha_upper=alpha_upper,
             tol=tol,
             max_iter=max_iter,
+            num_replicates=num_replicates,
+            random_state=random_state,
         ),
         (pd.Series(data.loc[:, col]) for col in data.columns),
     )

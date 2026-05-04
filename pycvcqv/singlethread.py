@@ -3,6 +3,7 @@
 # --------------------------- Import libraries and functions --------------------------
 import multiprocessing as mp
 
+import numpy as np
 import pandas as pd
 
 from pycvcqv.prepare_output import prepare_cqv_datafame, prepare_cv_datafame
@@ -23,6 +24,8 @@ def singlethread_cv_processor(
     alpha_upper: float | None = None,
     tol: float | None = 1e-9,
     max_iter: int | None = 10000,
+    num_replicates: int | None = None,
+    random_state: int | np.random.Generator | None = None,
 ) -> pd.DataFrame:
     """Performs single thread cv for pd.DataFrame."""
     print(num_threads)
@@ -41,6 +44,8 @@ def singlethread_cv_processor(
             alpha_upper=alpha_upper,
             tol=tol,
             max_iter=max_iter,
+            num_replicates=num_replicates,
+            random_state=random_state,
         )
     pool.close()
     return result

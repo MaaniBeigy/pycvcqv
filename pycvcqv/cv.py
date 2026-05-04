@@ -3,6 +3,7 @@
 # --------------------------- Import libraries and functions --------------------------
 from typing import Any
 
+import numpy as np
 import pandas as pd
 
 from pycvcqv.checkers import is_numeric
@@ -37,6 +38,8 @@ def coefficient_of_variation(
     alpha_upper: float | None = None,
     tol: float | None = 1e-9,
     max_iter: int | None = 10000,
+    num_replicates: int | None = None,
+    random_state: int | np.random.Generator | None = None,
 ) -> dict[str, Any] | pd.DataFrame:
     """Coefficient of variation.
 
@@ -67,6 +70,12 @@ def coefficient_of_variation(
             Default is 1e-9.
         max_iter (int, optional): Maximum number of iterations to perform.
             Default is 10000.
+        num_replicates (int, optional): Number of bootstrap resamples (R in
+            R-speak). Only consumed by the bootstrap-based methods
+            ("norm", "basic", "perc", "bca"). Defaults to 1000.
+        random_state (int or numpy.random.Generator, optional): Seed or
+            pre-built `numpy.random.Generator` for reproducible bootstrap
+            draws. Only consumed by the bootstrap-based methods.
 
 
     Returns:
@@ -103,6 +112,8 @@ def coefficient_of_variation(
             alpha_upper=alpha_upper,
             tol=tol,
             max_iter=max_iter,
+            num_replicates=num_replicates,
+            random_state=random_state,
         )
     # --------------------------------- non DataFrame  --------------------------------
     else:
@@ -119,6 +130,8 @@ def coefficient_of_variation(
             alpha_upper=alpha_upper,
             tol=tol,
             max_iter=max_iter,
+            num_replicates=num_replicates,
+            random_state=random_state,
         )
 
     return result

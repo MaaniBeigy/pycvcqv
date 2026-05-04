@@ -30,7 +30,7 @@ Python port of [cvcqv](https://github.com/MaaniBeigy/cvcqv)
 
 `pycvcqv` provides some easy-to-use functions to calculate the
 Coefficient of Variation (`cv`) and Coefficient of Quartile Variation (`cqv`)
-with confidence intervals provided with all available methods.
+with confidence intervals provided with a variety of methods.
 
 ## Install
 
@@ -76,10 +76,7 @@ cqv(data=data, num_threads=-1)
 
 ## Confidence-interval methods for `cv`
 
-`coefficient_of_variation` accepts a `method` argument that selects the
-confidence-interval estimator. The closed-form methods listed below are
-ported math-for-math from the R [`cvcqv`](https://github.com/MaaniBeigy/cvcqv)
-package.
+`coefficient_of_variation` accepts a `method` argument that selects the confidence-interval estimator.
 
 ```python
 from pycvcqv import coefficient_of_variation
@@ -93,27 +90,36 @@ for method in (
     "kelley", "mckay", "miller", "vangel",
     "mahmoudvand_hassani", "equal_tailed",
     "shortest_length", "normal_approximation",
+    "norm", "basic", "perc", "bca",
 ):
     print(method, coefficient_of_variation(
-        data=x, method=method, multiplier=100, ndigits=3,
+        data=x,
+        method=method,
+        multiplier=100,
+        ndigits=3,
+        num_replicates=10000,
+        random_state=42,
     ))
 ```
 
-The output (95% CI, `multiplier=100`, `ndigits=3`):
+Output (95% CI, `multiplier=100`, `ndigits=3`, bootstrap methods use
+`num_replicates=10000`, `random_state=42`):
 
-| method                 |    est |  lower |   upper | description                            |
-|:-----------------------|-------:|-------:|--------:|:---------------------------------------|
-| `kelley`               | 57.774 | 41.303 |  97.950 | cv with Kelley 95% CI                  |
-| `mckay`                | 57.774 | 41.441 | 108.483 | cv with McKay 95% CI                   |
-| `miller`               | 57.774 | 34.053 |  81.495 | cv with Miller 95% CI                  |
-| `vangel`               | 57.774 | 40.955 | 103.931 | cv with Vangel 95% CI                  |
-| `mahmoudvand_hassani`  | 57.774 | 43.476 |  82.857 | cv with Mahmoudvand-Hassani 95% CI     |
-| `equal_tailed`         | 57.774 | 43.937 |  84.383 | cv with Equal-Tailed 95% CI            |
-| `shortest_length`      | 57.774 | 42.015 |  81.013 | cv with Shortest-Length 95% CI         |
-| `normal_approximation` | 57.774 | 44.533 |  85.272 | cv with Normal Approximation 95% CI    |
+| method                 |    est |  lower |   upper | description                                        |
+|:-----------------------|-------:|-------:|--------:|:---------------------------------------------------|
+| `kelley`               | 57.774 | 41.303 |  97.950 | cv with Kelley 95% CI                              |
+| `mckay`                | 57.774 | 41.441 | 108.483 | cv with McKay 95% CI                               |
+| `miller`               | 57.774 | 34.053 |  81.495 | cv with Miller 95% CI                              |
+| `vangel`               | 57.774 | 40.955 | 103.931 | cv with Vangel 95% CI                              |
+| `mahmoudvand_hassani`  | 57.774 | 43.476 |  82.857 | cv with Mahmoudvand-Hassani 95% CI                 |
+| `equal_tailed`         | 57.774 | 43.937 |  84.383 | cv with Equal-Tailed 95% CI                        |
+| `shortest_length`      | 57.774 | 42.015 |  81.013 | cv with Shortest-Length 95% CI                     |
+| `normal_approximation` | 57.774 | 44.533 |  85.272 | cv with Normal Approximation 95% CI                |
+| `norm`                 | 57.774 | 38.850 |  78.379 | cv with Normal Approximation Bootstrap 95% CI      |
+| `basic`                | 57.774 | 37.716 |  77.166 | cv with Basic Bootstrap 95% CI                     |
+| `perc`                 | 57.774 | 38.382 |  77.832 | cv with Bootstrap Percentile 95% CI                |
+| `bca`                  | 57.774 | 41.556 |  83.032 | cv with Adjusted Bootstrap Percentile (BCa) 95% CI |
 
-The bootstrap-based methods (`norm`, `basic`, `perc`, `bca`) are not yet
-ported.
 
 ## Credits
 
