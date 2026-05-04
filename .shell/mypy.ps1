@@ -14,6 +14,11 @@ $mypy_result = Select-String -Path ".logs/mypy.txt" -Pattern 'Success' | ForEach
     $_ -replace ':', ''
 }
 
+# If no 'Success' line was found, treat the run as a failure.
+if ([string]::IsNullOrEmpty($mypy_result)) {
+    $mypy_result = "Failure"
+}
+
 # Create an object to store the mypy_result in JSON format
 $jsonOutput = @{
     mypy_result = $mypy_result
@@ -25,9 +30,12 @@ $jsonOutput | Set-Content -Path ".logs/mypy.json"
 # Output the lint score (for verification)
 Write-Output "mypy_result: $mypy_result"
 
-# Remove the old mypy.svg file
-# Remove-Item -Path "assets/images/mypy.svg" -Force -Recurse
+# Read the mypy result back from the JSON so the badge stays in lock-step with
+# the on-disk artifact that downstream tooling consumes.
+$mypy_result = (Get-Content -Path ".logs/mypy.json" -Raw | ConvertFrom-Json).mypy_result
 
-# Generate the mypy badge using pybadges and save it to a file
-# $command = "poetry run python -m pybadges --left-text='mypy' --right-color='brightgreen' --right-text=$mypy_result --embed-logo >> assets/images/mypy.svg"
-# Invoke-Expression $command
+# Pick a color based on whether mypy passed (anybadge requires uppercase names).
+$color = if ($mypy_result -eq "Success") { "GREEN" } else { "RED" }
+
+# Generate the mypy badge using anybadge (already in the venv via dev deps).
+poetry run python -m anybadge --overwrite --label=mypy --value=$mypy_result --color=$color --file=assets/images/mypy.svg
