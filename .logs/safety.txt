@@ -38,7 +38,7 @@ We highly encourage switching to the new `scan` command which is easier to use, 
 
   Using open-source vulnerability database
   Found and scanned 186 packages
-  Timestamp 2026-05-04 01:40:07
+  Timestamp 2026-05-04 02:49:02
   0 vulnerabilities reported
   1 vulnerability ignored
 
