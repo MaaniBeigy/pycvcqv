@@ -2,6 +2,7 @@
 
 # --------------------------- Import libraries and functions --------------------------
 from pycvcqv.kelley import _kelley_cv_confidence_interval
+from pycvcqv.miller import _miller_cv_confidence_interval
 from pycvcqv.types import NumArrayLike  # custom numeric array defined in types.py.
 
 # -------------------------------- function definition --------------------------------
@@ -25,6 +26,7 @@ def _cv_confidence_intervals(
     # ------------- apply corresponding method for cv confidence intervals ------------
     methods = {
         "kelley": _kelley_cv_confidence_interval,
+        "miller": _miller_cv_confidence_interval,
     }
     result: dict[str, float | int] = methods[method](
         data,

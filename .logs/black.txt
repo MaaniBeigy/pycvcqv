@@ -1,2 +1,2 @@
-All done!  f370
-22 files would be left unchanged.
+The "poetry.dev-dependencies" section is deprecated and will be removed in a future version. Use "poetry.group.dev.dependencies" instead.
+3 files would be reformatted, 22 files would be left unchanged.

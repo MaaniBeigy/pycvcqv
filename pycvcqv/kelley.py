@@ -53,8 +53,10 @@ def _kelley_cv_confidence_interval(
         conf_level (float, optional): The confidence level for the interval.
         alpha_lower (float, optional): The significance level for the lower tail.
         alpha_upper (float, optional): The significance level for the upper tail.
-        tol (float, optional): Tolerance for the optimization algorithms. Default is 1e-9.
-        max_iter (int, optional): Maximum number of iterations to perform. Default is 10000.
+        tol (float, optional): Tolerance for the optimization algorithms.
+            Default is 1e-9.
+        max_iter (int, optional): Maximum number of iterations to perform.
+            Default is 10000.
 
     Returns:
         dict: A dictionary with the following keys:
