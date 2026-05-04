@@ -61,7 +61,7 @@ pybadges = "^3.0"
 darglint = "^1.8.1"
 flake8 = "^7.3"
 interrogate = "^1.7"
-isort = {extras = ["colors"], version = "^6.0"}
+isort = {extras = ["colors"], version = "^8.0"}
 jupyter-book = "^1.0"
 matplotlib = "^3.9"
 mypy = "^1.20"
