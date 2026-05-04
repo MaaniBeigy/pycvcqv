@@ -52,10 +52,12 @@ pandas = "^3.0"
 scipy = "^1.17"
 
 [tool.poetry.group.dev.dependencies]
+anybadge = "^1.16"
 bandit = "^1.8"
 black = "^26.3"
 coverage = "^7.10"
 coverage-badge = "^1.1"
+pybadges = "^3.0"
 darglint = "^1.8.1"
 flake8 = "^7.3"
 interrogate = "^1.7"

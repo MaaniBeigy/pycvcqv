@@ -98,7 +98,8 @@ def conf_limits_nct_minimize_scalar(
 
     This function uses the scipy.optimize.minimize_scalar method to estimate
     the lower and upper confidence limits for the noncentrality
-    parameter (NCP) given the degrees of freedom, confidence level, and other parameters.
+    parameter (NCP) given the degrees of freedom, confidence level, and other
+    parameters.
 
     Args:
         ncp (float): The observed noncentrality parameter. Can be passed as 't_value'.
@@ -106,15 +107,19 @@ def conf_limits_nct_minimize_scalar(
         conf_level (float, optional): The confidence level for the interval.
         alpha_lower (float, optional): The significance level for the lower tail.
         alpha_upper (float, optional): The significance level for the upper tail.
-        tol (float, optional): Tolerance for the optimization algorithms. Default is 1e-9.
-        max_iter (int, optional): Maximum number of iterations to perform. Default is 10000.
+        tol (float, optional): Tolerance for the optimization algorithms.
+            Default is 1e-9.
+        max_iter (int, optional): Maximum number of iterations to perform.
+            Default is 10000.
 
     Returns:
         dict: A dictionary with the following keys:
             - lower_limit (float): Lower confidence limit for the NCP.
-            - prob_less_lower (float): Probability that the NCP is less than the lower limit.
+            - prob_less_lower (float): Probability that the NCP is less than
+              the lower limit.
             - upper_limit (float): Upper confidence limit for the NCP.
-            - prob_greater_upper (float): Probability that the NCP is greater than the upper limit.
+            - prob_greater_upper (float): Probability that the NCP is greater
+              than the upper limit.
 
     """
     # ------ Calculates alpha tails of noncentral t parameter confidence interval -----
@@ -187,7 +192,8 @@ def conf_limits_nct_minimize(
 
     This function uses the scipy.optimize.minimize method to estimate
     the lower and upper confidence limits for the noncentrality
-    parameter (NCP) given the degrees of freedom, confidence level, and other parameters.
+    parameter (NCP) given the degrees of freedom, confidence level, and other
+    parameters.
 
     Args:
         ncp (float): The observed noncentrality parameter. Can be passed as 't_value'.
@@ -195,14 +201,17 @@ def conf_limits_nct_minimize(
         conf_level (float, optional): The confidence level for the interval.
         alpha_lower (float, optional): The significance level for the lower tail.
         alpha_upper (float, optional): The significance level for the upper tail.
-        tol (float, optional): Tolerance for the optimization algorithms. Default is 1e-9.
+        tol (float, optional): Tolerance for the optimization algorithms.
+            Default is 1e-9.
 
     Returns:
         dict: A dictionary with the following keys:
             - lower_limit (float): Lower confidence limit for the NCP.
-            - prob_less_lower (float): Probability that the NCP is less than the lower limit.
+            - prob_less_lower (float): Probability that the NCP is less than
+              the lower limit.
             - upper_limit (float): Upper confidence limit for the NCP.
-            - prob_greater_upper (float): Probability that the NCP is greater than the upper limit.
+            - prob_greater_upper (float): Probability that the NCP is greater
+              than the upper limit.
 
     """
     # ------ Calculates alpha tails of noncentral t parameter confidence interval -----
@@ -258,7 +267,8 @@ def conf_limits_nct(
     the noncentral t-distribution.
 
     This function computes the lower and upper confidence limits for the noncentrality
-    parameter (NCP) given the degrees of freedom, confidence level, and other parameters.
+    parameter (NCP) given the degrees of freedom, confidence level, and other
+    parameters.
     It uses two different methods of scipy.optimize.minimize and
     scipy.optimize.minimize_scaler to estimate the limits and selects the most accurate
     one.
@@ -269,15 +279,19 @@ def conf_limits_nct(
         conf_level (float, optional): The confidence level for the interval.
         alpha_lower (float, optional): The significance level for the lower tail.
         alpha_upper (float, optional): The significance level for the upper tail.
-        tol (float, optional): Tolerance for the optimization algorithms. Default is 1e-9.
-        max_iter (int, optional): Maximum number of iterations to perform. Default is 10000.
+        tol (float, optional): Tolerance for the optimization algorithms.
+            Default is 1e-9.
+        max_iter (int, optional): Maximum number of iterations to perform.
+            Default is 10000.
 
     Returns:
         dict: A dictionary with the following keys:
             - lower_limit (float): Lower confidence limit for the NCP.
-            - prob_less_lower (float): Probability that the NCP is less than the lower limit.
+            - prob_less_lower (float): Probability that the NCP is less than
+              the lower limit.
             - upper_limit (float): Upper confidence limit for the NCP.
-            - prob_greater_upper (float): Probability that the NCP is greater than the upper limit.
+            - prob_greater_upper (float): Probability that the NCP is greater
+              than the upper limit.
 
     """
     # ------ Calculates alpha tails of noncentral t parameter confidence interval -----
