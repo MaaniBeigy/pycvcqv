@@ -5,20 +5,20 @@
 [![PyPI](https://img.shields.io/pypi/v/pycvcqv?logo=pypi&logoColor=white&logoSize=auto)](https://pypi.org/project/pycvcqv/)
 [![Python Version](https://img.shields.io/pypi/pyversions/pycvcqv?logo=python&logoColor=white&logoSize=auto)](https://pypi.org/project/pycvcqv/)
 [![Build status](https://github.com/MaaniBeigy/pycvcqv/workflows/build/badge.svg)](https://github.com/MaaniBeigy/pycvcqv/actions?query=workflow%3Abuild)
-[![coverage report](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/coverage.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/coverage.txt)
+[![coverage report](assets/images/coverage.svg)](.logs/coverage.txt)
 [![Downloads](https://static.pepy.tech/badge/pycvcqv)](https://pepy.tech/project/pycvcqv)
 [!["Buy Me A Coffee"](https://img.shields.io/badge/-buy_me_a%C2%A0coffee-gray?logo=buy-me-a-coffee)](https://buymeacoffee.com/maani)
-[![static analysis](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fmypy.json&query=%24.mypy_result&label=mypy&color=brightgreen)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/mypy.txt)
+[![static analysis](assets/images/mypy.svg)](.logs/mypy.txt)
 [![dependencies](https://img.shields.io/github/issues-pr/MaaniBeigy/pycvcqv/dependencies?logo=dependabot&logoColor=white&logoSize=auto&label=outdated%20dependencies)](https://github.com/MaaniBeigy/pycvcqv/pulls?q=is%3Aopen+is%3Apr+label%3Adependencies)
-[![vulnerabilities](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fsafety.json&query=%24.vulnerabilities_found&label=vulnerabilities&labelColor=%234AADF1&color=%230A0C10)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/safety.txt)
-[![maintainability](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fmaintainability.json&query=%24.maintainability&label=maintainability&color=brightgreen)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/maintainability.txt)
-[![complexity](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fcomplexity.json&query=%24.complexity&label=complexity&color=brightgreen)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/complexity.txt)
-[![lint report](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMaaniBeigy%2Fpycvcqv%2Fmain%2F.logs%2Fpylint-log.json&query=%24.lintscore&label=pylint&color=brightgreen)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/pylint-log.txt)
-[![docstring](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/assets/images/interrogate_badge.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/docstring.txt)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/black.txt)
-[![Security: bandit](https://img.shields.io/badge/security-bandit-green.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/bandit.txt)
-[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/MaaniBeigy/pycvcqv/blob/master/.pre-commit-config.yaml)
-[![License](https://img.shields.io/github/license/MaaniBeigy/pycvcqv)](https://github.com/MaaniBeigy/pycvcqv/blob/master/LICENSE)
+[![vulnerabilities](assets/images/vulnerabilities.svg)](.logs/safety.json)
+[![maintainability](assets/images/maintainability.svg)](.logs/maintainability.txt)
+[![complexity](assets/images/complexity.svg)](.logs/complexity.txt)
+[![lint report](assets/images/pylint.svg)](.logs/pylint-log.txt)
+[![docstring](assets/images/interrogate_badge.svg)](.logs/docstring.txt)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](.logs/black.txt)
+[![Security: bandit](https://img.shields.io/badge/security-bandit-green.svg)](.logs/bandit.txt)
+[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](.pre-commit-config.yaml)
+[![License](https://img.shields.io/github/license/MaaniBeigy/pycvcqv)](LICENSE)
 
 Find homogeneity with confidence.
 
@@ -73,6 +73,47 @@ cqv(data=data, num_threads=-1)
 # 0   col-1  0.3889
 # 1   col-2  0.0732
 ```
+
+## Confidence-interval methods for `cv`
+
+`coefficient_of_variation` accepts a `method` argument that selects the
+confidence-interval estimator. The closed-form methods listed below are
+ported math-for-math from the R [`cvcqv`](https://github.com/MaaniBeigy/cvcqv)
+package.
+
+```python
+from pycvcqv import coefficient_of_variation
+
+x = [
+    0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5, 4.4,
+    4.6, 5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9,
+]
+
+for method in (
+    "kelley", "mckay", "miller", "vangel",
+    "mahmoudvand_hassani", "equal_tailed",
+    "shortest_length", "normal_approximation",
+):
+    print(method, coefficient_of_variation(
+        data=x, method=method, multiplier=100, ndigits=3,
+    ))
+```
+
+The output (95% CI, `multiplier=100`, `ndigits=3`):
+
+| method                 |    est |  lower |   upper | description                            |
+|:-----------------------|-------:|-------:|--------:|:---------------------------------------|
+| `kelley`               | 57.774 | 41.303 |  97.950 | cv with Kelley 95% CI                  |
+| `mckay`                | 57.774 | 41.441 | 108.483 | cv with McKay 95% CI                   |
+| `miller`               | 57.774 | 34.053 |  81.495 | cv with Miller 95% CI                  |
+| `vangel`               | 57.774 | 40.955 | 103.931 | cv with Vangel 95% CI                  |
+| `mahmoudvand_hassani`  | 57.774 | 43.476 |  82.857 | cv with Mahmoudvand-Hassani 95% CI     |
+| `equal_tailed`         | 57.774 | 43.937 |  84.383 | cv with Equal-Tailed 95% CI            |
+| `shortest_length`      | 57.774 | 42.015 |  81.013 | cv with Shortest-Length 95% CI         |
+| `normal_approximation` | 57.774 | 44.533 |  85.272 | cv with Normal Approximation 95% CI    |
+
+The bootstrap-based methods (`norm`, `basic`, `perc`, `bca`) are not yet
+ported.
 
 ## Credits
 
