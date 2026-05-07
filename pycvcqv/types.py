@@ -48,3 +48,20 @@ CvProcessor = Callable[
     ],
     pd.DataFrame,
 ]
+CqvProcessor = Callable[
+    [
+        pd.DataFrame,
+        str | None,
+        int | None,
+        str | None,
+        int | None,
+        int | None,
+        bool | None,
+        float | None,
+        float | None,
+        float | None,
+        int | None,
+        int | np.random.Generator | None,
+    ],
+    pd.DataFrame,
+]

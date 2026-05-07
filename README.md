@@ -121,6 +121,42 @@ Output (95% CI, `multiplier=100`, `ndigits=3`, bootstrap methods use
 | `bca`                  | 57.774 | 41.556 |  83.032 | cv with Adjusted Bootstrap Percentile (BCa) 95% CI |
 
 
+## Confidence-interval methods for `cqv`
+
+`cqv` accepts a `method` argument that selects the confidence-interval estimator.
+When `method` is omitted only the point estimate is returned (the legacy behavior).
+
+```python
+from pycvcqv import cqv
+
+x = [
+    0.2, 0.5, 1.1, 1.4, 1.8, 2.3, 2.5, 2.7, 3.5, 4.4,
+    4.6, 5.4, 5.4, 5.7, 5.8, 5.9, 6.0, 6.6, 7.1, 7.9,
+]
+
+for method in ("bonett", "norm", "basic", "perc", "bca"):
+    print(method, cqv(
+        data=x,
+        method=method,
+        multiplier=100,
+        ndigits=3,
+        num_replicates=10000,
+        random_state=42,
+    ))
+```
+
+Output (95% CI, `multiplier=100`, `ndigits=3`, bootstrap methods use
+`num_replicates=10000`, `random_state=42`):
+
+| method   |    est |  lower |  upper | description                                     |
+|:---------|-------:|-------:|-------:|:------------------------------------------------|
+| `bonett` | 45.625 | 24.785 | 77.329 | cqv with Bonett 95% CI                          |
+| `norm`   | 45.625 | 19.937 | 70.403 | cqv with Normal Approximation Bootstrap 95% CI  |
+| `basic`  | 45.625 | 21.081 | 73.923 | cqv with Basic Bootstrap 95% CI                 |
+| `perc`   | 45.625 | 17.327 | 70.169 | cqv with Bootstrap Percentile 95% CI            |
+| `bca`    | 45.625 | 22.006 | 76.331 | cqv with Adjusted Bootstrap Percentile (BCa) 95% CI |
+
+
 ## Credits
 
 [![🚀 Your next Python package needs a bleeding-edge project structure.](https://img.shields.io/badge/python--package--template-%F0%9F%9A%80-brightgreen)](https://github.com/TezRomacH/python-package-template)

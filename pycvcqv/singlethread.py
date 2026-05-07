@@ -53,20 +53,34 @@ def singlethread_cv_processor(
 
 def singlethread_cqv_processor(
     data: pd.DataFrame,
+    method: str | None = None,
     ndigits: int | None = 4,
     interpolation: str | None = "linear",
     multiplier: int | None = 1,
     num_threads: int | None = 1,
+    skipna: bool | None = True,
+    conf_level: float | None = None,
+    alpha_lower: float | None = None,
+    alpha_upper: float | None = None,
+    num_replicates: int | None = None,
+    random_state: int | np.random.Generator | None = None,
 ) -> pd.DataFrame:
     """Performs single thread cqv for pd.DataFrame."""
     print(num_threads)
     with mp.Pool(1) as pool:
         result = prepare_cqv_datafame(
             data=data,
+            method=method,
             ndigits=ndigits,
             interpolation=interpolation,
             multiplier=multiplier,
             pool=pool,
+            skipna=skipna,
+            conf_level=conf_level,
+            alpha_lower=alpha_lower,
+            alpha_upper=alpha_upper,
+            num_replicates=num_replicates,
+            random_state=random_state,
         )
     pool.close()
     return result

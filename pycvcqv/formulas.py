@@ -1,6 +1,8 @@
 """Formulas of cvcqv."""
 
 # --------------------------- Import libraries and functions --------------------------
+from typing import Any, cast
+
 import math
 
 import numpy as np  # To handle numeric infinity values.
@@ -87,3 +89,31 @@ def _cqv(
         ndigits=ndigits,  # ------------------ decimals for the round -----------------
     )
     return rounded_cqv
+
+
+def _cqv_statistic(
+    sample: np.ndarray,
+    interpolation: str | None = "linear",
+) -> float:
+    """Compute the (unscaled) coefficient of quartile variation for one sample.
+
+    Mirrors `_cqv` but skips rounding and the percentage multiplier so the
+    bootstrap distribution stays at full float precision.
+
+    Args:
+        sample: 1-D float array of observations.
+        interpolation: numpy/pandas quantile interpolation mode (default
+            "linear", which matches R's `type=7`).
+
+    Returns:
+        The CQV (q3 - q1) / (q3 + q1), or NaN if `q3 + q1 == 0`.
+    """
+    if sample.size < 2:
+        return float("nan")
+    method = cast(Any, interpolation or "linear")
+    quantile1 = float(np.quantile(sample, 0.25, method=method))
+    quantile3 = float(np.quantile(sample, 0.75, method=method))
+    denom = quantile3 + quantile1
+    if denom == 0:
+        return float("nan")
+    return (quantile3 - quantile1) / denom
