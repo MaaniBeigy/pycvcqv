@@ -26,4 +26,7 @@ $jsonOutput | Set-Content -Path ".logs/docstring.json"
 # Output for verification
 Write-Output "RESULT: $result, actual: $actual"
 # Run the interrogate --generate-badge command to save the badge svg file
-poetry run interrogate --generate-badge .\assets\images\interrogate_badge.svg
+# NOTE: pass `pycvcqv` so the badge mirrors the package-only score (100%);
+# omitting the path makes interrogate scan the whole repo (tests/, .shell/, ...)
+# and produces a misleading lower percentage.
+poetry run interrogate pycvcqv --generate-badge .\assets\images\interrogate_badge.svg

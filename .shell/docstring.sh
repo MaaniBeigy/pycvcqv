@@ -10,4 +10,7 @@ poetry run interrogate -v pycvcqv >.logs/docstring.txt
 poetry run interrogate pycvcqv
 
 # Generate the SVG badge (forward slashes — backslashes get eaten by bash).
-poetry run interrogate --generate-badge assets/images/interrogate_badge.svg
+# NOTE: pass `pycvcqv` so the badge mirrors the package-only score (100%);
+# omitting the path makes interrogate scan the whole repo (tests/, .shell/, ...)
+# and produces a misleading lower percentage.
+poetry run interrogate pycvcqv --generate-badge assets/images/interrogate_badge.svg
