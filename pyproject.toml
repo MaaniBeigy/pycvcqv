@@ -7,7 +7,7 @@ requires = ["poetry-core>=2.0.0"]
 # under `[tool.poetry.*]` so we can use Poetry's `^` / `~` version syntax).
 [project]
 name = "pycvcqv"
-version = "0.6.2"
+version = "0.7.0"
 description = "Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI)"
 license = "MIT"
 readme = "README.md"
