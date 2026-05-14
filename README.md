@@ -19,7 +19,6 @@
 [![Security: bandit](https://img.shields.io/badge/security-bandit-green.svg)](https://raw.githubusercontent.com/MaaniBeigy/pycvcqv/main/.logs/bandit.txt)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/MaaniBeigy/pycvcqv/blob/master/.pre-commit-config.yaml)
 [![License](https://img.shields.io/github/license/MaaniBeigy/pycvcqv)](https://github.com/MaaniBeigy/pycvcqv/blob/master/LICENSE)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2FMaaniBeigy%2Fpycvcqv?ref=badge_shield&issueType=license)
 
 Find homogeneity with confidence.
 
