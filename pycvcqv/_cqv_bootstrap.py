@@ -161,7 +161,7 @@ def _bootstrap_cqv_confidence_interval(
 
     sample_array = series.to_numpy(dtype=np.float64)
 
-    # Reuse the closed-form _cqv path so the reported point estimate honors
+    # Reuse the _cqv path so the reported point estimate honors
     # rounding/multiplier exactly the way every other CQV method does.
     calculated_cqv = _cqv(series, ndigits, interpolation, multiplier)
     mult = 1 if multiplier is None else multiplier

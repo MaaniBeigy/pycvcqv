@@ -50,20 +50,14 @@ def _cv_statistic(
 
     Returns:
         The CV (sd/mean), or +inf if the resample's mean is at/near zero in
-        the same regime as the closed-form `_cv` helper.
+        the same regime as the `_cv` helper.
     """
     if sample.size == 0:
         return float("nan")
-    # `np.std` with ddof >= sample.size emits a runtime warning and returns
-    # NaN. R's `sd()` does the same; for the bootstrap path we just want NaN
-    # downstream (the finite-mask in the CI helpers filters it out), so
-    # short-circuit silently rather than letting the warning escape into code.
     if sample.size <= ddof:
         return float("nan")
     mean = float(np.mean(sample))
     std = float(np.std(sample, ddof=ddof))
-    # Mirror _cv's degenerate-mean handling so bootstrap stats stay consistent
-    # with the closed-form path.
     if mean == 0 or (mean < 0.000001 and std > mean):
         return float("inf")
     cv = std / mean
@@ -300,8 +294,8 @@ def _resolve_conf_level(
     The bootstrap CIs are inherently two-sided and equal-tailed (R's
     `boot.ci` only accepts a single `conf`), so when `alpha_lower` and
     `alpha_upper` disagree we take the symmetric tail mass implied by the
-    larger one and warn-by-construction (matching how the closed-form
-    methods collapse the two knobs onto a single alpha/2).
+    larger one and warn-by-construction (matching how the alpha-collapse
+    happens elsewhere in pycvcqv).
     """
     if conf_level is not None:
         conf = float(conf_level)
@@ -395,7 +389,7 @@ def _bootstrap_cv_confidence_interval(
 
     sample_array = series.to_numpy(dtype=np.float64)
 
-    # Reuse the closed-form _cv path so the reported point estimate honors
+    # Reuse the _cv path so the reported point estimate honors
     # rounding/correction/multiplier exactly the way every other method does.
     calculated_cv = _cv(data, ddof, skipna, ndigits, correction, multiplier)
     if math.isinf(calculated_cv):

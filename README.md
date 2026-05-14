@@ -28,9 +28,27 @@ Python port of [cvcqv](https://github.com/MaaniBeigy/cvcqv)
 
 ## Introduction
 
-`pycvcqv` provides some easy-to-use functions to calculate the
-Coefficient of Variation (`cv`) and Coefficient of Quartile Variation (`cqv`)
-with confidence intervals provided with a variety of methods.
+`pycvcqv` provides versatile functions to quantify homogeneity with
+confidence intervals. It offers a variety of well-established methods from
+the literature (Kelley, McKay, Miller, Vangel, Mahmoudvand-Hassani,
+Equal-Tailed, Shortest-Length, Normal Approximation, Bonett) and bootstrap
+resampling techniques (Normal, Basic, Percentile, BCa) for constructing
+confidence intervals on the **Coefficient of Variation** (`cv`) and the
+**Coefficient of Quartile Variation** (`cqv`).
+
+### Coefficient of Variation
+
+`cv` is a measure of relative dispersion representing the degree of
+variability relative to the mean (Albatineh et al., 2014). Since `cv` is
+unitless, it is useful for comparing variables that have different units.
+It is also a measure of homogeneity (Albatineh et al., 2014).
+
+### Coefficient of Quartile Variation
+
+`cqv` is a measure of relative dispersion based on the interquartile
+range (IQR). Since `cqv` is unitless, it is also useful for comparing
+variables that have different units. It is also a measure of homogeneity
+(Bonett, 2006; Altunkaynak, 2018).
 
 ## Install
 

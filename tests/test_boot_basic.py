@@ -203,7 +203,7 @@ def test_boot_basic_accepts_alpha_lower_alone():
 
 
 def test_boot_basic_accepts_alpha_upper_alone():
-    """Only alpha_upper given ⇒ alpha_lower is back-filled (mirrors closed-form)."""
+    """Only alpha_upper given ⇒ alpha_lower is back-filled."""
     result = _boot_basic_cv_confidence_interval(
         data=REFERENCE_DATA,
         multiplier=100,

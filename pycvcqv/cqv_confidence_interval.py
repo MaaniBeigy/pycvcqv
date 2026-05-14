@@ -29,9 +29,6 @@ def _cqv_confidence_intervals(
     random_state: int | np.random.Generator | None = None,
 ) -> dict[str, float | int]:
     """Internal function to calculate cqv with confidence intervals."""
-    # The closed-form Bonett method and the bootstrap methods all share the
-    # same kwargs, so a single dict suffices here (cf. cv_confidence_interval
-    # which has to split on closed-form vs bootstrap kwargs).
     methods = {
         "bonett": _bonett_cqv_confidence_interval,
         "norm": _boot_norm_cqv_confidence_interval,
@@ -57,8 +54,6 @@ def _cqv_confidence_intervals(
         random_state=random_state,
     )
 
-    # Coerce numpy scalars to native Python floats so the public output is
-    # consistent across numpy versions.
     return {
         "cqv": float(result["cqv"]),
         "lower": float(result["lower"]),

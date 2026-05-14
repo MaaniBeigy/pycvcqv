@@ -35,7 +35,7 @@ REFERENCE_DATA = [
 
 
 def test_bonett_matches_r_reference():
-    """Closed-form Bonett CI matches R's published values to 3 digits."""
+    """Bonett CI matches R's published values to 3 digits."""
     result = _bonett_cqv_confidence_interval(
         data=REFERENCE_DATA,
         multiplier=100,

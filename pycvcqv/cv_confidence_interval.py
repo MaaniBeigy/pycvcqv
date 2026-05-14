@@ -17,9 +17,6 @@ from pycvcqv.shortest_length import _shortest_length_cv_confidence_interval
 from pycvcqv.types import NumArrayLike  # custom numeric array defined in types.py.
 from pycvcqv.vangel import _vangel_cv_confidence_interval
 
-# Methods that consume `num_replicates`/`random_state`. Closed-form methods
-# don't accept these, so we route them to the dispatcher only when the kind
-# is bootstrap-based.
 _BOOTSTRAP_METHODS: frozenset[str] = frozenset({"norm", "basic", "perc", "bca"})
 
 # -------------------------------- function definition --------------------------------
@@ -42,8 +39,7 @@ def _cv_confidence_intervals(
     random_state: int | np.random.Generator | None = None,
 ) -> dict[str, float | int]:
     """Internal function to calculate cv with confidence intervals."""
-    # Closed-form methods all share the legacy 11-kwarg signature.
-    closed_form_methods = {
+    methods = {
         "kelley": _kelley_cv_confidence_interval,
         "mckay": _mckay_cv_confidence_interval,
         "miller": _miller_cv_confidence_interval,
@@ -78,7 +74,7 @@ def _cv_confidence_intervals(
             random_state=random_state,
         )
     else:
-        result = closed_form_methods[method](
+        result = methods[method](
             data,
             ddof=ddof,
             skipna=skipna,

@@ -36,7 +36,7 @@ def _mahmoudvand_hassani_cv_confidence_interval(
     """Compute Mahmoudvand-Hassani's CI for the coefficient of variation (CV).
 
     Mahmoudvand and Hassani (2009) proposed a CI based on ranked-set sampling
-    that uses a closed-form correction factor C_n. With n the sample size,
+    that uses a correction factor C_n. With n the sample size,
     alpha the type-I error rate and z = qnorm(alpha/2):
 
         C_n   = sqrt(2/(n - 1)) * gamma(n/2) / gamma((n - 1)/2)
