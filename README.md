@@ -31,10 +31,12 @@ Python port of [cvcqv](https://github.com/MaaniBeigy/cvcqv)
 `pycvcqv` provides versatile functions to quantify homogeneity with
 confidence intervals. It offers a variety of well-established methods from
 the literature (Kelley, McKay, Miller, Vangel, Mahmoudvand-Hassani,
-Equal-Tailed, Shortest-Length, Normal Approximation, Bonett) and bootstrap
-resampling techniques (Normal, Basic, Percentile, BCa) for constructing
-confidence intervals on the **Coefficient of Variation** (`cv`) and the
-**Coefficient of Quartile Variation** (`cqv`).
+Equal-Tailed, Shortest-Length, Normal Approximation, Bonett, and the
+Abu-Shawiesh-Akyuz-Kibria adjusted-degrees-of-freedom, large-sample, and
+augmented-large-sample CIs) and bootstrap resampling techniques (Normal,
+Basic, Percentile, BCa) for constructing confidence intervals on the
+**Coefficient of Variation** (`cv`) and the **Coefficient of Quartile
+Variation** (`cqv`).
 
 ### Coefficient of Variation
 
@@ -108,6 +110,7 @@ for method in (
     "kelley", "mckay", "miller", "vangel",
     "mahmoudvand_hassani", "equal_tailed",
     "shortest_length", "normal_approximation",
+    "aak_adj", "aak_ls", "aak_als",
     "norm", "basic", "perc", "bca",
 ):
     print(method, coefficient_of_variation(
@@ -133,6 +136,9 @@ Output (95% CI, `multiplier=100`, `ndigits=3`, bootstrap methods use
 | `equal_tailed`         | 57.774 | 43.937 |  84.383 | cv with Equal-Tailed 95% CI                        |
 | `shortest_length`      | 57.774 | 42.015 |  81.013 | cv with Shortest-Length 95% CI                     |
 | `normal_approximation` | 57.774 | 44.533 |  85.272 | cv with Normal Approximation 95% CI                |
+| `aak_adj`              | 57.774 | 48.029 |  72.516 | cv with Abu-Shawiesh-Akyuz-Kibria Adjusted-DoF 95% CI |
+| `aak_ls`               | 57.774 | 46.310 |  72.075 | cv with Abu-Shawiesh-Akyuz-Kibria Large-Sample 95% CI |
+| `aak_als`              | 57.774 | 45.839 |  75.092 | cv with Abu-Shawiesh-Akyuz-Kibria Augmented-LS 95% CI |
 | `norm`                 | 57.774 | 38.850 |  78.379 | cv with Normal Approximation Bootstrap 95% CI      |
 | `basic`                | 57.774 | 37.716 |  77.166 | cv with Basic Bootstrap 95% CI                     |
 | `perc`                 | 57.774 | 38.382 |  77.832 | cv with Bootstrap Percentile 95% CI                |

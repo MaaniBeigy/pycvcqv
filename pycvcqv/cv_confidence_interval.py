@@ -3,6 +3,9 @@
 # --------------------------- Import libraries and functions --------------------------
 import numpy as np
 
+from pycvcqv.aak_adj import _aak_adj_cv_confidence_interval
+from pycvcqv.aak_als import _aak_als_cv_confidence_interval
+from pycvcqv.aak_ls import _aak_ls_cv_confidence_interval
 from pycvcqv.boot_basic import _boot_basic_cv_confidence_interval
 from pycvcqv.boot_bca import _boot_bca_cv_confidence_interval
 from pycvcqv.boot_norm import _boot_norm_cv_confidence_interval
@@ -48,6 +51,9 @@ def _cv_confidence_intervals(
         "equal_tailed": _equal_tailed_cv_confidence_interval,
         "normal_approximation": _normal_approximation_cv_confidence_interval,
         "shortest_length": _shortest_length_cv_confidence_interval,
+        "aak_adj": _aak_adj_cv_confidence_interval,
+        "aak_ls": _aak_ls_cv_confidence_interval,
+        "aak_als": _aak_als_cv_confidence_interval,
     }
     # Bootstrap methods additionally take num_replicates and random_state.
     bootstrap_methods = {

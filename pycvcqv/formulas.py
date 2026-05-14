@@ -91,6 +91,133 @@ def _cqv(
     return rounded_cqv
 
 
+def _central_moment(data: pd.Series, order: int) -> float:
+    """Compute the order-`order` central moment.
+
+    Returns m_k = (1/n) * sum((X_i - mean)**k), matching the
+    `m_2`, `m_4` definitions in Abu-Shawiesh, Aky & Kibria (2019),
+    Eq. 10 footer (no Bessel correction).
+
+    Args:
+        data: A pandas Series of numeric values (NaN-free).
+        order: The moment order (an integer >= 1).
+
+    Returns:
+        The central moment as a float.
+
+    References:
+        Abu-Shawiesh, M. O. A., Aky, H. E., & Kibria, B. G. (2019).
+        Performance of Some Confidence Intervals for Estimating the
+        Population Coefficient of Variation under both Symmetric and
+        Skewed Distributions. Statistics, Optimization & Information
+        Computing, 7(2), 277-290. https://doi.org/10.19139/soic.v7i2.630
+    """
+    mean = float(data.mean())
+    return float(((data - mean) ** order).mean())
+
+
+def _g2_excess_kurtosis(data: pd.Series) -> float:
+    """Compute the sample excess kurtosis g_2 = m_4 / m_2**2 - 3.
+
+    Matches the expression for g_2 under Abu-Shawiesh, Aky & Kibria
+    (2019), Eq. 10 footer.
+
+    Args:
+        data: A pandas Series of numeric values (NaN-free).
+
+    Returns:
+        The sample excess kurtosis as a float.
+    """
+    m_2 = _central_moment(data, 2)
+    m_4 = _central_moment(data, 4)
+    return m_4 / (m_2**2) - 3.0
+
+
+def _g2_bias_corrected(data: pd.Series) -> float:
+    """Compute the bias-adjusted kurtosis estimator G_2.
+
+    From Abu-Shawiesh, Aky & Kibria (2019), Eq. 10:
+
+        G_2 = (n - 1) / ((n - 2)(n - 3)) * [(n - 1) * g_2 + 6]
+
+    Args:
+        data: A pandas Series of numeric values (NaN-free). Requires
+            at least 4 observations.
+
+    Returns:
+        The G_2 estimator as a float.
+
+    Raises:
+        ValueError: If `data` has fewer than 4 observations.
+    """
+    n = len(data)
+    if n < 4:
+        raise ValueError("G_2 requires at least 4 observations.")
+    g_2 = _g2_excess_kurtosis(data)
+    return (n - 1) / ((n - 2) * (n - 3)) * ((n - 1) * g_2 + 6.0)
+
+
+def _kappa_e5(data: pd.Series) -> float:
+    """Compute the modified kurtosis estimator kappa_e5.
+
+    From Abu-Shawiesh, Aky & Kibria (2019), Eq. 13:
+
+        kappa_e5 = ((n + 1) / (n - 1)) * G_2 * (1 + 5 * G_2 / n)
+
+    Used by the AA&K-ALS confidence interval for the coefficient of
+    variation. Inherits `_g2_bias_corrected`'s `ValueError` when n < 4.
+
+    Args:
+        data: A pandas Series of numeric values (NaN-free). Requires
+            at least 4 observations.
+
+    Returns:
+        The kappa_e5 estimator as a float.
+    """
+    n = len(data)
+    big_g2 = _g2_bias_corrected(data)
+    return ((n + 1.0) / (n - 1.0)) * big_g2 * (1.0 + 5.0 * big_g2 / n)
+
+
+def _gamma_hat_hummel(data: pd.Series, ddof: int = 1) -> float:
+    """Compute the Hummel-style adjusted-kurtosis estimator.
+
+    From Abu-Shawiesh, Aky & Kibria (2019), Eq. 5:
+
+        gamma_hat = [n(n + 1) / ((n - 1)(n - 2)(n - 3))]
+                    * sum((X_i - mean)**4) / S**4
+                    - 3(n - 1)**2 / ((n - 2)(n - 3))
+
+    Used by the AA&K-ADJ confidence interval for the coefficient of
+    variation. `S` is the Bessel-corrected sample standard deviation
+    (ddof=1 by default, matching Abu-Shawiesh, Aky & Kibria, 2019).
+
+    Args:
+        data: A pandas Series of numeric values (NaN-free). Requires
+            at least 4 observations.
+        ddof: Delta degrees of freedom for the sample variance used in
+            S**4. Defaults to 1 to match Abu-Shawiesh, Aky & Kibria
+            (2019).
+
+    Returns:
+        The gamma_hat estimator as a float.
+
+    Raises:
+        ValueError: If `data` has fewer than 4 observations.
+    """
+    n = len(data)
+    if n < 4:
+        raise ValueError("gamma_hat requires at least 4 observations.")
+    mean = float(data.mean())
+    sum_fourth = float(((data - mean) ** 4).sum())
+    sample_var = float(data.var(ddof=ddof))
+    first_term = (n * (n + 1.0) / ((n - 1.0) * (n - 2.0) * (n - 3.0))) * (
+        sum_fourth / (sample_var**2)
+    )
+    second_term = 3.0 * (n - 1.0) ** 2 / ((n - 2.0) * (n - 3.0))
+    return first_term - second_term
+
+
 def _cqv_statistic(
     sample: np.ndarray,
     interpolation: str | None = "linear",
