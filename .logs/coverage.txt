@@ -1,39 +1,81 @@
 ============================= test session starts ==============================
-platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0
-rootdir: /mnt/c/Users/20240700/projects/pycvcqv
+platform linux -- Python 3.11.15, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/user/pycvcqv
 configfile: pyproject.toml
-plugins: anyio-4.13.0, cov-7.1.0
-collected 65 items
+plugins: cov-7.1.0, anyio-4.13.0
+collected 351 items
 
-tests/test_checkers.py ..............                                    [ 21%]
-tests/test_cqv.py ...........                                            [ 38%]
-tests/test_cv.py .............                                           [ 58%]
-tests/test_kelley.py ..                                                  [ 61%]
-tests/test_miller.py ..........                                          [ 76%]
-tests/test_noncentralt.py ...............                                [100%]
+tests/test_aak_adj.py .................                                  [  4%]
+tests/test_aak_als.py .................                                  [  9%]
+tests/test_aak_ls.py ................                                    [ 14%]
+tests/test_bonett.py .............                                       [ 17%]
+tests/test_boot_basic.py .............                                   [ 21%]
+tests/test_boot_basic_cqv.py .........                                   [ 24%]
+tests/test_boot_bca.py ............                                      [ 27%]
+tests/test_boot_bca_cqv.py .........                                     [ 30%]
+tests/test_boot_helpers.py ............................                  [ 38%]
+tests/test_boot_norm.py .............                                    [ 41%]
+tests/test_boot_norm_cqv.py ...........                                  [ 45%]
+tests/test_boot_perc.py ..........                                       [ 47%]
+tests/test_boot_perc_cqv.py .........                                    [ 50%]
+tests/test_checkers.py ..............                                    [ 54%]
+tests/test_cqv.py ...........                                            [ 57%]
+tests/test_cqv_confidence_interval.py .................                  [ 62%]
+tests/test_cv.py .............                                           [ 66%]
+tests/test_equal_tailed.py .............                                 [ 69%]
+tests/test_formulas_kurtosis.py ...........                              [ 72%]
+tests/test_kelley.py ..                                                  [ 73%]
+tests/test_mahmoudvand_hassani.py ..............                         [ 77%]
+tests/test_mckay.py .............                                        [ 81%]
+tests/test_miller.py ..........                                          [ 84%]
+tests/test_noncentralt.py ...............                                [ 88%]
+tests/test_normal_approximation.py .............                         [ 92%]
+tests/test_shortest_length.py ...............                            [ 96%]
+tests/test_vangel.py .............                                       [100%]
 
 ================================ tests coverage ================================
-_______________ coverage: platform linux, python 3.12.3-final-0 ________________
+_______________ coverage: platform linux, python 3.11.15-final-0 _______________
 
-Name                                Stmts   Miss Branch BrPart  Cover   Missing
--------------------------------------------------------------------------------
-pycvcqv/__init__.py                    11      0      0      0   100%
-pycvcqv/checkers.py                    37      0     18      0   100%
-pycvcqv/cqv.py                         11      0      2      0   100%
-pycvcqv/cv.py                          12      0      2      0   100%
-pycvcqv/cv_confidence_interval.py       7      0      0      0   100%
-pycvcqv/dataframe.py                   11      0      0      0   100%
-pycvcqv/formulas.py                    30      0      6      0   100%
-pycvcqv/kelley.py                      16      0      0      0   100%
-pycvcqv/miller.py                      40      0     18      0   100%
-pycvcqv/multithread.py                 15      0      0      0   100%
-pycvcqv/noncentralt.py                 71      0     12      0   100%
-pycvcqv/prepare_output.py              14      0      0      0   100%
-pycvcqv/sanitizers.py                  19      0     14      0   100%
-pycvcqv/singlethread.py                15      0      0      0   100%
-pycvcqv/types.py                       15      0      0      0   100%
-pycvcqv/userthread.py                  13      0      0      0   100%
--------------------------------------------------------------------------------
-TOTAL                                 337      0     72      0   100%
+Name                                 Stmts   Miss Branch BrPart  Cover   Missing
+--------------------------------------------------------------------------------
+pycvcqv/__init__.py                     11      0      0      0   100%
+pycvcqv/_bootstrap.py                  152      0     60      0   100%
+pycvcqv/_cqv_bootstrap.py               60      0     24      0   100%
+pycvcqv/aak_adj.py                      42      0     20      0   100%
+pycvcqv/aak_als.py                      42      0     18      0   100%
+pycvcqv/aak_ls.py                       40      0     18      0   100%
+pycvcqv/bonett.py                       48      0     10      0   100%
+pycvcqv/boot_basic.py                    7      0      0      0   100%
+pycvcqv/boot_basic_cqv.py                6      0      0      0   100%
+pycvcqv/boot_bca.py                      7      0      0      0   100%
+pycvcqv/boot_bca_cqv.py                  6      0      0      0   100%
+pycvcqv/boot_norm.py                     7      0      0      0   100%
+pycvcqv/boot_norm_cqv.py                 6      0      0      0   100%
+pycvcqv/boot_perc.py                     7      0      0      0   100%
+pycvcqv/boot_perc_cqv.py                 6      0      0      0   100%
+pycvcqv/checkers.py                     37      0     18      0   100%
+pycvcqv/cqv.py                          16      0      4      0   100%
+pycvcqv/cqv_confidence_interval.py      14      0      2      0   100%
+pycvcqv/cv.py                           13      0      2      0   100%
+pycvcqv/cv_confidence_interval.py       25      0      2      0   100%
+pycvcqv/dataframe.py                    12      0      0      0   100%
+pycvcqv/equal_tailed.py                 40      0     18      0   100%
+pycvcqv/formulas.py                     68      0     14      0   100%
+pycvcqv/kelley.py                       16      0      0      0   100%
+pycvcqv/mahmoudvand_hassani.py          43      0     20      0   100%
+pycvcqv/mckay.py                        42      0     18      0   100%
+pycvcqv/miller.py                       40      0     18      0   100%
+pycvcqv/multithread.py                  16      0      0      0   100%
+pycvcqv/noncentralt.py                  71      0     12      0   100%
+pycvcqv/normal_approximation.py         41      0     18      0   100%
+pycvcqv/prepare_output.py               19      0      2      0   100%
+pycvcqv/sanitizers.py                   19      0     14      0   100%
+pycvcqv/shortest_length.py              49      0     22      0   100%
+pycvcqv/singlethread.py                 16      0      0      0   100%
+pycvcqv/types.py                        16      0      0      0   100%
+pycvcqv/userthread.py                   14      0      0      0   100%
+pycvcqv/vangel.py                       42      0     18      0   100%
+--------------------------------------------------------------------------------
+TOTAL                                 1116      0    352      0   100%
 Required test coverage of 50.0% reached. Total coverage: 100.00%
-============================= 65 passed in 30.52s ==============================
+============================= 351 passed in 10.90s =============================
