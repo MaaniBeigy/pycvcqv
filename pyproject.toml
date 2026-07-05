@@ -7,7 +7,7 @@ requires = ["poetry-core>=2.0.0"]
 # under `[tool.poetry.*]` so we can use Poetry's `^` / `~` version syntax).
 [project]
 name = "pycvcqv"
-version = "0.7.2"
+version = "0.7.3"
 description = "Coefficient of Variation (CV) and Coefficient of Quartile Variation (CQV) with Confidence Intervals (CI)"
 license = "MIT"
 readme = "README.md"
@@ -119,7 +119,7 @@ use_parentheses = true
 
 [tool.mypy]
 # https://mypy.readthedocs.io/en/latest/config_file.html#using-a-pyproject-toml-file
-python_version = "3.11"
+python_version = "3.12"
 color_output = true
 pretty = true
 show_traceback = true
