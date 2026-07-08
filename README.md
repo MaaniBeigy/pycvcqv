@@ -181,6 +181,19 @@ Output (95% CI, `multiplier=100`, `ndigits=3`, bootstrap methods use
 | `bca`    | 45.625 | 22.006 | 76.331 | cqv with Adjusted Bootstrap Percentile (BCa) 95% CI |
 
 
+## Citation
+
+If you use `pycvcqv` in your research, please cite it as:
+
+```bibtex
+@misc{beigy_pycvcqv_2026,
+	title = {pycvcqv: {Find} homogeneity with confidence.},
+	url = {https://github.com/MaaniBeigy/pycvcqv},
+	author = {Beigy, Maani and Bitaraf, Ehsan},
+	year = {2026},
+}
+```
+
 ## Credits
 
 [![🚀 Your next Python package needs a bleeding-edge project structure.](https://img.shields.io/badge/python--package--template-%F0%9F%9A%80-brightgreen)](https://github.com/TezRomacH/python-package-template)
