@@ -63,7 +63,7 @@ flake8 = "^7.3"
 interrogate = "^1.7"
 isort = {extras = ["colors"], version = "^6.0"}
 jupyter-book = "^1.0"
-matplotlib = "^3.9"
+matplotlib = "^3.11"
 mypy = "^1.20"
 mypy-extensions = "^1.1"
 pre-commit = "^4.3"
