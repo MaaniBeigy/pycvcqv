@@ -59,7 +59,7 @@ coverage = "^7.10"
 coverage-badge = "^1.1"
 pybadges = "^3.0"
 darglint = "^1.8.1"
-flake8 = "^7.3"
+flake8 = "^7.4"
 interrogate = "^1.7"
 isort = {extras = ["colors"], version = "^6.0"}
 jupyter-book = "^1.0"
