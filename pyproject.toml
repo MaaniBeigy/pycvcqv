@@ -62,7 +62,7 @@ darglint = "^1.8.1"
 flake8 = "^7.3"
 interrogate = "^1.7"
 isort = {extras = ["colors"], version = "^6.0"}
-jupyter-book = "^1.0"
+jupyter-book = "^2.1"
 matplotlib = "^3.9"
 mypy = "^1.20"
 mypy-extensions = "^1.1"
